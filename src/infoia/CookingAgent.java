@@ -1,5 +1,7 @@
 package infoia;
 
+import java.util.ArrayList;
+
 public class CookingAgent {
 	public static void main(String[] args) {
 		Ingredient tomato = new Ingredient("Tomato");
@@ -15,6 +17,16 @@ public class CookingAgent {
 		pastaRabiata.add(new Portion(onion, 1, "piece"));
 		pastaRabiata.add(new Portion(spanishPepper, 1, "piece"));
 
-		System.out.println(pastaRabiata.toString());
+		CookingAgent ca = new CookingAgent();
+		ca.recipeBook.add(pastaRabiata);
+		System.out.println(ca.recipeBook.get(0).toString());
+	}
+
+	ArrayList<Portion> fridge;
+	ArrayList<Recipe> recipeBook;
+
+	CookingAgent () {
+		fridge = new ArrayList<Portion>();
+		recipeBook = new ArrayList<Recipe>();
 	}
 }
