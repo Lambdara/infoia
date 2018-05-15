@@ -1,0 +1,8 @@
+Tomato
+Onion
+Carrot
+OliveOil
+Water
+Salt
+Pepper
+Basil

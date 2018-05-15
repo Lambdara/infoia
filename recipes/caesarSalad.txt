@@ -1,0 +1,11 @@
+Lettuce
+Egg
+OliveOil
+Cheese
+Garlic
+Lemon
+Pepper
+Salt
+Bacon
+Chicken
+Crouton
