@@ -39,7 +39,7 @@ public class CookingAgent {
 		for (File file : listOfFiles) {
 			if (file.isFile()) {
 				System.out.println("Read " + file.getName());
-				String fileName = "recipes/"+file.getName();
+				String fileName = "recipes/" + file.getName();
 
 				try (Scanner scanner = new Scanner(new File(fileName))) {
 
@@ -67,7 +67,7 @@ public class CookingAgent {
 				}
 			}
 		}
-		
+
 		System.out.println(ingredients.size());
 		for(Ingredient i : ingredients) {
 			System.out.println(i.getName());
