@@ -2,7 +2,7 @@ package infoia;
 
 import java.util.ArrayList;
 
-public class Recipe extends ArrayList<Portion> {
+public class Recipe extends ArrayList<Ingredient> {
 	private static final long serialVersionUID = 1L;
 
 	String name;
@@ -18,8 +18,8 @@ public class Recipe extends ArrayList<Portion> {
 		if (this.size() == 0) {
 			output += "No ingredients";
 		} else {
-			for (Portion p : this) {
-				output += p.amount + " " + p.unit + " " + p.ingredient.getName() + "\n";
+			for (Ingredient i : this) {
+				output += i.getName() + "\n";
 			}
 		}
 

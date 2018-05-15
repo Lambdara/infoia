@@ -11,22 +11,37 @@ public class CookingAgent {
 		Ingredient spanishPepper = new Ingredient("Spanish Pepper");
 
 		Recipe pastaRabiata = new Recipe("Pasta Rabiata");
-		pastaRabiata.add(new Portion(tomato, 8, "piece"));
-		pastaRabiata.add(new Portion(pasta, 200, "gramme"));
-		pastaRabiata.add(new Portion(garlic, 2, "clove"));
-		pastaRabiata.add(new Portion(onion, 1, "piece"));
-		pastaRabiata.add(new Portion(spanishPepper, 1, "piece"));
+		pastaRabiata.add(tomato);
+		pastaRabiata.add(pasta);
+		pastaRabiata.add(garlic);
+		pastaRabiata.add(onion);
+		pastaRabiata.add(spanishPepper);
 
 		CookingAgent ca = new CookingAgent();
 		ca.recipeBook.add(pastaRabiata);
 		System.out.println(ca.recipeBook.get(0).toString());
 	}
 
-	ArrayList<Portion> fridge;
+	ArrayList<Ingredient> fridge;
 	ArrayList<Recipe> recipeBook;
 
 	CookingAgent () {
-		fridge = new ArrayList<Portion>();
+		fridge = new ArrayList<Ingredient>();
 		recipeBook = new ArrayList<Recipe>();
+	}
+
+	private boolean hasIngredients(Recipe recipe) {
+		for (Ingredient i : recipe)
+			if (!fridge.contains(i))
+				return false;
+		return true;
+	}
+
+	ArrayList<Recipe> getAvailableRecipes() {
+		ArrayList<Recipe> result = new ArrayList<Recipe>();
+		for (Recipe r : recipeBook)
+			if(hasIngredients(r))
+				result.add(r);
+		return result;
 	}
 }
