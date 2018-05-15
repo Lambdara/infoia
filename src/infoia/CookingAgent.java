@@ -1,6 +1,9 @@
 package infoia;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class CookingAgent {
 	public static void main(String[] args) {
@@ -19,15 +22,56 @@ public class CookingAgent {
 
 		CookingAgent ca = new CookingAgent();
 		ca.recipeBook.add(pastaRabiata);
-		System.out.println(ca.recipeBook.get(0).toString());
 	}
 
 	ArrayList<Ingredient> fridge;
 	ArrayList<Recipe> recipeBook;
+	ArrayList<Ingredient> ingredients;
 
 	CookingAgent () {
 		fridge = new ArrayList<Ingredient>();
 		recipeBook = new ArrayList<Recipe>();
+		ingredients = new ArrayList<Ingredient>();
+
+		File folder = new File("recipes/");
+		File[] listOfFiles = folder.listFiles();
+
+		for (File file : listOfFiles) {
+			if (file.isFile()) {
+				System.out.println("Read " + file.getName());
+				String fileName = "recipes/"+file.getName();
+
+				try (Scanner scanner = new Scanner(new File(fileName))) {
+
+					Recipe recipe = new Recipe(fileName);
+
+					while (scanner.hasNext()){
+						String ingredientName = scanner.nextLine();
+
+						Ingredient ingredient = null;
+						for (Ingredient i : ingredients) {
+							if(i.getName().equals(ingredientName)) {
+								ingredient = i;
+							}
+						}
+
+						if (ingredient == null) {
+							ingredient = new Ingredient(ingredientName);
+							ingredients.add(ingredient);
+						}
+
+						recipe.add(ingredient);
+					}
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+		
+		System.out.println(ingredients.size());
+		for(Ingredient i : ingredients) {
+			System.out.println(i.getName());
+		}
 	}
 
 	private boolean hasIngredients(Recipe recipe) {
