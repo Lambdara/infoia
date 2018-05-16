@@ -1,0 +1,10 @@
+Rice
+OliveOil
+Ham
+Chicken
+SoySauce
+Egg
+Paprika
+MungBeanSprout
+Salt
+Pepper

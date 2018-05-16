@@ -1,0 +1,10 @@
+Egg
+Pasta
+Cheese
+OliveOil
+Garlic
+Bacon
+Pepper
+Oregano
+Thyme
+Pasley

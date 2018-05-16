@@ -1,0 +1,7 @@
+Egg
+MincedBeef
+Onion
+Butter
+Salt
+Pepper
+Nutmeg

@@ -1,0 +1,6 @@
+Lettuce
+Tomato
+Garlic
+OliveOil
+Pepper
+Salt
