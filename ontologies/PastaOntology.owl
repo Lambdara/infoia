@@ -21,6 +21,14 @@
     
 
 
+    <!-- http://www.semanticweb.org/jordi/ontologies/2018/4/untitled-ontology-17#OliveOil -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/jordi/ontologies/2018/4/untitled-ontology-17#OliveOil">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/jordi/ontologies/2018/4/untitled-ontology-2#Ingredients"/>
+    </owl:Class>
+    
+
+
     <!-- http://www.semanticweb.org/jordi/ontologies/2018/4/untitled-ontology-2#AnimalProducts -->
 
     <owl:Class rdf:about="http://www.semanticweb.org/jordi/ontologies/2018/4/untitled-ontology-2#AnimalProducts">
