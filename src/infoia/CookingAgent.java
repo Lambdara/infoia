@@ -69,10 +69,9 @@ public class CookingAgent {
 						if (ingredient == null) {
 							ingredient = new Ingredient(ingredientName);
 							ingredients.add(ingredient);
-//						}
+						}
 
 						recipe.add(ingredient);
-						}
 					}
 				} catch (IOException e) {
 					e.printStackTrace();
@@ -81,7 +80,7 @@ public class CookingAgent {
 		}
  
 		reasoner.precomputeInferences(InferenceType.CLASS_HIERARCHY);
-		reasoner.getSubClasses(dataFactory.getOWLClass("http://www.semanticweb.org/jordi/ontologies/2018/4/untitled-ontology-6#Cheese"), false).forEach(System.out::println);;
+		reasoner.getSubClasses(dataFactory.getOWLClass("http://www.semanticweb.org/jordi/ontologies/2018/4/untitled-ontology-2#AnimalProducts"), false).forEach(System.out::println);;
 	}
 
 	private boolean hasIngredients(Recipe recipe) {
