@@ -1,0 +1,11 @@
+Tomato
+MincedBeef
+Onion
+Garlic
+RedWine
+OliveOil
+OreganoSeasoning
+ThymeSeasoning
+SaltSeasoning
+PepperSeasoning
+Spaghetti

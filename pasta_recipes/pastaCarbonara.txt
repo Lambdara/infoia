@@ -1,0 +1,10 @@
+Egg
+Penne
+Cheese
+OliveOil
+Garlic
+Bacon
+PepperSeasoning
+OreganoSeasoning
+ThymeSeasoning
+ParsleySeasoning
