@@ -2,5 +2,48 @@
 <classpath>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="lib" path="/home/lars/documents/programming/infoia/lib/aopalliance-1.0.jar"/>
+	<classpathentry kind="lib" path="/home/lars/documents/programming/infoia/lib/caffeine-2.5.6.jar"/>
+	<classpathentry kind="lib" path="/home/lars/documents/programming/infoia/lib/commons-codec-1.9.jar"/>
+	<classpathentry kind="lib" path="/home/lars/documents/programming/infoia/lib/commons-io-2.5.jar"/>
+	<classpathentry kind="lib" path="/home/lars/documents/programming/infoia/lib/commons-rdf-api-0.3.0-incubating.jar"/>
+	<classpathentry kind="lib" path="/home/lars/documents/programming/infoia/lib/fluent-hc-4.5.3.jar"/>
+	<classpathentry kind="lib" path="/home/lars/documents/programming/infoia/lib/guava-20.0.jar"/>
+	<classpathentry kind="lib" path="/home/lars/documents/programming/infoia/lib/guice-4.1.0.jar"/>
+	<classpathentry kind="lib" path="/home/lars/documents/programming/infoia/lib/guice-assistedinject-4.1.0.jar"/>
+	<classpathentry kind="lib" path="/home/lars/documents/programming/infoia/lib/guice-multibindings-4.1.0.jar"/>
+	<classpathentry kind="lib" path="/home/lars/documents/programming/infoia/lib/httpclient-4.5.3.jar"/>
+	<classpathentry kind="lib" path="/home/lars/documents/programming/infoia/lib/httpclient-cache-4.5.3.jar"/>
+	<classpathentry kind="lib" path="/home/lars/documents/programming/infoia/lib/httpclient-osgi-4.5.3.jar"/>
+	<classpathentry kind="lib" path="/home/lars/documents/programming/infoia/lib/httpcore-4.4.5.jar"/>
+	<classpathentry kind="lib" path="/home/lars/documents/programming/infoia/lib/httpcore-nio-4.4.5.jar"/>
+	<classpathentry kind="lib" path="/home/lars/documents/programming/infoia/lib/httpcore-osgi-4.4.5.jar"/>
+	<classpathentry kind="lib" path="/home/lars/documents/programming/infoia/lib/httpmime-4.5.3.jar"/>
+	<classpathentry kind="lib" path="/home/lars/documents/programming/infoia/lib/jackson-annotations-2.9.0.jar"/>
+	<classpathentry kind="lib" path="/home/lars/documents/programming/infoia/lib/jackson-core-2.9.0.jar"/>
+	<classpathentry kind="lib" path="/home/lars/documents/programming/infoia/lib/jackson-databind-2.9.0.jar"/>
+	<classpathentry kind="lib" path="/home/lars/documents/programming/infoia/lib/javax.inject-1.jar"/>
+	<classpathentry kind="lib" path="/home/lars/documents/programming/infoia/lib/jcl-over-slf4j-1.7.22.jar"/>
+	<classpathentry kind="lib" path="/home/lars/documents/programming/infoia/lib/jsonld-java-0.11.1.jar"/>
+	<classpathentry kind="lib" path="/home/lars/documents/programming/infoia/lib/jsr305-3.0.1.jar"/>
+	<classpathentry kind="lib" path="/home/lars/documents/programming/infoia/lib/owlapi-distribution-5.1.4.jar"/>
+	<classpathentry kind="lib" path="/home/lars/documents/programming/infoia/lib/rdf4j-model-2.2.2.jar"/>
+	<classpathentry kind="lib" path="/home/lars/documents/programming/infoia/lib/rdf4j-rio-api-2.2.2.jar"/>
+	<classpathentry kind="lib" path="/home/lars/documents/programming/infoia/lib/rdf4j-rio-binary-2.2.2.jar"/>
+	<classpathentry kind="lib" path="/home/lars/documents/programming/infoia/lib/rdf4j-rio-datatypes-2.2.2.jar"/>
+	<classpathentry kind="lib" path="/home/lars/documents/programming/infoia/lib/rdf4j-rio-jsonld-2.2.2.jar"/>
+	<classpathentry kind="lib" path="/home/lars/documents/programming/infoia/lib/rdf4j-rio-languages-2.2.2.jar"/>
+	<classpathentry kind="lib" path="/home/lars/documents/programming/infoia/lib/rdf4j-rio-n3-2.2.2.jar"/>
+	<classpathentry kind="lib" path="/home/lars/documents/programming/infoia/lib/rdf4j-rio-nquads-2.2.2.jar"/>
+	<classpathentry kind="lib" path="/home/lars/documents/programming/infoia/lib/rdf4j-rio-ntriples-2.2.2.jar"/>
+	<classpathentry kind="lib" path="/home/lars/documents/programming/infoia/lib/rdf4j-rio-rdfjson-2.2.2.jar"/>
+	<classpathentry kind="lib" path="/home/lars/documents/programming/infoia/lib/rdf4j-rio-rdfxml-2.2.2.jar"/>
+	<classpathentry kind="lib" path="/home/lars/documents/programming/infoia/lib/rdf4j-rio-trig-2.2.2.jar"/>
+	<classpathentry kind="lib" path="/home/lars/documents/programming/infoia/lib/rdf4j-rio-trix-2.2.2.jar"/>
+	<classpathentry kind="lib" path="/home/lars/documents/programming/infoia/lib/rdf4j-rio-turtle-2.2.2.jar"/>
+	<classpathentry kind="lib" path="/home/lars/documents/programming/infoia/lib/rdf4j-util-2.2.2.jar"/>
+	<classpathentry kind="lib" path="/home/lars/documents/programming/infoia/lib/slf4j-api-1.7.25.jar"/>
+	<classpathentry kind="lib" path="/home/lars/documents/programming/infoia/lib/trove4j-3.0.3.jar"/>
+	<classpathentry kind="lib" path="/home/lars/documents/programming/infoia/lib/xz-1.6.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

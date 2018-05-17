@@ -5,23 +5,18 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import org.semanticweb.owlapi.apibinding.OWLManager;
+import org.semanticweb.owlapi.formats.FunctionalSyntaxDocumentFormat;
+import org.semanticweb.owlapi.model.IRI;
+import org.semanticweb.owlapi.model.OWLOntology;
+import org.semanticweb.owlapi.model.OWLOntologyCreationException;
+import org.semanticweb.owlapi.model.OWLOntologyManager;
+import org.semanticweb.owlapi.model.OWLOntologyStorageException;
+
+
 public class CookingAgent {
 	public static void main(String[] args) {
-		Ingredient tomato = new Ingredient("Tomato");
-		Ingredient pasta = new Ingredient("Pasta");
-		Ingredient garlic = new Ingredient("Garlic");
-		Ingredient onion = new Ingredient("Onion");
-		Ingredient spanishPepper = new Ingredient("Spanish Pepper");
-
-		Recipe pastaRabiata = new Recipe("Pasta Rabiata");
-		pastaRabiata.add(tomato);
-		pastaRabiata.add(pasta);
-		pastaRabiata.add(garlic);
-		pastaRabiata.add(onion);
-		pastaRabiata.add(spanishPepper);
-
-		CookingAgent ca = new CookingAgent();
-		ca.recipeBook.add(pastaRabiata);
+		new CookingAgent();
 	}
 
 	ArrayList<Ingredient> fridge;
@@ -72,6 +67,17 @@ public class CookingAgent {
 		for(Ingredient i : ingredients) {
 			System.out.println(i.getName());
 		}
+		
+		OWLOntologyManager manager = OWLManager.createOWLOntologyManager();
+		OWLOntology ontology;
+        try {
+            String location = "file://" + System.getProperty("user.dir") + "/ontologies/IngredientsOntology.owl";
+            System.out.println(location);
+            ontology = manager.loadOntology(IRI.create(location));
+            ontology.saveOntology(new FunctionalSyntaxDocumentFormat(), System.out);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 	}
 
 	private boolean hasIngredients(Recipe recipe) {
