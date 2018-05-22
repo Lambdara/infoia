@@ -3,13 +3,16 @@ package infoia;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Optional;
 import java.util.Scanner;
 import org.semanticweb.HermiT.ReasonerFactory;
 import org.semanticweb.owlapi.apibinding.OWLManager;
 import org.semanticweb.owlapi.model.IRI;
+import org.semanticweb.owlapi.model.OWLClass;
 import org.semanticweb.owlapi.model.OWLDataFactory;
 import org.semanticweb.owlapi.model.OWLOntology;
 import org.semanticweb.owlapi.model.OWLOntologyManager;
+import org.semanticweb.owlapi.reasoner.InferenceDepth;
 import org.semanticweb.owlapi.reasoner.InferenceType;
 import org.semanticweb.owlapi.reasoner.OWLReasoner;
 import org.semanticweb.owlapi.reasoner.OWLReasonerFactory;
@@ -26,6 +29,8 @@ public class CookingAgent {
 	OWLReasoner reasoner;
 	OWLOntologyManager manager;
 	OWLDataFactory dataFactory;
+	
+	String uriPrefix = "http://www.semanticweb.org/jordi/ontologies/2018/4/untitled-ontology-2#";
 
 	CookingAgent () {
 		fridge = new ArrayList<Ingredient>();
@@ -80,7 +85,25 @@ public class CookingAgent {
 		}
  
 		reasoner.precomputeInferences(InferenceType.CLASS_HIERARCHY);
-		reasoner.getSubClasses(dataFactory.getOWLClass("http://www.semanticweb.org/jordi/ontologies/2018/4/untitled-ontology-2#AnimalProducts"), false).forEach(System.out::println);;
+	}
+	
+	private double similarity(Ingredient i, Ingredient j) {
+	    OWLClass c1 = dataFactory.getOWLClass(uriPrefix + i.getName());
+	    OWLClass c2 = dataFactory.getOWLClass(uriPrefix + j.getName());
+        OWLClass thing = dataFactory.getOWLClass("owl:Thing");
+	    
+	    int steps = 0;
+	    
+	    while (true) {
+    	    if (reasoner.subClasses(c1).anyMatch(x -> x == c2)) {
+    	        return Math.pow(0.8,steps);
+    	    } else {
+    	        
+    	        steps++; 
+    	        c1 = reasoner.superClasses(c1,true).filter(x -> x != thing).findAny().get();
+    	        System.out.println("Class is now " + c1.toString());
+    	    }
+	    }
 	}
 
 	private boolean hasIngredients(Recipe recipe) {
