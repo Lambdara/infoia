@@ -130,7 +130,7 @@ public class CookingAgent {
         
         System.out.println("From start: " + stepsFromStart + "; To end: " + stepsToEnd);
         
-        return (double) Math.pow(stepsToEnd,2) / (stepsFromStart + Math.pow(stepsToEnd,2));
+        return (double) Math.pow(stepsToEnd,2) / (Math.pow(stepsFromStart,2) + Math.pow(stepsToEnd,2));
 	}
 	
 	private double ingredientSimilarity(Ingredient i, Ingredient j) {
