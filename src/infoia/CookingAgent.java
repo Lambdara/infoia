@@ -40,7 +40,7 @@ public class CookingAgent {
 		manager = OWLManager.createOWLOntologyManager();
         
         try {
-            String location = fixSeperators("file:///" + System.getProperty("user.dir") +"/ontologies/PastaOntology.owl");
+            String location = fixSeperators("file:///" + System.getProperty("user.dir") +"/ontologies/PastaOntologyRDF.owl");
             ontology = manager.loadOntology(IRI.create(location));
         } catch (Exception e) {
             e.printStackTrace();
@@ -85,7 +85,7 @@ public class CookingAgent {
 		}
  
 		reasoner.precomputeInferences(InferenceType.CLASS_HIERARCHY);
-		System.out.println(ingredientSimilarity(new Ingredient("Fungi"), new Ingredient("Steak")));
+		System.out.println(ingredientSimilarity(new Ingredient("BasilSeasoning"), new Ingredient("Steak")));
 	}
 	
 	private double ingredientSimilarityAssymetric(Ingredient i, Ingredient j) {
