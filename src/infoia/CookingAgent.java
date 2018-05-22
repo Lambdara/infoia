@@ -85,7 +85,7 @@ public class CookingAgent {
 		}
  
 		reasoner.precomputeInferences(InferenceType.CLASS_HIERARCHY);
-		System.out.println(ingredientSimilarity(new Ingredient("BasilSeasoning"), new Ingredient("Steak")));
+		System.out.println(ingredientSimilarity(new Ingredient("Salmon"), new Ingredient("OliveOil")));
 	}
 	
 	private double ingredientSimilarityAssymetric(Ingredient i, Ingredient j) {
