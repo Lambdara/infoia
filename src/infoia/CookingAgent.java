@@ -106,12 +106,14 @@ public class CookingAgent {
         
         int stepsFromStart = 0;
         int stepsToEnd = 0;
-        
+        System.out.println("Class is now " + cur.toString());
         while (!reasoner.subClasses(cur).anyMatch(x -> x == c2) && cur != c2) {
             stepsFromStart++; 
             cur = reasoner.superClasses(cur,true).filter(x -> x != thing).findAny().get();
             System.out.println("Class is now " + cur.toString());
         }
+        
+        System.out.println("Found!");
         
         while(!reasoner.superClasses(cur).allMatch(x -> x == thing)) {
             stepsToEnd++;
@@ -125,7 +127,6 @@ public class CookingAgent {
 	}
 	
 	private double ingredientSimilarity(Ingredient i, Ingredient j) {
-	    
 	    return (ingredientSimilarityAssymetric(i, j) + ingredientSimilarityAssymetric(j, i))/2;
 	}
 
