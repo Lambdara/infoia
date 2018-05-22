@@ -3,6 +3,8 @@ package infoia;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
+import javafx.util.Pair;
 import java.util.Optional;
 import java.util.Scanner;
 import org.semanticweb.HermiT.ReasonerFactory;
@@ -40,7 +42,7 @@ public class CookingAgent {
 		manager = OWLManager.createOWLOntologyManager();
         
         try {
-            String location = "file://" + System.getProperty("user.dir") + "/ontologies/PastaOntology.owl";
+            String location = fixSeperators("file:///" + System.getProperty("user.dir") +"/ontologies/PastaOntology.owl");
             ontology = manager.loadOntology(IRI.create(location));
         } catch (Exception e) {
             e.printStackTrace();
@@ -86,6 +88,11 @@ public class CookingAgent {
  
 		reasoner.precomputeInferences(InferenceType.CLASS_HIERARCHY);
 		System.out.println(similarity(new Ingredient("Steak"), new Ingredient("Pepper")));
+		
+		
+		for(Recipe r : recipeBook) {
+			
+		}
 	}
 	
 	private double similarity(Ingredient i, Ingredient j) {
@@ -120,5 +127,49 @@ public class CookingAgent {
 			if(hasIngredients(r))
 				result.add(r);
 		return result;
+	}
+	
+	private String fixSeperators(String path) {
+		return path.replace("\\", "/");
+	}
+	
+	private HashMap<Ingredient, Pair<Ingredient, Double>> getReplacements(Recipe r) {
+		ArrayList<Ingredient> available = new ArrayList<Ingredient>();
+		ArrayList<Ingredient> unavailable = new ArrayList<Ingredient>();
+		
+		for(Ingredient i : r) {
+			if(fridge.contains(i)) {
+				available.add(i);
+			} else {
+				unavailable.add(i);
+			}
+		}
+		
+		HashMap<Ingredient, Pair<Ingredient, Double>> similarIngredients = new HashMap<Ingredient, Pair<Ingredient, Double>>();
+		for(Ingredient i : unavailable) {
+			double bestSimilarity = 0.0;
+			Ingredient bestIngredient = null;
+			for(Ingredient j : fridge) {
+				double similarity = similarity(i, j);
+				if(bestSimilarity < similarity) {
+					bestSimilarity = similarity;
+					bestIngredient = j;
+				}
+			}
+			similarIngredients.put(i, new Pair<Ingredient, Double>(bestIngredient, bestSimilarity));
+		}
+		return similarIngredients;
+	}
+	
+	private double utility(Recipe r, HashMap<Ingredient, Pair<Ingredient, Double>> replacements) {
+		double utility = 0.0;
+		for(Ingredient i : r) {
+			if(replacements.containsKey(i)) {
+				utility += replacements.get(i).getValue();
+			} else {
+				utility += 1.0;
+			}
+		}
+		return utility / r.size();
 	}
 }
