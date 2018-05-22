@@ -4,7 +4,6 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
-import javafx.util.Pair;
 import java.util.Optional;
 import java.util.Random;
 import java.util.Scanner;
@@ -160,7 +159,7 @@ public class CookingAgent {
 		double bestUtil = 0.0;
 		Recipe bestRecipe = null;
 		for(Recipe r : recipeBook) {
-			HashMap<Ingredient, Pair<Ingredient, Double>> replacements = getReplacements(r);
+			HashMap<Ingredient, Pair> replacements = getReplacements(r);
 			double util = utility(r, replacements);
 			if(bestUtil < util) {
 				bestUtil = util;
@@ -171,7 +170,7 @@ public class CookingAgent {
 		return bestRecipe;
 	}
 	
-	private HashMap<Ingredient, Pair<Ingredient, Double>> getReplacements(Recipe r) {
+	private HashMap<Ingredient, Pair> getReplacements(Recipe r) {
 		ArrayList<Ingredient> available = new ArrayList<Ingredient>();
 		ArrayList<Ingredient> unavailable = new ArrayList<Ingredient>();
 		
@@ -185,7 +184,7 @@ public class CookingAgent {
 			}
 		}
 		
-		HashMap<Ingredient, Pair<Ingredient, Double>> replacements = new HashMap<Ingredient, Pair<Ingredient, Double>>();
+		HashMap<Ingredient, Pair> replacements = new HashMap<Ingredient, Pair>();
 		for(Ingredient i : unavailable) {
 			double bestSimilarity = 0.0;
 			Ingredient bestIngredient = null;
@@ -197,26 +196,26 @@ public class CookingAgent {
 					bestIngredient = j;
 				}
 			}
-			replacements.put(i, new Pair<Ingredient, Double>(bestIngredient, bestSimilarity));
+			replacements.put(i, new Pair(bestIngredient, bestSimilarity));
 		}
 		return replacements;
 	}
 	
-	private double utility(Recipe r, HashMap<Ingredient, Pair<Ingredient, Double>> replacements) {
+	private double utility(Recipe r, HashMap<Ingredient, Pair> replacements) {
 		double utility = 1.0;
 		for(Ingredient i : r) {
 			if(replacements.containsKey(i)) {
-				utility *= replacements.get(i).getValue();
+				utility *= replacements.get(i).getSimilarity();
 			}
 		}
 		return utility;
 	}
 	
-	private Recipe createRecipe(Recipe r, HashMap<Ingredient, Pair<Ingredient, Double>> replacements) {
+	private Recipe createRecipe(Recipe r, HashMap<Ingredient, Pair> replacements) {
 		Recipe newRecipe = new Recipe("modified " + r.name);
 		for(Ingredient i : r) {
 			if(replacements.containsKey(i)) {
-				newRecipe.add(replacements.get(i).getKey());
+				newRecipe.add(replacements.get(i).getIngredient());
 			} else {
 				newRecipe.add(i);
 			}
