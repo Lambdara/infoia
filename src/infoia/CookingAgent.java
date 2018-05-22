@@ -40,7 +40,7 @@ public class CookingAgent {
 		manager = OWLManager.createOWLOntologyManager();
         
         try {
-            String location = "file://" + System.getProperty("user.dir") + "/ontologies/PastaOntology.owl";
+            String location = fixSeperators("file:///" + System.getProperty("user.dir") +"/ontologies/PastaOntology.owl");
             ontology = manager.loadOntology(IRI.create(location));
         } catch (Exception e) {
             e.printStackTrace();
@@ -131,5 +131,9 @@ public class CookingAgent {
 			if(hasIngredients(r))
 				result.add(r);
 		return result;
+	}
+	
+	private String fixSeperators(String path) {
+		return path.replace("\\", "/");
 	}
 }
