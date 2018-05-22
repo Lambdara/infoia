@@ -32,7 +32,7 @@ public class CookingAgent {
 	OWLOntologyManager manager;
 	OWLDataFactory dataFactory;
 	
-	String uriPrefix = "http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#";
+	String uriPrefix = "http://www.semanticweb.org/jordi/ontologies/2018/4/Pasta#";
 
 	CookingAgent () {
 		fridge = new ArrayList<Ingredient>();
@@ -42,7 +42,7 @@ public class CookingAgent {
 		manager = OWLManager.createOWLOntologyManager();
         
         try {
-            String location = fixSeperators("file:///" + System.getProperty("user.dir") +"/ontologies/PastaOntology.owl");
+            String location = fixSeperators("file:///" + System.getProperty("user.dir") +"/ontologies/PastaOntologyRDF.owl");
             ontology = manager.loadOntology(IRI.create(location));
         } catch (Exception e) {
             e.printStackTrace();
@@ -89,35 +89,44 @@ public class CookingAgent {
  
 		reasoner.precomputeInferences(InferenceType.CLASS_HIERARCHY);
 		
-//		System.out.println(similarity(new Ingredient("Steak"), new Ingredient("Pepper")));
-//		
 		fridge.add(ingredients.get(0));
 		fridge.add(ingredients.get(1));
 		fridge.add(ingredients.get(2));
 		
 		Recipe best = getBestRecipe();
-		System.out.println("Fridge: " + fridge);
-		System.out.println("Best Recipe: " + best);
-		
+//		System.out.println("Fridge: " + fridge);
+//		System.out.println("Best Recipe: " + best);
 	}
 	
-	private double similarity(Ingredient i, Ingredient j) {
+	private double ingredientSimilarityAssymetric(Ingredient i, Ingredient j) {
 	    OWLClass c1 = dataFactory.getOWLClass(uriPrefix + i.getName());
-	    OWLClass c2 = dataFactory.getOWLClass(uriPrefix + j.getName());
+        OWLClass c2 = dataFactory.getOWLClass(uriPrefix + j.getName());
         OWLClass thing = dataFactory.getOWLClass("owl:Thing");
+        OWLClass cur = c1;
+        
+        int stepsFromStart = 0;
+        int stepsToEnd = 0;
+        
+        while (!reasoner.subClasses(cur).anyMatch(x -> x == c2) && cur != c2) {
+            stepsFromStart++; 
+            cur = reasoner.superClasses(cur,true).filter(x -> x != thing).findAny().get();
+            System.out.println("Class is now " + cur.toString());
+        }
+        
+        while(!reasoner.superClasses(cur).allMatch(x -> x == thing)) {
+            stepsToEnd++;
+            cur = reasoner.superClasses(cur,true).filter(x -> x != thing).findAny().get();
+            System.out.println("Class is now " + cur.toString());
+        }
+        
+        System.out.println("From start: " + stepsFromStart + "; To end: " + stepsToEnd);
+        
+        return (double) Math.pow(stepsToEnd,2) / (stepsFromStart + Math.pow(stepsToEnd,2));
+	}
+	
+	private double ingredientSimilarity(Ingredient i, Ingredient j) {
 	    
-	    int steps = 0;
-	    
-	    while (true) {
-    	    if (reasoner.subClasses(c1).anyMatch(x -> x == c2)) {
-    	        return Math.pow(0.75,steps);
-    	    } else {
-    	        
-    	        steps++; 
-    	        c1 = reasoner.superClasses(c1,true).filter(x -> x != thing).findAny().get();
-    	        System.out.println("Class is now " + c1.toString());
-    	    }
-	    }
+	    return (ingredientSimilarityAssymetric(i, j) + ingredientSimilarityAssymetric(j, i))/2;
 	}
 
 	private boolean hasIngredients(Recipe recipe) {
@@ -170,7 +179,7 @@ public class CookingAgent {
 			double bestSimilarity = 0.0;
 			Ingredient bestIngredient = null;
 			for(Ingredient j : fridge) {
-				double similarity = similarity(i, j);
+				double similarity = ingredientSimilarity(i, j);
 				if(bestSimilarity < similarity) {
 					bestSimilarity = similarity;
 					bestIngredient = j;
