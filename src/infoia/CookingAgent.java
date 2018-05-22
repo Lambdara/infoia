@@ -181,6 +181,7 @@ public class CookingAgent {
 			double bestSimilarity = 0.0;
 			Ingredient bestIngredient = null;
 			for(Ingredient j : fridge) {
+				System.out.println(i + ", " + j);
 				double similarity = ingredientSimilarity(i, j);
 				if(bestSimilarity < similarity) {
 					bestSimilarity = similarity;
