@@ -22,6 +22,7 @@ import org.semanticweb.owlapi.reasoner.OWLReasonerFactory;
 public class CookingAgent {
 	public static void main(String[] args) {
 		new CookingAgent();
+		
 	}
 
 	ArrayList<Ingredient> fridge;
