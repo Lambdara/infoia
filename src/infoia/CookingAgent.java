@@ -85,7 +85,7 @@ public class CookingAgent {
 		}
  
 		reasoner.precomputeInferences(InferenceType.CLASS_HIERARCHY);
-		System.out.println(ingredientSimilarity(new Ingredient("Steak"), new Ingredient("Eggplant")));
+		System.out.println(ingredientSimilarity(new Ingredient("Fungi"), new Ingredient("Steak")));
 	}
 	
 	private double ingredientSimilarityAssymetric(Ingredient i, Ingredient j) {
@@ -111,10 +111,11 @@ public class CookingAgent {
         
         System.out.println("From start: " + stepsFromStart + "; To end: " + stepsToEnd);
         
-        return (double) stepsToEnd / (stepsFromStart + stepsToEnd);
+        return (double) Math.pow(stepsToEnd,2) / (stepsFromStart + Math.pow(stepsToEnd,2));
 	}
 	
 	private double ingredientSimilarity(Ingredient i, Ingredient j) {
+	    
 	    return (ingredientSimilarityAssymetric(i, j) + ingredientSimilarityAssymetric(j, i))/2;
 	}
 
