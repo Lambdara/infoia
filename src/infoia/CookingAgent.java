@@ -80,6 +80,7 @@ public class CookingAgent {
 
 						recipe.add(ingredient);
 					}
+					recipeBook.add(recipe);
 				} catch (IOException e) {
 					e.printStackTrace();
 				}
@@ -87,12 +88,17 @@ public class CookingAgent {
 		}
  
 		reasoner.precomputeInferences(InferenceType.CLASS_HIERARCHY);
-		System.out.println(similarity(new Ingredient("Steak"), new Ingredient("Pepper")));
 		
+//		System.out.println(similarity(new Ingredient("Steak"), new Ingredient("Pepper")));
+//		
+		fridge.add(ingredients.get(0));
+		fridge.add(ingredients.get(1));
+		fridge.add(ingredients.get(2));
 		
-		for(Recipe r : recipeBook) {
-			
-		}
+		Recipe best = getBestRecipe();
+		System.out.println("Fridge: " + fridge);
+		System.out.println("Best Recipe: " + best);
+		
 	}
 	
 	private double similarity(Ingredient i, Ingredient j) {
@@ -133,6 +139,20 @@ public class CookingAgent {
 		return path.replace("\\", "/");
 	}
 	
+	private Recipe getBestRecipe() {
+		double bestUtil = 0.0;
+		Recipe bestRecipe = null;
+		for(Recipe r : recipeBook) {
+			HashMap<Ingredient, Pair<Ingredient, Double>> replacements = getReplacements(r);
+			double util = utility(r, replacements);
+			if(bestUtil < util) {
+				bestUtil = util;
+				bestRecipe = createRecipe(r, replacements);
+			}
+		}
+		return bestRecipe;
+	}
+	
 	private HashMap<Ingredient, Pair<Ingredient, Double>> getReplacements(Recipe r) {
 		ArrayList<Ingredient> available = new ArrayList<Ingredient>();
 		ArrayList<Ingredient> unavailable = new ArrayList<Ingredient>();
@@ -145,7 +165,7 @@ public class CookingAgent {
 			}
 		}
 		
-		HashMap<Ingredient, Pair<Ingredient, Double>> similarIngredients = new HashMap<Ingredient, Pair<Ingredient, Double>>();
+		HashMap<Ingredient, Pair<Ingredient, Double>> replacements = new HashMap<Ingredient, Pair<Ingredient, Double>>();
 		for(Ingredient i : unavailable) {
 			double bestSimilarity = 0.0;
 			Ingredient bestIngredient = null;
@@ -156,9 +176,9 @@ public class CookingAgent {
 					bestIngredient = j;
 				}
 			}
-			similarIngredients.put(i, new Pair<Ingredient, Double>(bestIngredient, bestSimilarity));
+			replacements.put(i, new Pair<Ingredient, Double>(bestIngredient, bestSimilarity));
 		}
-		return similarIngredients;
+		return replacements;
 	}
 	
 	private double utility(Recipe r, HashMap<Ingredient, Pair<Ingredient, Double>> replacements) {
@@ -171,5 +191,17 @@ public class CookingAgent {
 			}
 		}
 		return utility / r.size();
+	}
+	
+	private Recipe createRecipe(Recipe r, HashMap<Ingredient, Pair<Ingredient, Double>> replacements) {
+		Recipe newRecipe = new Recipe("modified " + r.name);
+		for(Ingredient i : r) {
+			if(replacements.containsKey(i)) {
+				newRecipe.add(replacements.get(i).getKey());
+			} else {
+				newRecipe.add(i);
+			}
+		}
+		return newRecipe;
 	}
 }
