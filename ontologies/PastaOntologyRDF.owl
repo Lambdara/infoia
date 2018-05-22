@@ -31,6 +31,14 @@
     
 
 
+    <!-- http://www.semanticweb.org/jordi/ontologies/2018/4/Pasta#ChimichurriSauce -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/jordi/ontologies/2018/4/Pasta#ChimichurriSauce">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/jordi/ontologies/2018/4/Pasta#FreshSauce"/>
+    </owl:Class>
+    
+
+
     <!-- http://www.semanticweb.org/jordi/ontologies/2018/4/Pasta#Eel -->
 
     <owl:Class rdf:about="http://www.semanticweb.org/jordi/ontologies/2018/4/Pasta#Eel">
@@ -55,10 +63,34 @@
     
 
 
+    <!-- http://www.semanticweb.org/jordi/ontologies/2018/4/Pasta#FreshSauce -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/jordi/ontologies/2018/4/Pasta#FreshSauce">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#Sauces"/>
+    </owl:Class>
+    
+
+
     <!-- http://www.semanticweb.org/jordi/ontologies/2018/4/Pasta#FreshwaterFish -->
 
     <owl:Class rdf:about="http://www.semanticweb.org/jordi/ontologies/2018/4/Pasta#FreshwaterFish">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#Fish"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/jordi/ontologies/2018/4/Pasta#HerbsSeasoning -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/jordi/ontologies/2018/4/Pasta#HerbsSeasoning">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#Seasoning"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/jordi/ontologies/2018/4/Pasta#HotSauce -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/jordi/ontologies/2018/4/Pasta#HotSauce">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#Sauces"/>
     </owl:Class>
     
 
@@ -79,11 +111,27 @@
     
 
 
+    <!-- http://www.semanticweb.org/jordi/ontologies/2018/4/Pasta#OnionSauce -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/jordi/ontologies/2018/4/Pasta#OnionSauce">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/jordi/ontologies/2018/4/Pasta#FreshSauce"/>
+    </owl:Class>
+    
+
+
     <!-- http://www.semanticweb.org/jordi/ontologies/2018/4/Pasta#Ravioli -->
 
     <owl:Class rdf:about="http://www.semanticweb.org/jordi/ontologies/2018/4/Pasta#Ravioli">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/jordi/ontologies/2018/4/Pasta#FilledPasta"/>
         <owl:disjointWith rdf:resource="http://www.semanticweb.org/jordi/ontologies/2018/4/Pasta#Tortellini"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/jordi/ontologies/2018/4/Pasta#SalsaVerdeSauce -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/jordi/ontologies/2018/4/Pasta#SalsaVerdeSauce">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/jordi/ontologies/2018/4/Pasta#FreshSauce"/>
     </owl:Class>
     
 
@@ -112,10 +160,26 @@
     
 
 
+    <!-- http://www.semanticweb.org/jordi/ontologies/2018/4/Pasta#SpicesSeasoning -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/jordi/ontologies/2018/4/Pasta#SpicesSeasoning">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#Seasoning"/>
+    </owl:Class>
+    
+
+
     <!-- http://www.semanticweb.org/jordi/ontologies/2018/4/Pasta#Sturgeon -->
 
     <owl:Class rdf:about="http://www.semanticweb.org/jordi/ontologies/2018/4/Pasta#Sturgeon">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/jordi/ontologies/2018/4/Pasta#FreshwaterFish"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/jordi/ontologies/2018/4/Pasta#SugarSeasoning -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/jordi/ontologies/2018/4/Pasta#SugarSeasoning">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#Seasoning"/>
     </owl:Class>
     
 
@@ -132,6 +196,14 @@
 
     <owl:Class rdf:about="http://www.semanticweb.org/jordi/ontologies/2018/4/Pasta#Tortellini">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/jordi/ontologies/2018/4/Pasta#FilledPasta"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/jordi/ontologies/2018/4/Pasta#WhiteSauce -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/jordi/ontologies/2018/4/Pasta#WhiteSauce">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#Sauces"/>
     </owl:Class>
     
 
@@ -179,7 +251,7 @@
     <!-- http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#BarbecueSauce -->
 
     <owl:Class rdf:about="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#BarbecueSauce">
-        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#Sauces"/>
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/jordi/ontologies/2018/4/Pasta#HotSauce"/>
     </owl:Class>
     
 
@@ -187,7 +259,7 @@
     <!-- http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#BasilSeasoning -->
 
     <owl:Class rdf:about="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#BasilSeasoning">
-        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#Seasoning"/>
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/jordi/ontologies/2018/4/Pasta#HerbsSeasoning"/>
     </owl:Class>
     
 
@@ -203,7 +275,7 @@
     <!-- http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#BechamelSauce -->
 
     <owl:Class rdf:about="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#BechamelSauce">
-        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#Sauces"/>
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/jordi/ontologies/2018/4/Pasta#WhiteSauce"/>
     </owl:Class>
     
 
@@ -299,7 +371,7 @@
     <!-- http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#ChiliSauce -->
 
     <owl:Class rdf:about="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#ChiliSauce">
-        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#Sauces"/>
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/jordi/ontologies/2018/4/Pasta#HotSauce"/>
     </owl:Class>
     
 
@@ -307,7 +379,7 @@
     <!-- http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#ChiliSeasoning -->
 
     <owl:Class rdf:about="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#ChiliSeasoning">
-        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#Seasoning"/>
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/jordi/ontologies/2018/4/Pasta#SpicesSeasoning"/>
     </owl:Class>
     
 
@@ -363,7 +435,7 @@
     <!-- http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#CurrySauce -->
 
     <owl:Class rdf:about="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#CurrySauce">
-        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#Sauces"/>
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/jordi/ontologies/2018/4/Pasta#HotSauce"/>
     </owl:Class>
     
 
@@ -467,7 +539,7 @@
     <!-- http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#GarlicSauce -->
 
     <owl:Class rdf:about="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#GarlicSauce">
-        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#Sauces"/>
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/jordi/ontologies/2018/4/Pasta#WhiteSauce"/>
     </owl:Class>
     
 
@@ -496,9 +568,7 @@
 
     <!-- http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#KetchupSauce -->
 
-    <owl:Class rdf:about="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#KetchupSauce">
-        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#Sauces"/>
-    </owl:Class>
+    <owl:Class rdf:about="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#KetchupSauce"/>
     
 
 
@@ -553,7 +623,7 @@
     <!-- http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#MayonaiseSauce -->
 
     <owl:Class rdf:about="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#MayonaiseSauce">
-        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#Sauces"/>
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/jordi/ontologies/2018/4/Pasta#WhiteSauce"/>
     </owl:Class>
     
 
@@ -609,7 +679,7 @@
     <!-- http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#OreganoSeasoning -->
 
     <owl:Class rdf:about="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#OreganoSeasoning">
-        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#Seasoning"/>
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/jordi/ontologies/2018/4/Pasta#HerbsSeasoning"/>
     </owl:Class>
     
 
@@ -617,7 +687,7 @@
     <!-- http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#PaprikaSeasoning -->
 
     <owl:Class rdf:about="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#PaprikaSeasoning">
-        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#Seasoning"/>
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/jordi/ontologies/2018/4/Pasta#SpicesSeasoning"/>
     </owl:Class>
     
 
@@ -633,7 +703,7 @@
     <!-- http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#ParsleySeasoning -->
 
     <owl:Class rdf:about="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#ParsleySeasoning">
-        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#Seasoning"/>
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/jordi/ontologies/2018/4/Pasta#HerbsSeasoning"/>
     </owl:Class>
     
 
@@ -681,7 +751,7 @@
     <!-- http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#PepperSeasoning -->
 
     <owl:Class rdf:about="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#PepperSeasoning">
-        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#Seasoning"/>
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/jordi/ontologies/2018/4/Pasta#SpicesSeasoning"/>
     </owl:Class>
     
 
@@ -689,7 +759,7 @@
     <!-- http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#PestoSauce -->
 
     <owl:Class rdf:about="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#PestoSauce">
-        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#Sauces"/>
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/jordi/ontologies/2018/4/Pasta#FreshSauce"/>
     </owl:Class>
     
 
@@ -770,14 +840,6 @@
 
     <owl:Class rdf:about="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#SaltSeasoning">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#Seasoning"/>
-    </owl:Class>
-    
-
-
-    <!-- http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#SataySauce -->
-
-    <owl:Class rdf:about="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#SataySauce">
-        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#Sauces"/>
     </owl:Class>
     
 
@@ -889,7 +951,7 @@
     <!-- http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#ThymeSeasoning -->
 
     <owl:Class rdf:about="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#ThymeSeasoning">
-        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#Seasoning"/>
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/jordi/ontologies/2018/4/Pasta#HerbsSeasoning"/>
     </owl:Class>
     
 
@@ -1017,6 +1079,15 @@
     <rdf:Description>
         <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AllDisjointClasses"/>
         <owl:members rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://www.semanticweb.org/jordi/ontologies/2018/4/Pasta#ChimichurriSauce"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/jordi/ontologies/2018/4/Pasta#OnionSauce"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/jordi/ontologies/2018/4/Pasta#SalsaVerdeSauce"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#PestoSauce"/>
+        </owl:members>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AllDisjointClasses"/>
+        <owl:members rdf:parseType="Collection">
             <rdf:Description rdf:about="http://www.semanticweb.org/jordi/ontologies/2018/4/Pasta#Fagottini"/>
             <rdf:Description rdf:about="http://www.semanticweb.org/jordi/ontologies/2018/4/Pasta#Ravioli"/>
             <rdf:Description rdf:about="http://www.semanticweb.org/jordi/ontologies/2018/4/Pasta#Tortellini"/>
@@ -1048,6 +1119,30 @@
             <rdf:Description rdf:about="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#Salmon"/>
             <rdf:Description rdf:about="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#Shrimp"/>
             <rdf:Description rdf:about="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#Tuna"/>
+        </owl:members>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AllDisjointClasses"/>
+        <owl:members rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://www.semanticweb.org/jordi/ontologies/2018/4/Pasta#HerbsSeasoning"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/jordi/ontologies/2018/4/Pasta#SpicesSeasoning"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/jordi/ontologies/2018/4/Pasta#SugarSeasoning"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#SaltSeasoning"/>
+        </owl:members>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AllDisjointClasses"/>
+        <owl:members rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://www.semanticweb.org/jordi/ontologies/2018/4/Pasta#HerbsSeasoning"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/jordi/ontologies/2018/4/Pasta#SpicesSeasoning"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#BasilSeasoning"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#ChiliSeasoning"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#OreganoSeasoning"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#PaprikaSeasoning"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#ParsleySeasoning"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#PepperSeasoning"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#SaltSeasoning"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#ThymeSeasoning"/>
         </owl:members>
     </rdf:Description>
     <rdf:Description>
