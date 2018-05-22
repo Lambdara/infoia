@@ -85,26 +85,37 @@ public class CookingAgent {
 		}
  
 		reasoner.precomputeInferences(InferenceType.CLASS_HIERARCHY);
-		System.out.println(similarity(new Ingredient("Steak"), new Ingredient("Pepper")));
+		System.out.println(ingredientSimilarity(new Ingredient("Steak"), new Ingredient("Eggplant")));
 	}
 	
-	private double similarity(Ingredient i, Ingredient j) {
+	private double ingredientSimilarityAssymetric(Ingredient i, Ingredient j) {
 	    OWLClass c1 = dataFactory.getOWLClass(uriPrefix + i.getName());
-	    OWLClass c2 = dataFactory.getOWLClass(uriPrefix + j.getName());
+        OWLClass c2 = dataFactory.getOWLClass(uriPrefix + j.getName());
         OWLClass thing = dataFactory.getOWLClass("owl:Thing");
-	    
-	    int steps = 0;
-	    
-	    while (true) {
-    	    if (reasoner.subClasses(c1).anyMatch(x -> x == c2)) {
-    	        return Math.pow(0.75,steps);
-    	    } else {
-    	        
-    	        steps++; 
-    	        c1 = reasoner.superClasses(c1,true).filter(x -> x != thing).findAny().get();
-    	        System.out.println("Class is now " + c1.toString());
-    	    }
-	    }
+        OWLClass cur = c1;
+        
+        int stepsFromStart = 0;
+        int stepsToEnd = 0;
+        
+        while (!reasoner.subClasses(cur).anyMatch(x -> x == c2) && cur != c2) {
+            stepsFromStart++; 
+            cur = reasoner.superClasses(cur,true).filter(x -> x != thing).findAny().get();
+            System.out.println("Class is now " + cur.toString());
+        }
+        
+        while(!reasoner.superClasses(cur).allMatch(x -> x == thing)) {
+            stepsToEnd++;
+            cur = reasoner.superClasses(cur,true).filter(x -> x != thing).findAny().get();
+            System.out.println("Class is now " + cur.toString());
+        }
+        
+        System.out.println("From start: " + stepsFromStart + "; To end: " + stepsToEnd);
+        
+        return (double) stepsToEnd / (stepsFromStart + stepsToEnd);
+	}
+	
+	private double ingredientSimilarity(Ingredient i, Ingredient j) {
+	    return (ingredientSimilarityAssymetric(i, j) + ingredientSimilarityAssymetric(j, i))/2;
 	}
 
 	private boolean hasIngredients(Recipe recipe) {
