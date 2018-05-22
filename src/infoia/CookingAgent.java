@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import javafx.util.Pair;
 import java.util.Optional;
+import java.util.Random;
 import java.util.Scanner;
 import org.semanticweb.HermiT.ReasonerFactory;
 import org.semanticweb.owlapi.apibinding.OWLManager;
@@ -20,6 +21,9 @@ import org.semanticweb.owlapi.reasoner.OWLReasoner;
 import org.semanticweb.owlapi.reasoner.OWLReasonerFactory;
 
 public class CookingAgent {
+	
+	public static Random random = new Random();
+	
 	public static void main(String[] args) {
 		new CookingAgent();
 		
@@ -58,7 +62,7 @@ public class CookingAgent {
 
 		for (File file : listOfFiles) {
 			if (file.isFile()) {
-				String fileName = "recipes/" + file.getName();
+				String fileName = folder.getPath() + "/" + file.getName();
 
 				try (Scanner scanner = new Scanner(new File(fileName))) {
 
@@ -90,13 +94,15 @@ public class CookingAgent {
  
 		reasoner.precomputeInferences(InferenceType.CLASS_HIERARCHY);
 		
-		fridge.add(ingredients.get(0));
-		fridge.add(ingredients.get(1));
-		fridge.add(ingredients.get(2));
+		for(Ingredient i : ingredients) {
+			if(random.nextFloat() < 0.3) {
+				fridge.add(i);
+			}
+		}
 		
 		Recipe best = getBestRecipe();
-//		System.out.println("Fridge: " + fridge);
-//		System.out.println("Best Recipe: " + best);
+		System.out.println("Fridge: " + fridge);
+		System.out.println("Best Recipe: " + best);
 	}
 	
 	private double ingredientSimilarityAssymetric(Ingredient i, Ingredient j) {
@@ -161,6 +167,7 @@ public class CookingAgent {
 				bestRecipe = createRecipe(r, replacements);
 			}
 		}
+		System.out.println("Utility: " + bestUtil);
 		return bestRecipe;
 	}
 	
@@ -168,7 +175,9 @@ public class CookingAgent {
 		ArrayList<Ingredient> available = new ArrayList<Ingredient>();
 		ArrayList<Ingredient> unavailable = new ArrayList<Ingredient>();
 		
+		System.out.println(r.name);
 		for(Ingredient i : r) {
+			System.out.println(i);
 			if(fridge.contains(i)) {
 				available.add(i);
 			} else {
@@ -194,15 +203,13 @@ public class CookingAgent {
 	}
 	
 	private double utility(Recipe r, HashMap<Ingredient, Pair<Ingredient, Double>> replacements) {
-		double utility = 0.0;
+		double utility = 1.0;
 		for(Ingredient i : r) {
 			if(replacements.containsKey(i)) {
-				utility += replacements.get(i).getValue();
-			} else {
-				utility += 1.0;
+				utility *= replacements.get(i).getValue();
 			}
 		}
-		return utility / r.size();
+		return utility;
 	}
 	
 	private Recipe createRecipe(Recipe r, HashMap<Ingredient, Pair<Ingredient, Double>> replacements) {
