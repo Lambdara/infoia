@@ -30,7 +30,7 @@ public class CookingAgent {
 	OWLOntologyManager manager;
 	OWLDataFactory dataFactory;
 	
-	String uriPrefix = "http://www.semanticweb.org/jordi/ontologies/2018/4/untitled-ontology-2#";
+	String uriPrefix = "http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#";
 
 	CookingAgent () {
 		fridge = new ArrayList<Ingredient>();
@@ -85,6 +85,7 @@ public class CookingAgent {
 		}
  
 		reasoner.precomputeInferences(InferenceType.CLASS_HIERARCHY);
+		System.out.println(similarity(new Ingredient("Steak"), new Ingredient("Pepper")));
 	}
 	
 	private double similarity(Ingredient i, Ingredient j) {
@@ -96,7 +97,7 @@ public class CookingAgent {
 	    
 	    while (true) {
     	    if (reasoner.subClasses(c1).anyMatch(x -> x == c2)) {
-    	        return Math.pow(0.8,steps);
+    	        return Math.pow(0.75,steps);
     	    } else {
     	        
     	        steps++; 
