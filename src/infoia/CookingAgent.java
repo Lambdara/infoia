@@ -3,7 +3,10 @@ package infoia;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
+import javafx.util.Pair;
 import java.util.Optional;
+import java.util.Random;
 import java.util.Scanner;
 import org.semanticweb.HermiT.ReasonerFactory;
 import org.semanticweb.owlapi.apibinding.OWLManager;
@@ -18,8 +21,12 @@ import org.semanticweb.owlapi.reasoner.OWLReasoner;
 import org.semanticweb.owlapi.reasoner.OWLReasonerFactory;
 
 public class CookingAgent {
+	
+	public static Random random = new Random();
+	
 	public static void main(String[] args) {
 		new CookingAgent();
+		
 	}
 
 	ArrayList<Ingredient> fridge;
@@ -55,7 +62,7 @@ public class CookingAgent {
 
 		for (File file : listOfFiles) {
 			if (file.isFile()) {
-				String fileName = "recipes/" + file.getName();
+				String fileName = folder.getPath() + "/" + file.getName();
 
 				try (Scanner scanner = new Scanner(new File(fileName))) {
 
@@ -78,6 +85,7 @@ public class CookingAgent {
 
 						recipe.add(ingredient);
 					}
+					recipeBook.add(recipe);
 				} catch (IOException e) {
 					e.printStackTrace();
 				}
@@ -85,7 +93,16 @@ public class CookingAgent {
 		}
  
 		reasoner.precomputeInferences(InferenceType.CLASS_HIERARCHY);
-		System.out.println(ingredientSimilarity(new Ingredient("Egg"), new Ingredient("Yoghurt")));
+		
+		for(Ingredient i : ingredients) {
+			if(random.nextFloat() < 0.3) {
+				fridge.add(i);
+			}
+		}
+		
+		Recipe best = getBestRecipe();
+		System.out.println("Fridge: " + fridge);
+		System.out.println("Best Recipe: " + best);
 	}
 	
 	private double ingredientSimilarityAssymetric(Ingredient i, Ingredient j) {
@@ -117,7 +134,6 @@ public class CookingAgent {
 	}
 	
 	private double ingredientSimilarity(Ingredient i, Ingredient j) {
-	    
 	    return (ingredientSimilarityAssymetric(i, j) + ingredientSimilarityAssymetric(j, i))/2;
 	}
 
@@ -138,5 +154,73 @@ public class CookingAgent {
 	
 	private String fixSeperators(String path) {
 		return path.replace("\\", "/");
+	}
+	
+	private Recipe getBestRecipe() {
+		double bestUtil = 0.0;
+		Recipe bestRecipe = null;
+		for(Recipe r : recipeBook) {
+			HashMap<Ingredient, Pair<Ingredient, Double>> replacements = getReplacements(r);
+			double util = utility(r, replacements);
+			if(bestUtil < util) {
+				bestUtil = util;
+				bestRecipe = createRecipe(r, replacements);
+			}
+		}
+		System.out.println("Utility: " + bestUtil);
+		return bestRecipe;
+	}
+	
+	private HashMap<Ingredient, Pair<Ingredient, Double>> getReplacements(Recipe r) {
+		ArrayList<Ingredient> available = new ArrayList<Ingredient>();
+		ArrayList<Ingredient> unavailable = new ArrayList<Ingredient>();
+		
+		System.out.println(r.name);
+		for(Ingredient i : r) {
+			System.out.println(i);
+			if(fridge.contains(i)) {
+				available.add(i);
+			} else {
+				unavailable.add(i);
+			}
+		}
+		
+		HashMap<Ingredient, Pair<Ingredient, Double>> replacements = new HashMap<Ingredient, Pair<Ingredient, Double>>();
+		for(Ingredient i : unavailable) {
+			double bestSimilarity = 0.0;
+			Ingredient bestIngredient = null;
+			for(Ingredient j : fridge) {
+				System.out.println(i + ", " + j);
+				double similarity = ingredientSimilarity(i, j);
+				if(bestSimilarity < similarity) {
+					bestSimilarity = similarity;
+					bestIngredient = j;
+				}
+			}
+			replacements.put(i, new Pair<Ingredient, Double>(bestIngredient, bestSimilarity));
+		}
+		return replacements;
+	}
+	
+	private double utility(Recipe r, HashMap<Ingredient, Pair<Ingredient, Double>> replacements) {
+		double utility = 1.0;
+		for(Ingredient i : r) {
+			if(replacements.containsKey(i)) {
+				utility *= replacements.get(i).getValue();
+			}
+		}
+		return utility;
+	}
+	
+	private Recipe createRecipe(Recipe r, HashMap<Ingredient, Pair<Ingredient, Double>> replacements) {
+		Recipe newRecipe = new Recipe("modified " + r.name);
+		for(Ingredient i : r) {
+			if(replacements.containsKey(i)) {
+				newRecipe.add(replacements.get(i).getKey());
+			} else {
+				newRecipe.add(i);
+			}
+		}
+		return newRecipe;
 	}
 }
