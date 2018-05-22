@@ -1,0 +1,772 @@
+<?xml version="1.0"?>
+<Ontology xmlns="http://www.w3.org/2002/07/owl#"
+     xml:base="http://www.semanticweb.org/jordi/ontologies/2018/4/Pasta"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:xml="http://www.w3.org/XML/1998/namespace"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     ontologyIRI="http://www.semanticweb.org/jordi/ontologies/2018/4/Pasta"
+     versionIRI="http://www.semanticweb.org/jordi/ontologies/2018/4/Pasta">
+    <Prefix name="owl" IRI="http://www.w3.org/2002/07/owl#"/>
+    <Prefix name="rdf" IRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
+    <Prefix name="xml" IRI="http://www.w3.org/XML/1998/namespace"/>
+    <Prefix name="xsd" IRI="http://www.w3.org/2001/XMLSchema#"/>
+    <Prefix name="rdfs" IRI="http://www.w3.org/2000/01/rdf-schema#"/>
+    <Declaration>
+        <Class IRI="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#SweetCorn"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#AnimalProducts"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#Milk"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#BarbecueSauce"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#RedMeat"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#Onion"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#Water"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#Fusilli"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#Vegetables"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#Spinach"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#SoyBean"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#Roots"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#Vegetables&amp;Fruits"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#Tubers"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#Seasoning"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#Yoghurt"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#SpareRibs"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#Radish"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#Sauces"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#Tuna"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#PepperSeasoning"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#KetchupSauce"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#Seeds"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#Wine"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#Yam"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#Leaves"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#Cucumber"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#Fettuccine"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#RedWine"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#CurrySauce"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#Leek"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#Cheese"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#Chickpea"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#Egg"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#Pea"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#Flowers"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#Potato"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#MincedBeef"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#ParsleySeasoning"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#Steak"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#Eggplant"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#ThymeSeasoning"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#Beetroot"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#CrêmeFraiche"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#Pasta"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#Truffle"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#Meat"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#Penne"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#ChiliSeasoning"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#Broccoli"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#Farfalle"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#Cannelloni"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#Gouda"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#Bulbs"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#BasilSeasoning"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#Turnip"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#Sprout"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#Portabello"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#ChiliSauce"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#Parmasan"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#Shrimp"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#Ingredients"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#PaprikaSeasoning"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#CowMeat"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#GarlicSauce"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#RabbitMeat"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#OreganoSeasoning"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#Courgette"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#PestoSauce"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#SataySauce"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#Spaghetti"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#Salmon"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#Cream"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#BechamelSauce"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#WhiteMeat"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#Linguine"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#Tomato"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#Mozerella"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#IceCream"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#GreenBean"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#PigMeat"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#Parsnip"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#Beans"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#FruitsVegetables"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#Fish"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#Dairy"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#Clam"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#Shallot"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#Witloof"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#Champignon"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#Butter"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#Cauliflower"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#Feta"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#Maccheroni"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#Lettuce"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#SaltSeasoning"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#KidneyBean"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#MayonaiseSauce"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#Bacon"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#Fungi"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#ChickenMeat"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#OliveOil"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#WhiteWine"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#Carrot"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#Garlic"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#Pepper"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#SpanishPepper"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#Artichoke"/>
+    </Declaration>
+    <SubClassOf>
+        <Class IRI="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#AnimalProducts"/>
+        <Class IRI="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#Ingredients"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#Artichoke"/>
+        <Class IRI="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#Flowers"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#Bacon"/>
+        <Class IRI="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#PigMeat"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#BarbecueSauce"/>
+        <Class IRI="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#Sauces"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#BasilSeasoning"/>
+        <Class IRI="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#Seasoning"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#Beans"/>
+        <Class IRI="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#Seeds"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#BechamelSauce"/>
+        <Class IRI="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#Sauces"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#Beetroot"/>
+        <Class IRI="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#Roots"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#Broccoli"/>
+        <Class IRI="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#Flowers"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#Bulbs"/>
+        <Class IRI="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#Vegetables"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#Butter"/>
+        <Class IRI="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#Dairy"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#Cannelloni"/>
+        <Class IRI="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#Pasta"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#Carrot"/>
+        <Class IRI="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#Roots"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#Cauliflower"/>
+        <Class IRI="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#Flowers"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#Champignon"/>
+        <Class IRI="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#Fungi"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#Cheese"/>
+        <Class IRI="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#Dairy"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#ChickenMeat"/>
+        <Class IRI="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#WhiteMeat"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#Chickpea"/>
+        <Class IRI="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#Beans"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#ChiliSauce"/>
+        <Class IRI="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#Sauces"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#ChiliSeasoning"/>
+        <Class IRI="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#Seasoning"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#Clam"/>
+        <Class IRI="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#Fish"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#Courgette"/>
+        <Class IRI="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#FruitsVegetables"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#CowMeat"/>
+        <Class IRI="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#RedMeat"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#Cream"/>
+        <Class IRI="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#Dairy"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#CrêmeFraiche"/>
+        <Class IRI="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#Dairy"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#Cucumber"/>
+        <Class IRI="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#FruitsVegetables"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#CurrySauce"/>
+        <Class IRI="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#Sauces"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#Dairy"/>
+        <Class IRI="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#AnimalProducts"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#Egg"/>
+        <Class IRI="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#Dairy"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#Eggplant"/>
+        <Class IRI="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#FruitsVegetables"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#Farfalle"/>
+        <Class IRI="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#Pasta"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#Feta"/>
+        <Class IRI="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#Cheese"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#Fettuccine"/>
+        <Class IRI="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#Pasta"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#Fish"/>
+        <Class IRI="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#AnimalProducts"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#Flowers"/>
+        <Class IRI="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#Vegetables"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#FruitsVegetables"/>
+        <Class IRI="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#Vegetables"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#Fungi"/>
+        <Class IRI="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#Vegetables"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#Fusilli"/>
+        <Class IRI="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#Pasta"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#Garlic"/>
+        <Class IRI="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#Bulbs"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#GarlicSauce"/>
+        <Class IRI="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#Sauces"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#Gouda"/>
+        <Class IRI="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#Cheese"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#GreenBean"/>
+        <Class IRI="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#Beans"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#IceCream"/>
+        <Class IRI="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#Dairy"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#KetchupSauce"/>
+        <Class IRI="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#Sauces"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#KidneyBean"/>
+        <Class IRI="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#Beans"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#Leaves"/>
+        <Class IRI="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#Vegetables"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#Leek"/>
+        <Class IRI="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#Bulbs"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#Lettuce"/>
+        <Class IRI="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#Leaves"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#Linguine"/>
+        <Class IRI="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#Pasta"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#Maccheroni"/>
+        <Class IRI="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#Pasta"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#MayonaiseSauce"/>
+        <Class IRI="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#Sauces"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#Meat"/>
+        <Class IRI="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#AnimalProducts"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#Milk"/>
+        <Class IRI="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#Dairy"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#MincedBeef"/>
+        <Class IRI="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#CowMeat"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#Mozerella"/>
+        <Class IRI="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#Cheese"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#OliveOil"/>
+        <Class IRI="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#Ingredients"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#Onion"/>
+        <Class IRI="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#Bulbs"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#OreganoSeasoning"/>
+        <Class IRI="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#Seasoning"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#PaprikaSeasoning"/>
+        <Class IRI="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#Seasoning"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#Parmasan"/>
+        <Class IRI="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#Cheese"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#ParsleySeasoning"/>
+        <Class IRI="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#Seasoning"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#Parsnip"/>
+        <Class IRI="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#Roots"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#Pasta"/>
+        <Class IRI="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#Ingredients"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#Pea"/>
+        <Class IRI="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#Beans"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#Penne"/>
+        <Class IRI="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#Pasta"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#Pepper"/>
+        <Class IRI="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#FruitsVegetables"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#PepperSeasoning"/>
+        <Class IRI="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#Seasoning"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#PestoSauce"/>
+        <Class IRI="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#Sauces"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#PigMeat"/>
+        <Class IRI="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#RedMeat"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#Portabello"/>
+        <Class IRI="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#Fungi"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#Potato"/>
+        <Class IRI="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#Tubers"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#RabbitMeat"/>
+        <Class IRI="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#WhiteMeat"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#Radish"/>
+        <Class IRI="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#Roots"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#RedMeat"/>
+        <Class IRI="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#Meat"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#RedWine"/>
+        <Class IRI="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#Wine"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#Roots"/>
+        <Class IRI="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#Vegetables"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#Salmon"/>
+        <Class IRI="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#Fish"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#SaltSeasoning"/>
+        <Class IRI="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#Seasoning"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#SataySauce"/>
+        <Class IRI="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#Sauces"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#Sauces"/>
+        <Class IRI="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#Ingredients"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#Seasoning"/>
+        <Class IRI="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#Ingredients"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#Seeds"/>
+        <Class IRI="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#Vegetables"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#Shallot"/>
+        <Class IRI="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#Bulbs"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#Shrimp"/>
+        <Class IRI="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#Fish"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#SoyBean"/>
+        <Class IRI="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#Beans"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#Spaghetti"/>
+        <Class IRI="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#Pasta"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#SpanishPepper"/>
+        <Class IRI="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#FruitsVegetables"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#SpareRibs"/>
+        <Class IRI="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#PigMeat"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#Spinach"/>
+        <Class IRI="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#Leaves"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#Sprout"/>
+        <Class IRI="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#Leaves"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#Steak"/>
+        <Class IRI="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#CowMeat"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#SweetCorn"/>
+        <Class IRI="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#Seeds"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#ThymeSeasoning"/>
+        <Class IRI="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#Seasoning"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#Tomato"/>
+        <Class IRI="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#FruitsVegetables"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#Truffle"/>
+        <Class IRI="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#Fungi"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#Tubers"/>
+        <Class IRI="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#Vegetables"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#Tuna"/>
+        <Class IRI="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#Fish"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#Turnip"/>
+        <Class IRI="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#Roots"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#Vegetables"/>
+        <Class IRI="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#Vegetables&amp;Fruits"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#Water"/>
+        <Class IRI="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#Ingredients"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#WhiteMeat"/>
+        <Class IRI="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#Meat"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#WhiteWine"/>
+        <Class IRI="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#Wine"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#Wine"/>
+        <Class IRI="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#Ingredients"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#Witloof"/>
+        <Class IRI="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#Leaves"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#Yam"/>
+        <Class IRI="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#Tubers"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#Yoghurt"/>
+        <Class IRI="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#Dairy"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#Vegetables&amp;Fruits"/>
+        <Class IRI="http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#Ingredients"/>
+    </SubClassOf>
+</Ontology>
+
+
+
+<!-- Generated by the OWL API (version 4.2.8.20170104-2310) https://github.com/owlcs/owlapi -->
+
