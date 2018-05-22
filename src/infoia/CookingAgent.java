@@ -30,7 +30,7 @@ public class CookingAgent {
 	OWLOntologyManager manager;
 	OWLDataFactory dataFactory;
 	
-	String uriPrefix = "http://www.semanticweb.org/jordi/ontologies/2018/4/pasta#";
+	String uriPrefix = "http://www.semanticweb.org/jordi/ontologies/2018/4/Pasta#";
 
 	CookingAgent () {
 		fridge = new ArrayList<Ingredient>();
