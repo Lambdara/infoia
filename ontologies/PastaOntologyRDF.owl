@@ -43,6 +43,7 @@
 
     <owl:Class rdf:about="http://www.semanticweb.org/jordi/ontologies/2018/4/Pasta#Bacon">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/jordi/ontologies/2018/4/Pasta#PigMeat"/>
+        <owl:disjointWith rdf:resource="http://www.semanticweb.org/jordi/ontologies/2018/4/Pasta#SpareRibs"/>
     </owl:Class>
     
 
@@ -67,6 +68,7 @@
 
     <owl:Class rdf:about="http://www.semanticweb.org/jordi/ontologies/2018/4/Pasta#Beans">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/jordi/ontologies/2018/4/Pasta#Seeds"/>
+        <owl:disjointWith rdf:resource="http://www.semanticweb.org/jordi/ontologies/2018/4/Pasta#SweetCorn"/>
     </owl:Class>
     
 
@@ -115,7 +117,6 @@
 
     <owl:Class rdf:about="http://www.semanticweb.org/jordi/ontologies/2018/4/Pasta#ButterOil">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/jordi/ontologies/2018/4/Pasta#CookingOil"/>
-        <owl:disjointWith rdf:resource="http://www.semanticweb.org/jordi/ontologies/2018/4/Pasta#OliveOil"/>
     </owl:Class>
     
 
@@ -172,6 +173,7 @@
 
     <owl:Class rdf:about="http://www.semanticweb.org/jordi/ontologies/2018/4/Pasta#ChickenMeat">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/jordi/ontologies/2018/4/Pasta#WhiteMeat"/>
+        <owl:disjointWith rdf:resource="http://www.semanticweb.org/jordi/ontologies/2018/4/Pasta#RabbitMeat"/>
     </owl:Class>
     
 
@@ -212,6 +214,7 @@
 
     <owl:Class rdf:about="http://www.semanticweb.org/jordi/ontologies/2018/4/Pasta#Clam">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/jordi/ontologies/2018/4/Pasta#ShellFish"/>
+        <owl:disjointWith rdf:resource="http://www.semanticweb.org/jordi/ontologies/2018/4/Pasta#Shrimp"/>
     </owl:Class>
     
 
@@ -236,6 +239,7 @@
 
     <owl:Class rdf:about="http://www.semanticweb.org/jordi/ontologies/2018/4/Pasta#CowMeat">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/jordi/ontologies/2018/4/Pasta#RedMeat"/>
+        <owl:disjointWith rdf:resource="http://www.semanticweb.org/jordi/ontologies/2018/4/Pasta#PigMeat"/>
     </owl:Class>
     
 
@@ -348,6 +352,7 @@
 
     <owl:Class rdf:about="http://www.semanticweb.org/jordi/ontologies/2018/4/Pasta#Fish">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/jordi/ontologies/2018/4/Pasta#Fish&amp;Meat"/>
+        <owl:disjointWith rdf:resource="http://www.semanticweb.org/jordi/ontologies/2018/4/Pasta#Meat"/>
     </owl:Class>
     
 
@@ -546,6 +551,7 @@
 
     <owl:Class rdf:about="http://www.semanticweb.org/jordi/ontologies/2018/4/Pasta#MincedBeef">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/jordi/ontologies/2018/4/Pasta#CowMeat"/>
+        <owl:disjointWith rdf:resource="http://www.semanticweb.org/jordi/ontologies/2018/4/Pasta#Steak"/>
     </owl:Class>
     
 
@@ -698,6 +704,7 @@
 
     <owl:Class rdf:about="http://www.semanticweb.org/jordi/ontologies/2018/4/Pasta#Potato">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/jordi/ontologies/2018/4/Pasta#Tubers"/>
+        <owl:disjointWith rdf:resource="http://www.semanticweb.org/jordi/ontologies/2018/4/Pasta#Yam"/>
     </owl:Class>
     
 
@@ -722,7 +729,6 @@
 
     <owl:Class rdf:about="http://www.semanticweb.org/jordi/ontologies/2018/4/Pasta#Ravioli">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/jordi/ontologies/2018/4/Pasta#FilledPasta"/>
-        <owl:disjointWith rdf:resource="http://www.semanticweb.org/jordi/ontologies/2018/4/Pasta#Tortellini"/>
     </owl:Class>
     
 
@@ -731,6 +737,7 @@
 
     <owl:Class rdf:about="http://www.semanticweb.org/jordi/ontologies/2018/4/Pasta#RedMeat">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/jordi/ontologies/2018/4/Pasta#Meat"/>
+        <owl:disjointWith rdf:resource="http://www.semanticweb.org/jordi/ontologies/2018/4/Pasta#WhiteMeat"/>
     </owl:Class>
     
 
@@ -739,6 +746,7 @@
 
     <owl:Class rdf:about="http://www.semanticweb.org/jordi/ontologies/2018/4/Pasta#RedWine">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/jordi/ontologies/2018/4/Pasta#Wine"/>
+        <owl:disjointWith rdf:resource="http://www.semanticweb.org/jordi/ontologies/2018/4/Pasta#WhiteWine"/>
     </owl:Class>
     
 
@@ -1100,7 +1108,6 @@
         <owl:members rdf:parseType="Collection">
             <rdf:Description rdf:about="http://www.semanticweb.org/jordi/ontologies/2018/4/Pasta#AnimalProducts"/>
             <rdf:Description rdf:about="http://www.semanticweb.org/jordi/ontologies/2018/4/Pasta#CookingOil"/>
-            <rdf:Description rdf:about="http://www.semanticweb.org/jordi/ontologies/2018/4/Pasta#OliveOil"/>
             <rdf:Description rdf:about="http://www.semanticweb.org/jordi/ontologies/2018/4/Pasta#Pasta"/>
             <rdf:Description rdf:about="http://www.semanticweb.org/jordi/ontologies/2018/4/Pasta#Sauces"/>
             <rdf:Description rdf:about="http://www.semanticweb.org/jordi/ontologies/2018/4/Pasta#Seasoning"/>
@@ -1111,24 +1118,65 @@
     <rdf:Description>
         <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AllDisjointClasses"/>
         <owl:members rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://www.semanticweb.org/jordi/ontologies/2018/4/Pasta#Artichoke"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/jordi/ontologies/2018/4/Pasta#Broccoli"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/jordi/ontologies/2018/4/Pasta#Cauliflower"/>
+        </owl:members>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AllDisjointClasses"/>
+        <owl:members rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://www.semanticweb.org/jordi/ontologies/2018/4/Pasta#BarbecueSauce"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/jordi/ontologies/2018/4/Pasta#ChiliSauce"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/jordi/ontologies/2018/4/Pasta#CurrySauce"/>
+        </owl:members>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AllDisjointClasses"/>
+        <owl:members rdf:parseType="Collection">
             <rdf:Description rdf:about="http://www.semanticweb.org/jordi/ontologies/2018/4/Pasta#BasilSeasoning"/>
-            <rdf:Description rdf:about="http://www.semanticweb.org/jordi/ontologies/2018/4/Pasta#ChiliSeasoning"/>
-            <rdf:Description rdf:about="http://www.semanticweb.org/jordi/ontologies/2018/4/Pasta#HerbsSeasoning"/>
             <rdf:Description rdf:about="http://www.semanticweb.org/jordi/ontologies/2018/4/Pasta#OreganoSeasoning"/>
-            <rdf:Description rdf:about="http://www.semanticweb.org/jordi/ontologies/2018/4/Pasta#PaprikaSeasoning"/>
             <rdf:Description rdf:about="http://www.semanticweb.org/jordi/ontologies/2018/4/Pasta#ParsleySeasoning"/>
-            <rdf:Description rdf:about="http://www.semanticweb.org/jordi/ontologies/2018/4/Pasta#PepperSeasoning"/>
-            <rdf:Description rdf:about="http://www.semanticweb.org/jordi/ontologies/2018/4/Pasta#SaltSeasoning"/>
-            <rdf:Description rdf:about="http://www.semanticweb.org/jordi/ontologies/2018/4/Pasta#SpicesSeasoning"/>
             <rdf:Description rdf:about="http://www.semanticweb.org/jordi/ontologies/2018/4/Pasta#ThymeSeasoning"/>
         </owl:members>
     </rdf:Description>
     <rdf:Description>
         <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AllDisjointClasses"/>
         <owl:members rdf:parseType="Collection">
-            <rdf:Description rdf:about="http://www.semanticweb.org/jordi/ontologies/2018/4/Pasta#ButterOil"/>
-            <rdf:Description rdf:about="http://www.semanticweb.org/jordi/ontologies/2018/4/Pasta#OliveOil"/>
-            <rdf:Description rdf:about="http://www.semanticweb.org/jordi/ontologies/2018/4/Pasta#PalmOil"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/jordi/ontologies/2018/4/Pasta#BechamelSauce"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/jordi/ontologies/2018/4/Pasta#GarlicSauce"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/jordi/ontologies/2018/4/Pasta#MayonaiseSauce"/>
+        </owl:members>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AllDisjointClasses"/>
+        <owl:members rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://www.semanticweb.org/jordi/ontologies/2018/4/Pasta#Beetroot"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/jordi/ontologies/2018/4/Pasta#Carrot"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/jordi/ontologies/2018/4/Pasta#Parsnip"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/jordi/ontologies/2018/4/Pasta#Radish"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/jordi/ontologies/2018/4/Pasta#Turnip"/>
+        </owl:members>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AllDisjointClasses"/>
+        <owl:members rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://www.semanticweb.org/jordi/ontologies/2018/4/Pasta#Bulbs"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/jordi/ontologies/2018/4/Pasta#Flowers"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/jordi/ontologies/2018/4/Pasta#FruitsVegetables"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/jordi/ontologies/2018/4/Pasta#Fungi"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/jordi/ontologies/2018/4/Pasta#Leaves"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/jordi/ontologies/2018/4/Pasta#Roots"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/jordi/ontologies/2018/4/Pasta#Seeds"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/jordi/ontologies/2018/4/Pasta#Tubers"/>
+        </owl:members>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AllDisjointClasses"/>
+        <owl:members rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://www.semanticweb.org/jordi/ontologies/2018/4/Pasta#Butter"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/jordi/ontologies/2018/4/Pasta#Cream"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/jordi/ontologies/2018/4/Pasta#CrêmeFraiche"/>
         </owl:members>
     </rdf:Description>
     <rdf:Description>
@@ -1138,22 +1186,6 @@
             <rdf:Description rdf:about="http://www.semanticweb.org/jordi/ontologies/2018/4/Pasta#OliveOil"/>
             <rdf:Description rdf:about="http://www.semanticweb.org/jordi/ontologies/2018/4/Pasta#PalmOil"/>
             <rdf:Description rdf:about="http://www.semanticweb.org/jordi/ontologies/2018/4/Pasta#SoybeanOil"/>
-        </owl:members>
-    </rdf:Description>
-    <rdf:Description>
-        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AllDisjointClasses"/>
-        <owl:members rdf:parseType="Collection">
-            <rdf:Description rdf:about="http://www.semanticweb.org/jordi/ontologies/2018/4/Pasta#Cannelloni"/>
-            <rdf:Description rdf:about="http://www.semanticweb.org/jordi/ontologies/2018/4/Pasta#Farfalle"/>
-            <rdf:Description rdf:about="http://www.semanticweb.org/jordi/ontologies/2018/4/Pasta#Fettuccine"/>
-            <rdf:Description rdf:about="http://www.semanticweb.org/jordi/ontologies/2018/4/Pasta#FilledPasta"/>
-            <rdf:Description rdf:about="http://www.semanticweb.org/jordi/ontologies/2018/4/Pasta#Fusilli"/>
-            <rdf:Description rdf:about="http://www.semanticweb.org/jordi/ontologies/2018/4/Pasta#Linguine"/>
-            <rdf:Description rdf:about="http://www.semanticweb.org/jordi/ontologies/2018/4/Pasta#LongPasta"/>
-            <rdf:Description rdf:about="http://www.semanticweb.org/jordi/ontologies/2018/4/Pasta#Maccheroni"/>
-            <rdf:Description rdf:about="http://www.semanticweb.org/jordi/ontologies/2018/4/Pasta#Penne"/>
-            <rdf:Description rdf:about="http://www.semanticweb.org/jordi/ontologies/2018/4/Pasta#ShortPasta"/>
-            <rdf:Description rdf:about="http://www.semanticweb.org/jordi/ontologies/2018/4/Pasta#Spaghetti"/>
         </owl:members>
     </rdf:Description>
     <rdf:Description>
@@ -1176,6 +1208,41 @@
     <rdf:Description>
         <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AllDisjointClasses"/>
         <owl:members rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://www.semanticweb.org/jordi/ontologies/2018/4/Pasta#Champignon"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/jordi/ontologies/2018/4/Pasta#Portabello"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/jordi/ontologies/2018/4/Pasta#Truffle"/>
+        </owl:members>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AllDisjointClasses"/>
+        <owl:members rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://www.semanticweb.org/jordi/ontologies/2018/4/Pasta#Cheese"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/jordi/ontologies/2018/4/Pasta#Milk"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/jordi/ontologies/2018/4/Pasta#Yoghurt"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/jordi/ontologies/2018/4/Pasta#Cream&amp;Butter"/>
+        </owl:members>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AllDisjointClasses"/>
+        <owl:members rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://www.semanticweb.org/jordi/ontologies/2018/4/Pasta#Chickpea"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/jordi/ontologies/2018/4/Pasta#GreenBean"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/jordi/ontologies/2018/4/Pasta#KidneyBean"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/jordi/ontologies/2018/4/Pasta#Pea"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/jordi/ontologies/2018/4/Pasta#SoyBean"/>
+        </owl:members>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AllDisjointClasses"/>
+        <owl:members rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://www.semanticweb.org/jordi/ontologies/2018/4/Pasta#ChiliSeasoning"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/jordi/ontologies/2018/4/Pasta#PaprikaSeasoning"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/jordi/ontologies/2018/4/Pasta#PepperSeasoning"/>
+        </owl:members>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AllDisjointClasses"/>
+        <owl:members rdf:parseType="Collection">
             <rdf:Description rdf:about="http://www.semanticweb.org/jordi/ontologies/2018/4/Pasta#ChimichurriSauce"/>
             <rdf:Description rdf:about="http://www.semanticweb.org/jordi/ontologies/2018/4/Pasta#OnionSauce"/>
             <rdf:Description rdf:about="http://www.semanticweb.org/jordi/ontologies/2018/4/Pasta#PestoSauce"/>
@@ -1185,13 +1252,12 @@
     <rdf:Description>
         <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AllDisjointClasses"/>
         <owl:members rdf:parseType="Collection">
-            <rdf:Description rdf:about="http://www.semanticweb.org/jordi/ontologies/2018/4/Pasta#Clam"/>
-            <rdf:Description rdf:about="http://www.semanticweb.org/jordi/ontologies/2018/4/Pasta#FreshwaterFish"/>
-            <rdf:Description rdf:about="http://www.semanticweb.org/jordi/ontologies/2018/4/Pasta#Salmon"/>
-            <rdf:Description rdf:about="http://www.semanticweb.org/jordi/ontologies/2018/4/Pasta#SaltwaterFish"/>
-            <rdf:Description rdf:about="http://www.semanticweb.org/jordi/ontologies/2018/4/Pasta#ShellFish"/>
-            <rdf:Description rdf:about="http://www.semanticweb.org/jordi/ontologies/2018/4/Pasta#Shrimp"/>
-            <rdf:Description rdf:about="http://www.semanticweb.org/jordi/ontologies/2018/4/Pasta#Tuna"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/jordi/ontologies/2018/4/Pasta#Courgette"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/jordi/ontologies/2018/4/Pasta#Cucumber"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/jordi/ontologies/2018/4/Pasta#Eggplant"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/jordi/ontologies/2018/4/Pasta#Pepper"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/jordi/ontologies/2018/4/Pasta#SpanishPepper"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/jordi/ontologies/2018/4/Pasta#Tomato"/>
         </owl:members>
     </rdf:Description>
     <rdf:Description>
@@ -1199,8 +1265,6 @@
         <owl:members rdf:parseType="Collection">
             <rdf:Description rdf:about="http://www.semanticweb.org/jordi/ontologies/2018/4/Pasta#Dairy"/>
             <rdf:Description rdf:about="http://www.semanticweb.org/jordi/ontologies/2018/4/Pasta#Egg"/>
-            <rdf:Description rdf:about="http://www.semanticweb.org/jordi/ontologies/2018/4/Pasta#Fish"/>
-            <rdf:Description rdf:about="http://www.semanticweb.org/jordi/ontologies/2018/4/Pasta#Meat"/>
             <rdf:Description rdf:about="http://www.semanticweb.org/jordi/ontologies/2018/4/Pasta#Fish&amp;Meat"/>
         </owl:members>
     </rdf:Description>
@@ -1215,10 +1279,71 @@
     <rdf:Description>
         <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AllDisjointClasses"/>
         <owl:members rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://www.semanticweb.org/jordi/ontologies/2018/4/Pasta#Farfalle"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/jordi/ontologies/2018/4/Pasta#Fettuccine"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/jordi/ontologies/2018/4/Pasta#Fusilli"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/jordi/ontologies/2018/4/Pasta#Maccheroni"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/jordi/ontologies/2018/4/Pasta#Penne"/>
+        </owl:members>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AllDisjointClasses"/>
+        <owl:members rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://www.semanticweb.org/jordi/ontologies/2018/4/Pasta#Feta"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/jordi/ontologies/2018/4/Pasta#Gouda"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/jordi/ontologies/2018/4/Pasta#Mozerella"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/jordi/ontologies/2018/4/Pasta#Parmasan"/>
+        </owl:members>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AllDisjointClasses"/>
+        <owl:members rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://www.semanticweb.org/jordi/ontologies/2018/4/Pasta#FilledPasta"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/jordi/ontologies/2018/4/Pasta#LongPasta"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/jordi/ontologies/2018/4/Pasta#ShortPasta"/>
+        </owl:members>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AllDisjointClasses"/>
+        <owl:members rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://www.semanticweb.org/jordi/ontologies/2018/4/Pasta#FreshSauce"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/jordi/ontologies/2018/4/Pasta#HotSauce"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/jordi/ontologies/2018/4/Pasta#WhiteSauce"/>
+        </owl:members>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AllDisjointClasses"/>
+        <owl:members rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://www.semanticweb.org/jordi/ontologies/2018/4/Pasta#FreshwaterFish"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/jordi/ontologies/2018/4/Pasta#SaltwaterFish"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/jordi/ontologies/2018/4/Pasta#ShellFish"/>
+        </owl:members>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AllDisjointClasses"/>
+        <owl:members rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://www.semanticweb.org/jordi/ontologies/2018/4/Pasta#Garlic"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/jordi/ontologies/2018/4/Pasta#Leek"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/jordi/ontologies/2018/4/Pasta#Onion"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/jordi/ontologies/2018/4/Pasta#Shallot"/>
+        </owl:members>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AllDisjointClasses"/>
+        <owl:members rdf:parseType="Collection">
             <rdf:Description rdf:about="http://www.semanticweb.org/jordi/ontologies/2018/4/Pasta#HerbsSeasoning"/>
             <rdf:Description rdf:about="http://www.semanticweb.org/jordi/ontologies/2018/4/Pasta#SaltSeasoning"/>
             <rdf:Description rdf:about="http://www.semanticweb.org/jordi/ontologies/2018/4/Pasta#SpicesSeasoning"/>
             <rdf:Description rdf:about="http://www.semanticweb.org/jordi/ontologies/2018/4/Pasta#SugarSeasoning"/>
+        </owl:members>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AllDisjointClasses"/>
+        <owl:members rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://www.semanticweb.org/jordi/ontologies/2018/4/Pasta#Lettuce"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/jordi/ontologies/2018/4/Pasta#Spinach"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/jordi/ontologies/2018/4/Pasta#Sprout"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/jordi/ontologies/2018/4/Pasta#Witloof"/>
         </owl:members>
     </rdf:Description>
     <rdf:Description>
