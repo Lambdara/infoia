@@ -1,4 +1,4 @@
-Cannelloni;0.8
-PestoSauce;0.5
-Gouda;0.9
-OliveOil;0.8
+Cannelloni;0.9
+PestoSauce;0.8
+Gouda;0.2
+OliveOil;0.2
