@@ -68,7 +68,10 @@ public class CookingAgent {
 					Recipe recipe = new Recipe(fileName);
 
 					while (scanner.hasNext()){
-						String ingredientName = scanner.nextLine();
+						String ingredientString = scanner.nextLine();
+						String[] splittedIngredient = ingredientString.split(";");
+						String ingredientName = splittedIngredient[0];
+						Double ingredientReplacableWeight = Double.parseDouble(splittedIngredient[1]);
 
 						Ingredient ingredient = null;
 						for (Ingredient i : ingredients) {
@@ -83,6 +86,7 @@ public class CookingAgent {
 						}
 
 						recipe.add(ingredient);
+						recipe.addWeightToIngredient(ingredient, ingredientReplacableWeight);
 					}
 					recipeBook.add(recipe);
 				} catch (IOException e) {
@@ -112,11 +116,9 @@ public class CookingAgent {
         
         int stepsFromStart = 0;
         int stepsToEnd = 0;
-        System.out.println("Class is now " + cur.toString());
         while (!reasoner.subClasses(cur).anyMatch(x -> x == c2) && cur != c2) {
             stepsFromStart++; 
             cur = reasoner.superClasses(cur,true).filter(x -> x != thing).findAny().get();
-            System.out.println("Class is now " + cur.toString());
         }
         
         System.out.println("Found!");
@@ -124,7 +126,6 @@ public class CookingAgent {
         while(!reasoner.superClasses(cur).allMatch(x -> x == thing)) {
             stepsToEnd++;
             cur = reasoner.superClasses(cur,true).filter(x -> x != thing).findAny().get();
-            System.out.println("Class is now " + cur.toString());
         }
         
         System.out.println("From start: " + stepsFromStart + "; To end: " + stepsToEnd);
@@ -190,7 +191,8 @@ public class CookingAgent {
 			Ingredient bestIngredient = null;
 			for(Ingredient j : fridge) {
 				System.out.println(i + ", " + j);
-				double similarity = ingredientSimilarity(i, j);
+				System.out.println("weight: " + r.getWeightByIngredient(i));
+				double similarity = ingredientSimilarity(i, j) * r.getWeightByIngredient(i);
 				if(bestSimilarity < similarity) {
 					bestSimilarity = similarity;
 					bestIngredient = j;
