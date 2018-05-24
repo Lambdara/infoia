@@ -204,12 +204,18 @@ public class CookingAgent {
 	}
 	
 	private double utility(Recipe r, HashMap<Ingredient, Pair> replacements) {
-		double utility = 1.0;
+		double utility = 0;
+		double totalWeight = 0;
 		for(Ingredient i : r) {
-			if(replacements.containsKey(i)) {
-				utility *= replacements.get(i).getSimilarity();
-			}
+		    double weight = r.getWeightByIngredient(i);
+		    if (replacements.containsKey(i)) {
+		        utility += replacements.get(i).getSimilarity() * weight;
+		    } else {
+		        utility += weight;
+		    }
+			totalWeight += weight;
 		}
+		utility /= totalWeight;
 		return utility;
 	}
 	
