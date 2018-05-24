@@ -222,4 +222,12 @@ public class CookingAgent {
 		}
 		return newRecipe;
 	}
+	
+	private void addIngredientsToFridge(ArrayList<String> ingredientNames) {
+		for(Ingredient i : ingredients) {
+			if(ingredientNames.contains(i.getName())) {
+				fridge.add(i);
+			}
+		}
+	}
 }
