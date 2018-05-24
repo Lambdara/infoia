@@ -1,7 +1,7 @@
 ChickenMeat;0.8
 Cream;0.8
 Milk;0.2
-Champignon;0.3
-PepperSeasoning;0.1
-SaltSeasoning;0.2
+Champignon;0.2
+PepperSeasoning;0.02
+SaltSeasoning;0.05
 Penne;0.9

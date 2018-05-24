@@ -22,6 +22,7 @@ import org.semanticweb.owlapi.reasoner.OWLReasonerFactory;
 public class CookingAgent {
 	
 	public static Random random = new Random();
+	public static final Double SIMILARITY_THRESHOLD = 0.7; 
 	
 	public static void main(String[] args) {
 		new CookingAgent();
@@ -97,11 +98,14 @@ public class CookingAgent {
  
 		reasoner.precomputeInferences(InferenceType.CLASS_HIERARCHY);
 		
-		for(Ingredient i : ingredients) {
-			if(random.nextFloat() < 0.3) {
-				fridge.add(i);
-			}
-		}
+		ArrayList<String> inFridge = new ArrayList<String>();
+		inFridge.add("ChickenMeat");
+		inFridge.add("Cream");
+		inFridge.add("Milk");
+		inFridge.add("Cannelloni");
+		inFridge.add("Champignon");
+		inFridge.add("SaltSeasoning");
+		addIngredientsToFridge(inFridge);
 		
 		Recipe best = getBestRecipe();
 		System.out.println("Fridge: " + fridge);
@@ -121,14 +125,14 @@ public class CookingAgent {
             cur = reasoner.superClasses(cur,true).filter(x -> x != thing).findAny().get();
         }
         
-        System.out.println("Found!");
+//        System.out.println("Found!");
         
         while(!reasoner.superClasses(cur).allMatch(x -> x == thing)) {
             stepsToEnd++;
             cur = reasoner.superClasses(cur,true).filter(x -> x != thing).findAny().get();
         }
         
-        System.out.println("From start: " + stepsFromStart + "; To end: " + stepsToEnd);
+//        System.out.println("From start: " + stepsFromStart + "; To end: " + stepsToEnd);
         
         return (double) Math.pow(stepsToEnd,2) / (Math.pow(stepsFromStart,2) + Math.pow(stepsToEnd,2));
 	}
@@ -161,13 +165,18 @@ public class CookingAgent {
 		Recipe bestRecipe = null;
 		for(Recipe r : recipeBook) {
 			HashMap<Ingredient, Pair> replacements = getReplacements(r);
-			double util = utility(r, replacements);
+			Recipe recipe = createRecipe(r, replacements);
+			double util = recipeUtility2(recipe);
 			if(bestUtil < util) {
 				bestUtil = util;
-				bestRecipe = createRecipe(r, replacements);
+				bestRecipe = recipe;
 			}
+			System.out.println("Utility: " + util);
+			System.out.println("Fridge: " + fridge);
+			System.out.println(recipe);
+			System.out.println("\n----------------------\n");
 		}
-		System.out.println("Utility: " + bestUtil);
+		System.out.println("Best Utility: " + bestUtil);
 		return bestRecipe;
 	}
 	
@@ -175,9 +184,7 @@ public class CookingAgent {
 		ArrayList<Ingredient> available = new ArrayList<Ingredient>();
 		ArrayList<Ingredient> unavailable = new ArrayList<Ingredient>();
 		
-		System.out.println(r.name);
 		for(Ingredient i : r) {
-			System.out.println(i);
 			if(fridge.contains(i)) {
 				available.add(i);
 			} else {
@@ -190,38 +197,52 @@ public class CookingAgent {
 			double bestSimilarity = 0.0;
 			Ingredient bestIngredient = null;
 			for(Ingredient j : fridge) {
-				System.out.println(i + ", " + j);
-				System.out.println("weight: " + r.getWeightByIngredient(i));
-				double similarity = ingredientSimilarity(i, j) * r.getWeightByIngredient(i);
+				double similarity = ingredientSimilarity(i, j);
 				if(bestSimilarity < similarity) {
 					bestSimilarity = similarity;
 					bestIngredient = j;
 				}
 			}
-			replacements.put(i, new Pair(bestIngredient, bestSimilarity));
+			System.out.println("Best alternative ingredient for " + i.getName() + " --> " + bestIngredient.getName() + ", similarity:"+ bestSimilarity);
+			if(bestSimilarity > SIMILARITY_THRESHOLD) {
+				replacements.put(i, new Pair(bestIngredient, bestSimilarity));
+			} else {
+				replacements.put(i, new Pair(null, 1.0 - r.getWeightByIngredient(i)));
+			}
 		}
 		return replacements;
 	}
 	
-	private double utility(Recipe r, HashMap<Ingredient, Pair> replacements) {
+	private double recipeUtility(Recipe r) {
+		HashMap<Ingredient, Pair> replacements = r.getReplacements();
 		double utility = 1.0;
 		for(Ingredient i : r) {
 			if(replacements.containsKey(i)) {
-				utility *= replacements.get(i).getSimilarity();
+				utility *= replacements.get(i).getValue();
 			}
 		}
 		return utility;
 	}
 	
+	private double recipeUtility2(Recipe r) {
+		HashMap<Ingredient, Pair> replacements = r.getReplacements();
+		double utility = 0.0;
+		for(Ingredient i : r) {
+			if(replacements.containsKey(i)) {
+				utility += replacements.get(i).getValue();
+			} else {
+				utility += 1;
+			}
+		}
+		return utility/r.size();
+	}
+	
 	private Recipe createRecipe(Recipe r, HashMap<Ingredient, Pair> replacements) {
 		Recipe newRecipe = new Recipe("modified " + r.name);
 		for(Ingredient i : r) {
-			if(replacements.containsKey(i)) {
-				newRecipe.add(replacements.get(i).getIngredient());
-			} else {
-				newRecipe.add(i);
-			}
+			newRecipe.add(i);
 		}
+		newRecipe.setReplacements(replacements);
 		return newRecipe;
 	}
 	
