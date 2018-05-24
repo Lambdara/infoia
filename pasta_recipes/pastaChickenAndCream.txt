@@ -1,7 +1,7 @@
-ChickenMeat
-Cream
-Milk
-Champignon
-PepperSeasoning
-SaltSeasoning
-Penne
+ChickenMeat;0.5
+Cream;0.5
+Milk;0.9
+Champignon;1.0
+PepperSeasoning;1.0
+SaltSeasoning;1.0
+Penne;0.7
