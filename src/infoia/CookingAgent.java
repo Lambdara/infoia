@@ -19,13 +19,16 @@ import org.semanticweb.owlapi.reasoner.InferenceType;
 import org.semanticweb.owlapi.reasoner.OWLReasoner;
 import org.semanticweb.owlapi.reasoner.OWLReasonerFactory;
 
+import javafx.application.Application;
+
 public class CookingAgent {
 	
-	public static Random random = new Random();
+	public static Random random = new Random();	
 	
 	public static void main(String[] args) {
-		new CookingAgent();
 		
+//		new CookingAgent();
+		Application.launch(GUI.class, args);
 	}
 
 	ArrayList<Ingredient> fridge;
