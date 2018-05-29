@@ -8,14 +8,10 @@ public class Recipe extends ArrayList<Ingredient> {
 	private static final long serialVersionUID = 1L;
 
 	String name;
-<<<<<<< HEAD
-	HashMap<Ingredient, Double> leaveOutWeights;
-	HashMap<Ingredient, Pair> replacements;
-=======
 	private HashMap<Ingredient, Double> leaveOutWeights;
-	private HashMap<Ingredient, Pair> replacements;
-	private ArrayList<Ingredient> shoppingList;
->>>>>>> origin/master
+	public HashMap<Ingredient, Pair> replacements;
+	public ArrayList<Ingredient> shoppingList;
+
 
 	Recipe(String name) {
 		super();

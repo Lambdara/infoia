@@ -25,11 +25,7 @@ public class CookingAgent {
 	
 	public static Random random = new Random();
 	public static final Double SIMILARITY_THRESHOLD = 0.7; 
-<<<<<<< HEAD
-
-=======
 	public static final Double RECIPE_UTILITY_TRESHOLD = 0.90;
->>>>>>> origin/master
 	
 	public static void main(String[] args) {
 		
