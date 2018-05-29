@@ -1,5 +1,6 @@
 package infoia;
 
+import java.awt.List;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -7,8 +8,14 @@ public class Recipe extends ArrayList<Ingredient> {
 	private static final long serialVersionUID = 1L;
 
 	String name;
+<<<<<<< HEAD
 	HashMap<Ingredient, Double> leaveOutWeights;
 	HashMap<Ingredient, Pair> replacements;
+=======
+	private HashMap<Ingredient, Double> leaveOutWeights;
+	private HashMap<Ingredient, Pair> replacements;
+	private ArrayList<Ingredient> shoppingList;
+>>>>>>> origin/master
 
 	Recipe(String name) {
 		super();
@@ -17,6 +24,8 @@ public class Recipe extends ArrayList<Ingredient> {
 		for (Ingredient key : this.leaveOutWeights.keySet()) {
 			this.leaveOutWeights.put(key, 1.0);
 		}
+		this.replacements = new HashMap();
+		this.shoppingList = new ArrayList();
 	}
 
 	public String toString() {
@@ -34,7 +43,10 @@ public class Recipe extends ArrayList<Ingredient> {
 						output += " ---> REMOVED value:" + replacements.get(i).getValue() + "\n";
 					}
 				} else {
-					output += ", value:1.0\n";
+					output += ", value:1.0";
+					if (shoppingList.contains(i))
+                        output += " [Shopping List]";
+                    output += "\n";
 				}
 			}
 		}
@@ -56,5 +68,14 @@ public class Recipe extends ArrayList<Ingredient> {
 	
 	public HashMap<Ingredient, Pair> getReplacements() {
 		return  replacements;
+	}
+
+	public double getLeaveOutWeight(Ingredient i) {
+        return leaveOutWeights.get(i);
+	}
+
+	public void replacementToShoppingList(Ingredient i) {
+	    this.replacements.remove(i);
+	    this.shoppingList.add(i);
 	}
 }
