@@ -111,10 +111,10 @@ public class CookingAgent {
 		inFridge.add("SaltSeasoning");
 		addIngredientsToFridge(inFridge);
 
-		Recipe best = getBestRecipe();
-
-		System.out.println("Fridge: " + fridge);
-		System.out.println("\nBest Recipe: " + best);
+//		Recipe best = getBestRecipe();
+//
+//		System.out.println("Fridge: " + fridge);
+//		System.out.println("\nBest Recipe: " + best);
 	}
 	
 	String pathToName(String path){
@@ -281,7 +281,7 @@ public class CookingAgent {
 		return newRecipe;
 	}
 	
-	private void addIngredientsToFridge(ArrayList<String> ingredientNames) {
+	void addIngredientsToFridge(ArrayList<String> ingredientNames) {
 		for(Ingredient i : ingredients) {
 			if(ingredientNames.contains(i.getName())) {
 				fridge.add(i);

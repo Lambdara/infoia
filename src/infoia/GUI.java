@@ -1,14 +1,20 @@
 package infoia;
 
+import java.util.ArrayList;
+
 import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
@@ -20,7 +26,7 @@ public class GUI extends Application {
 	ListView<String> guiFridge;
 	ListView<String> guiBestRecipe;
 	ListView<String> guiShoppingList;
-	String guiBestRecipeName;
+	Text guiBestRecipeName;
 	Scene guiScene;
 	Stage guiStage;
 	BorderPane bPane;
@@ -36,14 +42,12 @@ public class GUI extends Application {
 	    guiFridge.setPrefSize(200, 500);
 	    guiBestRecipe = new ListView<String>();
 	    guiBestRecipe.setPrefSize(300, 300);
-	    guiBestRecipeName = new String();
+	    guiBestRecipeName = boldText("");
 	    guiShoppingList = new ListView<String>();
 	    guiShoppingList.setPrefSize(300, 200);
-	    
-		// Update GUI    
-		updateGUIFridge(guiFridge);	
-		updateGUIBestRecipe(guiBestRecipe, guiShoppingList);
 		
+	    updateGUIFridge(guiFridge);	
+	    
 		setupLayout();
 		guiStage.show();
 	}
@@ -53,22 +57,52 @@ public class GUI extends Application {
 		// Left side of UI
 	    VBox leftVBox = new VBox();
 	    leftVBox.setPadding(padding);
+	    leftVBox.setSpacing(5.0);
+	    HBox fridgeHBox = new HBox();
+	    fridgeHBox.setSpacing(5.0);
+	    
+	    Button randomFridgeButton = new Button("Random");
+	    randomFridgeButton.setOnAction(value ->  {
+	    	ArrayList<String> inFridge = new ArrayList<String>();
+			inFridge.add("OliveOil");
+			cookingAgent.addIngredientsToFridge(inFridge);
+			updateGUIFridge(guiFridge);	
+	        });
+	    Button clearFridgeButton = new Button("Clear");
+	    fridgeHBox.getChildren().add(randomFridgeButton);	
+	    fridgeHBox.getChildren().add(clearFridgeButton);
+	    
 	    leftVBox.getChildren().add(boldText("Fridge"));
+	    leftVBox.getChildren().add(fridgeHBox);
 	    leftVBox.getChildren().add(guiFridge);
+
+	    // Center UI
+	    VBox centerVBox = new VBox();
+	    centerVBox.setPadding(padding);
+	    centerVBox.setSpacing(5.0);
+	    Button findRecipeButton = new Button("Find Recipe");
+	    findRecipeButton.setOnAction(value ->  {
+	    	updateGUIBestRecipe(guiBestRecipe, guiShoppingList);
+	        });
+	    centerVBox.getChildren().add(findRecipeButton);
 	    
 	    // Right side of GUI
 	    VBox rightVBox = new VBox();
 	    rightVBox.setPadding(padding);
-	    rightVBox.getChildren().add(boldText("Best Recipe: " + guiBestRecipeName));
+	    rightVBox.setSpacing(5.0);
+	    HBox recipeHBox = new HBox();
+	    recipeHBox.getChildren().add(boldText("Best recipe: "));
+	    recipeHBox.getChildren().add(guiBestRecipeName);
+	    rightVBox.getChildren().add(recipeHBox);
 	    rightVBox.getChildren().add(guiBestRecipe);
 	    rightVBox.getChildren().add(boldText("Shopping list"));
 	    rightVBox.getChildren().add(guiShoppingList);
 		
-		bPane.setTop(new TextField("Top")); 
-	    bPane.setBottom(new TextField("Bottom")); 
+//		bPane.setTop(); 
+//	    bPane.setBottom(new TextField("Bottom")); 
 	    bPane.setLeft(leftVBox);
 	    bPane.setRight(rightVBox); 
-	    bPane.setCenter(new TextField("Center")); 
+	    bPane.setCenter(centerVBox);
 		
 		// Setup GUI stage and show
 		guiStage.setTitle("INFOIA: Cooking Agent");
@@ -86,8 +120,12 @@ public class GUI extends Application {
 	private void updateGUIFridge(ListView<String> fridge) {
 		ObservableList<String> ingredients = FXCollections.observableArrayList();
 		
-		for (Ingredient ingredient : cookingAgent.fridge) {
-			ingredients.add(ingredient.getName());
+		if (cookingAgent.fridge.size() == 0) {
+			ingredients.add("empty");
+		} else {
+			for (Ingredient ingredient : cookingAgent.fridge) {
+				ingredients.add(ingredient.getName());
+			}
 		}
 		fridge.setItems(ingredients);
 	}
@@ -96,7 +134,8 @@ public class GUI extends Application {
 		ObservableList<String> ingredients = FXCollections.observableArrayList();
 		ObservableList<String> missingIngredients = FXCollections.observableArrayList();
 		Recipe recipe = cookingAgent.getBestRecipe();
-		guiBestRecipeName = recipe.name;
+		guiBestRecipeName.setText(recipe.name);
+		System.out.println(guiBestRecipeName);
 		
 		if (recipe.size() == 0) {
 			ingredients.add("<empty>");
@@ -120,22 +159,4 @@ public class GUI extends Application {
 		shoppingList.setItems(missingIngredients);
 	}
 	
-	
-	private Text addText() {
-		Text text = new Text();      
-	      
-		//Setting the text to be added. 
-		text.setText("Hello how are you"); 
-		   
-		//setting the position of the text 
-		text.setX(50); 
-		text.setY(50);
-		
-		return text;
-	}
-//	
-//	public static void main(String[] args) {
-//		launch(args);
-//		CookingAgent cookingAgent = new CookingAgent();
-//	}
 }
