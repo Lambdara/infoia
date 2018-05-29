@@ -15,6 +15,90 @@
     <!-- 
     ///////////////////////////////////////////////////////////////////////////////////////
     //
+    // Object Properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.semanticweb.org/jordi/ontologies/2018/4/Pasta#BitterFlavour -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/jordi/ontologies/2018/4/Pasta#BitterFlavour">
+        <rdfs:subPropertyOf rdf:resource="http://www.semanticweb.org/jordi/ontologies/2018/4/Pasta#Flavour"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/jordi/ontologies/2018/4/Pasta#Flavour -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/jordi/ontologies/2018/4/Pasta#Flavour">
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topObjectProperty"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/jordi/ontologies/2018/4/Pasta#SaltyFlavour -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/jordi/ontologies/2018/4/Pasta#SaltyFlavour">
+        <rdfs:subPropertyOf rdf:resource="http://www.semanticweb.org/jordi/ontologies/2018/4/Pasta#Flavour"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/jordi/ontologies/2018/4/Pasta#Bacon"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/jordi/ontologies/2018/4/Pasta#Cheese"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/jordi/ontologies/2018/4/Pasta#SaltwaterFish"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/jordi/ontologies/2018/4/Pasta#ShellFish"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/jordi/ontologies/2018/4/Pasta#SavoryFlavour -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/jordi/ontologies/2018/4/Pasta#SavoryFlavour">
+        <rdfs:subPropertyOf rdf:resource="http://www.semanticweb.org/jordi/ontologies/2018/4/Pasta#Flavour"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/jordi/ontologies/2018/4/Pasta#Cheese"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/jordi/ontologies/2018/4/Pasta#CookingOil"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/jordi/ontologies/2018/4/Pasta#FreshwaterFish"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/jordi/ontologies/2018/4/Pasta#Meat"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/jordi/ontologies/2018/4/Pasta#Milk"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/jordi/ontologies/2018/4/Pasta#Pasta"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/jordi/ontologies/2018/4/Pasta#SourFlavour -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/jordi/ontologies/2018/4/Pasta#SourFlavour">
+        <rdfs:subPropertyOf rdf:resource="http://www.semanticweb.org/jordi/ontologies/2018/4/Pasta#Flavour"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/jordi/ontologies/2018/4/Pasta#CrêmeFraiche"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/jordi/ontologies/2018/4/Pasta#Yoghurt"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/jordi/ontologies/2018/4/Pasta#SpicyFlavour -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/jordi/ontologies/2018/4/Pasta#SpicyFlavour">
+        <rdfs:subPropertyOf rdf:resource="http://www.semanticweb.org/jordi/ontologies/2018/4/Pasta#Flavour"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/jordi/ontologies/2018/4/Pasta#HotSauce"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/jordi/ontologies/2018/4/Pasta#SpanishPepper"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/jordi/ontologies/2018/4/Pasta#SweetFlavour -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/jordi/ontologies/2018/4/Pasta#SweetFlavour">
+        <rdfs:subPropertyOf rdf:resource="http://www.semanticweb.org/jordi/ontologies/2018/4/Pasta#Flavour"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/jordi/ontologies/2018/4/Pasta#Cream"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/jordi/ontologies/2018/4/Pasta#Pepper"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/jordi/ontologies/2018/4/Pasta#Tomato"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
     // Classes
     //
     ///////////////////////////////////////////////////////////////////////////////////////
