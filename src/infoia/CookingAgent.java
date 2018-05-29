@@ -66,7 +66,7 @@ public class CookingAgent {
 
 				try (Scanner scanner = new Scanner(new File(fileName))) {
 
-					Recipe recipe = new Recipe(fileName);
+				    Recipe recipe = new Recipe(pathToName(fileName));
 
 					while (scanner.hasNext()){
 						String ingredientString = scanner.nextLine();
@@ -112,6 +112,12 @@ public class CookingAgent {
 		System.out.println("Best Recipe: " + best);
 	}
 	
+	String pathToName(String path){
+	    String[] splitPath = path.split("/");
+        splitPath = splitPath[splitPath.length - 1].split(".txt");
+        return splitPath[0];
+	}
+
 	private double ingredientSimilarityAssymetric(Ingredient i, Ingredient j) {
 	    OWLClass c1 = dataFactory.getOWLClass(uriPrefix + i.getName());
         OWLClass c2 = dataFactory.getOWLClass(uriPrefix + j.getName());
