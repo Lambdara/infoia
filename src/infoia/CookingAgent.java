@@ -22,7 +22,8 @@ import org.semanticweb.owlapi.reasoner.OWLReasonerFactory;
 public class CookingAgent {
 	
 	public static Random random = new Random();
-	public static final Double SIMILARITY_THRESHOLD = 0.7; 
+	public static final Double SIMILARITY_THRESHOLD = 0.7;
+	public static final Double[] LABEL_WEIGHTS = {0.5, 0.5}; // {SimilarityWeight, FlavourWeight}	
 	
 	public static void main(String[] args) {
 		new CookingAgent();
