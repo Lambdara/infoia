@@ -23,6 +23,7 @@ public class CookingAgent {
 	
 	public static Random random = new Random();
 	public static final Double SIMILARITY_THRESHOLD = 0.7; 
+	public static final Double RECIPE_UTILITY_TRESHOLD = 0.90;
 	
 	public static void main(String[] args) {
 		new CookingAgent();
@@ -106,10 +107,11 @@ public class CookingAgent {
 		inFridge.add("Champignon");
 		inFridge.add("SaltSeasoning");
 		addIngredientsToFridge(inFridge);
-		
+
 		Recipe best = getBestRecipe();
+
 		System.out.println("Fridge: " + fridge);
-		System.out.println("Best Recipe: " + best);
+		System.out.println("\nBest Recipe: " + best);
 	}
 	
 	private double ingredientSimilarityAssymetric(Ingredient i, Ingredient j) {
@@ -177,10 +179,34 @@ public class CookingAgent {
 			System.out.println("\n----------------------\n");
 		}
 		System.out.println("Best Utility: " + bestUtil);
+
+		if (bestUtil < RECIPE_UTILITY_TRESHOLD)
+		    addShoppingList(bestRecipe,RECIPE_UTILITY_TRESHOLD);
+
 		return bestRecipe;
 	}
 	
-	private HashMap<Ingredient, Pair> getReplacements(Recipe r) {
+	private void addShoppingList(Recipe recipe, Double targetUtility) {
+	    System.out.println("Creating shoppinglist for " + recipe.name);
+	    double utility;
+        while ((utility = recipeUtility2(recipe)) < targetUtility) {
+            System.out.println("Utility: " + utility + "/" + targetUtility);
+            double worstValue = 1;
+            Ingredient worstPenaltyIngredient = null;
+            for (Ingredient i : recipe.getReplacements().keySet()) {
+                double value = recipe.getReplacements().get(i).getValue();
+                if (value < worstValue) {
+                    worstValue = value;
+                    worstPenaltyIngredient = i;
+                }
+            }
+            recipe.replacementToShoppingList(worstPenaltyIngredient);
+            System.out.println("Moved " + worstPenaltyIngredient.getName() + " with value " + worstValue + " to shopping list");
+        }
+        System.out.println("Utility: " + utility + "/" + targetUtility);
+    }
+
+    private HashMap<Ingredient, Pair> getReplacements(Recipe r) {
 		ArrayList<Ingredient> available = new ArrayList<Ingredient>();
 		ArrayList<Ingredient> unavailable = new ArrayList<Ingredient>();
 		
