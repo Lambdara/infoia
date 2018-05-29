@@ -19,6 +19,7 @@ public class GUI extends Application {
 	CookingAgent cookingAgent;
 	ListView<String> guiFridge;
 	ListView<String> guiBestRecipe;
+	ListView<String> guiShoppingList;
 	String guiBestRecipeName;
 	Scene guiScene;
 	Stage guiStage;
@@ -34,12 +35,14 @@ public class GUI extends Application {
 	    guiFridge = new ListView<String>();
 	    guiFridge.setPrefSize(200, 500);
 	    guiBestRecipe = new ListView<String>();
-	    guiBestRecipe.setPrefSize(300, 500);
+	    guiBestRecipe.setPrefSize(300, 300);
 	    guiBestRecipeName = new String();
+	    guiShoppingList = new ListView<String>();
+	    guiShoppingList.setPrefSize(300, 200);
 	    
 		// Update GUI    
 		updateGUIFridge(guiFridge);	
-		updateGUIBestRecipe(guiBestRecipe);
+		updateGUIBestRecipe(guiBestRecipe, guiShoppingList);
 		
 		setupLayout();
 		guiStage.show();
@@ -58,6 +61,8 @@ public class GUI extends Application {
 	    rightVBox.setPadding(padding);
 	    rightVBox.getChildren().add(boldText("Best Recipe: " + guiBestRecipeName));
 	    rightVBox.getChildren().add(guiBestRecipe);
+	    rightVBox.getChildren().add(boldText("Shopping list"));
+	    rightVBox.getChildren().add(guiShoppingList);
 		
 		bPane.setTop(new TextField("Top")); 
 	    bPane.setBottom(new TextField("Bottom")); 
@@ -87,8 +92,9 @@ public class GUI extends Application {
 		fridge.setItems(ingredients);
 	}
 	
-	private void updateGUIBestRecipe(ListView<String> bestRecipe) {
+	private void updateGUIBestRecipe(ListView<String> bestRecipe, ListView<String> shoppingList) {
 		ObservableList<String> ingredients = FXCollections.observableArrayList();
+		ObservableList<String> missingIngredients = FXCollections.observableArrayList();
 		Recipe recipe = cookingAgent.getBestRecipe();
 		guiBestRecipeName = recipe.name;
 		
@@ -98,17 +104,20 @@ public class GUI extends Application {
 			for (Ingredient i : recipe) {
 				if (recipe.replacements.containsKey(i)) {
 					if(recipe.replacements.get(i).getIngredient() != null) {
-						ingredients.add(i.getName() + " -> " + recipe.replacements.get(i).getIngredient().getName());
+						ingredients.add(i.getName() + " REPLACED BY " + recipe.replacements.get(i).getIngredient().getName());
 					} else {
 						ingredients.add("REMOVED " + i.getName());
 					}
 				} else {
-					ingredients.add(i.getName());
+					if (recipe.shoppingList.contains(i))
+						missingIngredients.add(i.getName());
+                    else
+                    	ingredients.add(i.getName());
 				}
 			}
 		}
-		
 		bestRecipe.setItems(ingredients);
+		shoppingList.setItems(missingIngredients);
 	}
 	
 	
