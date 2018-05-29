@@ -467,6 +467,84 @@
     
 
 
+    <!-- http://www.semanticweb.org/jordi/ontologies/2018/4/Pasta#GetBitter -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/jordi/ontologies/2018/4/Pasta#GetBitter">
+        <owl:equivalentClass>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/jordi/ontologies/2018/4/Pasta#hasFlavour"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/jordi/ontologies/2018/4/Pasta#BitterFlavour"/>
+            </owl:Restriction>
+        </owl:equivalentClass>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/jordi/ontologies/2018/4/Pasta#GetSalty -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/jordi/ontologies/2018/4/Pasta#GetSalty">
+        <owl:equivalentClass>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/jordi/ontologies/2018/4/Pasta#hasFlavour"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/jordi/ontologies/2018/4/Pasta#SaltyFlavour"/>
+            </owl:Restriction>
+        </owl:equivalentClass>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/jordi/ontologies/2018/4/Pasta#GetSavory -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/jordi/ontologies/2018/4/Pasta#GetSavory">
+        <owl:equivalentClass>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/jordi/ontologies/2018/4/Pasta#hasFlavour"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/jordi/ontologies/2018/4/Pasta#SavoryFlavour"/>
+            </owl:Restriction>
+        </owl:equivalentClass>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/jordi/ontologies/2018/4/Pasta#GetSour -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/jordi/ontologies/2018/4/Pasta#GetSour">
+        <owl:equivalentClass>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/jordi/ontologies/2018/4/Pasta#hasFlavour"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/jordi/ontologies/2018/4/Pasta#SourFlavour"/>
+            </owl:Restriction>
+        </owl:equivalentClass>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/jordi/ontologies/2018/4/Pasta#GetSpicy -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/jordi/ontologies/2018/4/Pasta#GetSpicy">
+        <owl:equivalentClass>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/jordi/ontologies/2018/4/Pasta#hasFlavour"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/jordi/ontologies/2018/4/Pasta#SpicyFlavour"/>
+            </owl:Restriction>
+        </owl:equivalentClass>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/jordi/ontologies/2018/4/Pasta#GetSweet -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/jordi/ontologies/2018/4/Pasta#GetSweet">
+        <owl:equivalentClass>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/jordi/ontologies/2018/4/Pasta#hasFlavour"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/jordi/ontologies/2018/4/Pasta#SweetFlavour"/>
+            </owl:Restriction>
+        </owl:equivalentClass>
+    </owl:Class>
+    
+
+
     <!-- http://www.semanticweb.org/jordi/ontologies/2018/4/Pasta#Gouda -->
 
     <owl:Class rdf:about="http://www.semanticweb.org/jordi/ontologies/2018/4/Pasta#Gouda">
@@ -1165,6 +1243,12 @@
 
     <owl:Class rdf:about="http://www.semanticweb.org/jordi/ontologies/2018/4/Pasta#Yoghurt">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/jordi/ontologies/2018/4/Pasta#Dairy"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/jordi/ontologies/2018/4/Pasta#hasFlavour"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/jordi/ontologies/2018/4/Pasta#SourFlavour"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
     </owl:Class>
     
 

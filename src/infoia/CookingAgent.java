@@ -4,18 +4,27 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Optional;
 import java.util.Random;
 import java.util.Scanner;
+import java.util.Set;
+
 import org.semanticweb.HermiT.ReasonerFactory;
 import org.semanticweb.owlapi.apibinding.OWLManager;
+import org.semanticweb.owlapi.model.ClassExpressionType;
 import org.semanticweb.owlapi.model.IRI;
 import org.semanticweb.owlapi.model.OWLClass;
 import org.semanticweb.owlapi.model.OWLDataFactory;
+import org.semanticweb.owlapi.model.OWLObjectProperty;
 import org.semanticweb.owlapi.model.OWLOntology;
 import org.semanticweb.owlapi.model.OWLOntologyManager;
+import org.semanticweb.owlapi.model.OWLClassAxiom;
+import org.semanticweb.owlapi.model.OWLClassExpression;
 import org.semanticweb.owlapi.reasoner.InferenceDepth;
 import org.semanticweb.owlapi.reasoner.InferenceType;
+import org.semanticweb.owlapi.reasoner.Node;
+import org.semanticweb.owlapi.reasoner.NodeSet;
 import org.semanticweb.owlapi.reasoner.OWLReasoner;
 import org.semanticweb.owlapi.reasoner.OWLReasonerFactory;
 
@@ -99,6 +108,7 @@ public class CookingAgent {
 		}
  
 		reasoner.precomputeInferences(InferenceType.CLASS_HIERARCHY);
+		reasoner.precomputeInferences(InferenceType.OBJECT_PROPERTY_HIERARCHY);
 		
 		ArrayList<String> inFridge = new ArrayList<String>();
 		inFridge.add("ChickenMeat");
@@ -112,6 +122,41 @@ public class CookingAgent {
 		Recipe best = getBestRecipe();
 		System.out.println("Fridge: " + fridge);
 		System.out.println("Best Recipe: " + best);
+		
+		
+		OWLClass c = dataFactory.getOWLClass(uriPrefix + "SourFlavour");
+		OWLObjectProperty p = dataFactory.getOWLObjectProperty(uriPrefix + "hasFlavour");
+//		System.out.println(p);
+//		reasoner.superClasses(c).forEach(x -> System.out.println(x));
+//		reasoner.
+//		ClassExpression ex = dataFactory.getOWLObjectPropertyRangeAxiom(p, dataFactory.getRange);
+//		ClassExpression ex = dataFactory.getOWLDataSomeValuesFrom(p, c);
+		
+		OWLClass sour = dataFactory.getOWLClass(uriPrefix + "GetSour");
+		reasoner.subClasses(sour).forEach(x -> System.out.println(x));
+		
+		
+		
+		
+		
+//		for(OWLCLass c :  ) {
+//			System.out.println("");
+//		}
+		
+//		OWLClass tomato = dataFactory.getOWLClass(uriPrefix + "Tomato");
+//		System.out.println(tomato.getObjectPropertiesInSignature());
+//		System.out.println("------------------------------------\n\n");
+//	    Set<OWLClassAxiom> tempAx = ontology.getAxioms(tomato);
+//	    for(OWLClassAxiom ax: tempAx){
+//	    	System.out.println(ax);
+//	    	System.out.println(ax.getAxiomType());
+//	    	System.out.println(ax.getObjectPropertiesInSignature());
+//	        for(OWLClassExpression nce : ax.getNestedClassExpressions()) {
+//	        	System.out.println("----"+ nce);
+//	            if(nce.getClassExpressionType()!=ClassExpressionType.OWL_CLASS)
+//	                System.out.println("---- ----"+ax);
+//	        }
+//	    }
 	}
 	
 	private double ingredientSimilarityAssymetric(Ingredient i, Ingredient j) {
@@ -123,7 +168,7 @@ public class CookingAgent {
         int stepsFromStart = 0;
         int stepsToEnd = 0;
         while (!reasoner.subClasses(cur).anyMatch(x -> x == c2) && cur != c2) {
-            stepsFromStart++; 
+            stepsFromStart++;
             cur = reasoner.superClasses(cur,true).filter(x -> x != thing).findAny().get();
         }
         
