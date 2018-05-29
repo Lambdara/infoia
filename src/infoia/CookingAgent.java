@@ -164,7 +164,7 @@ public class CookingAgent {
 		return path.replace("\\", "/");
 	}
 	
-	private Recipe getBestRecipe() {
+	public Recipe getBestRecipe() {
 		double bestUtil = 0.0;
 		Recipe bestRecipe = null;
 		for(Recipe r : recipeBook) {
