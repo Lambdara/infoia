@@ -81,9 +81,10 @@ public class CookingAgent {
 								ingredient = i;
 							}
 						}
+						
 
 						if (ingredient == null) {
-							ingredient = new Ingredient(ingredientName);
+							ingredient = new Ingredient(ingredientName, Ingredient.Flavour.SWEET);
 							ingredients.add(ingredient);
 						}
 
