@@ -1,5 +1,5 @@
-Tomato;0.5
-Penne;0.8
-Garlic;0.8
-Onion;0.6
-SpanishPepper;0.5
+Tomato;0.8
+Penne;0.9
+Garlic;0.1
+Onion;0.2
+SpanishPepper;0.85

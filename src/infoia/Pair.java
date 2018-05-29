@@ -2,26 +2,26 @@ package infoia;
 
 public class Pair {
 	private Ingredient i;
-	private Double similarity;
+	private Double value;
 	
-	public Pair(Ingredient i, Double similarity) {
+	public Pair(Ingredient i, Double value) {
 		this.i = i;
-		this.similarity = similarity;
+		this.value = value;
 	}
 	
 	public Ingredient getIngredient() {
 		return i;
 	}
 	
-	public Double getSimilarity() {
-		return similarity;
+	public Double getValue() {
+		return value;
 	}
 	
 	public void setIngredient(Ingredient i) {
 		this.i = i;
 	}
 	
-	public void setSimilarity(Double similarity) {
-		this.similarity = similarity;
+	public void setValue(Double value) {
+		this.value = value;
 	}
 }
