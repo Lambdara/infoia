@@ -40,8 +40,8 @@ public class Recipe extends ArrayList<Portion> {
                     }
                 } else {
                     output += ", value:1.0";
-                    if (shoppingList.contains(p))
-                        output += " [Shopping List]";
+                    if (shoppingList.stream().map(q -> q.getIngredient()).anyMatch(q -> q.equals(p.getIngredient())))
+                        output += " [Shopping List: " + p.getAmount() + "g]";
                     output += "\n";
                 }
             }
@@ -66,8 +66,8 @@ public class Recipe extends ArrayList<Portion> {
         return replacements;
     }
 
-    public double getLeaveOutWeight(Ingredient i) {
-        return leaveOutWeights.get(i);
+    public double getLeaveOutWeight(Portion p) {
+        return leaveOutWeights.get(p);
     }
 
     public void replace(Portion i, Pair p) {

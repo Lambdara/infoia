@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Optional;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -186,7 +187,7 @@ public class CookingAgent {
             ArrayList<Portion> unavailable = new ArrayList<Portion>();
 
             for (Portion i : r) {
-                if (fridge.contains(i)) {
+                if (fridge.stream().anyMatch(p -> p.getIngredient() == i.getIngredient() && p.getAmount() >= i.getAmount())) {
                     available.add(i);
                 } else {
                     unavailable.add(i);
@@ -234,8 +235,14 @@ public class CookingAgent {
 
             // If there are still replacements to be made but the threshold won't allow it,
             // then add them to the shopping list
-            for (Portion p: replacements.keySet())
-                r.putOnShoppingList(p);
+            for (Portion p: replacements.keySet()) {
+                Optional<Integer> fridgeAmount =
+                        fridge.stream()
+                        .filter(q -> q.getIngredient() == p.getIngredient())
+                        .map(q -> q.getAmount())
+                        .findAny();
+                r.putOnShoppingList(new Portion(p.getIngredient(),p.getAmount() - fridgeAmount.orElse(0)));
+            }
 
             int shoppingListSize = r.getShoppingList().size();
             double utility = recipeUtility2(r);
@@ -314,7 +321,7 @@ public class CookingAgent {
     }
 
     private void addIngredientsToFridge(ArrayList<String> ingredientNames) {
-        Random random = new Random(System.currentTimeMillis());
+        Random random = new Random(1);
         for (Ingredient i : ingredients) {
             if (ingredientNames.contains(i.getName())) {
                 //TODO Make this some sensible amount
