@@ -210,7 +210,7 @@ public class CookingAgent {
                 System.out.println("Best alternative ingredient for " + p + " --> " + bestPortion
                         + ", similarity:" + bestSimilarity);
                 if (bestSimilarity > SIMILARITY_THRESHOLD) {
-                    replacements.put(p, new Pair(bestPortion, bestSimilarity));
+                    replacements.put(p, new Pair(new Portion(bestPortion.getIngredient(),p.getAmount()), bestSimilarity));
                 } else {
                     replacements.put(p, new Pair(null, 1.0 - r.getWeightByPortion(p)));
                 }
