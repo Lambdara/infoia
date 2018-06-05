@@ -22,11 +22,15 @@ import org.semanticweb.owlapi.reasoner.OWLReasonerFactory;
 public class CookingAgent {
 
     public static Random random = new Random();
+	public static final Double FLAVOUR_WEIGHT = 1.0;
+	public static final Double SIMILARITY_WEIGHT = 5.0;
     public static final Double SIMILARITY_THRESHOLD = 0.7;
+	public static final Double[] LABEL_WEIGHTS = {0.5, 0.5}; // {SimilarityWeight, FlavourWeight}	
     public static final Double RECIPE_UTILITY_TRESHOLD = 0.90;
 
     public static void main(String[] args) {
         new CookingAgent();
+		
     }
 
     ArrayList<Portion> fridge;
@@ -58,6 +62,8 @@ public class CookingAgent {
         reasoner = rf.createReasoner(ontology);
         dataFactory = manager.getOWLDataFactory();
 
+        createIngredientsFromOntology();
+        
         File folder = new File("pasta_recipes/");
         File[] listOfFiles = folder.listFiles();
 
@@ -82,9 +88,9 @@ public class CookingAgent {
                             }
                         }
 
+
                         if (ingredient == null) {
-                            ingredient = new Ingredient(ingredientName);
-                            ingredients.add(ingredient);
+							System.err.println(ingredientName + " is not in the ontology!");
                         }
 
                         //TODO Get amount from recipe file instead
@@ -100,6 +106,9 @@ public class CookingAgent {
         }
 
         reasoner.precomputeInferences(InferenceType.CLASS_HIERARCHY);
+		reasoner.precomputeInferences(InferenceType.OBJECT_PROPERTY_HIERARCHY);
+		
+		addFlavoursToIngredients();
 
         ArrayList<String> inFridge = new ArrayList<String>();
         inFridge.add("SpanishPepper");
@@ -110,9 +119,46 @@ public class CookingAgent {
         addIngredientsToFridge(inFridge);
 
         Recipe best = getBestRecipe();
-
         System.out.println("Fridge: " + fridge);
-        System.out.println("\nBest Recipe: " + best);
+		System.out.println("Best Recipe: " + best);
+	}
+	
+	private void addFlavoursToIngredients() {
+		for(Ingredient.Flavour flavour : java.util.Arrays.asList(Ingredient.Flavour.values())) {
+			OWLClass query = dataFactory.getOWLClass(uriPrefix + "Get" + flavour.toString());
+			ArrayList<String> ins = new ArrayList<String>();
+			reasoner.subClasses(query).forEach(x -> ins.add(x.getIRI().getFragment()));
+			for(Ingredient i : ingredients) {
+				if(ins.contains(i.getName())) i.addFlavour(flavour);
+			}
+		}
+	}
+	
+	private double flavourSimilarity(Ingredient i, Ingredient j) {
+		ArrayList<Ingredient.Flavour> fi = i.getFlavours();
+		ArrayList<Ingredient.Flavour> fj = i.getFlavours();
+
+		double total = 0.0;
+		double similar = 0.0;
+		for(Ingredient.Flavour f : fi) {
+			if(fj.contains(f)) similar+= 1.0; 
+			total+= 1.0;
+		}
+		for(Ingredient.Flavour f : fj) {
+			if(!fi.contains(f)) total+= 1.0;
+		}
+		if(total == 0) {
+			return -1.0;
+		}
+		return similar / total;
+	}
+	
+	private void createIngredientsFromOntology() {
+		for(OWLClass cls : ontology.getClassesInSignature()) {
+			String ingredientName = cls.getIRI().getFragment();
+			Ingredient ingredient = new Ingredient(ingredientName);
+			ingredients.add(ingredient);
+		}
     }
 
     String pathToName(String path) {
@@ -121,6 +167,7 @@ public class CookingAgent {
         return splitPath[0];
     }
 
+	
     private double ingredientSimilarityAssymetric(Ingredient i, Ingredient j) {
         OWLClass c1 = dataFactory.getOWLClass(uriPrefix + i.getName());
         OWLClass c2 = dataFactory.getOWLClass(uriPrefix + j.getName());
@@ -143,7 +190,16 @@ public class CookingAgent {
     }
 
     private double ingredientSimilarity(Ingredient i, Ingredient j) {
-        return (ingredientSimilarityAssymetric(i, j) + ingredientSimilarityAssymetric(j, i)) / 2;
+		double simWeight = SIMILARITY_WEIGHT;
+		double flavourWeight = FLAVOUR_WEIGHT;
+		
+		double flavourSimilarity = flavourSimilarity(i, j);
+		double similarity = (ingredientSimilarityAssymetric(i, j) + ingredientSimilarityAssymetric(j, i))/2;
+		if(flavourSimilarity == -1.0) flavourWeight = 0.0;
+		
+	    return ((similarity * simWeight)
+	     			+ (flavourSimilarity * flavourWeight))
+	    			/ (simWeight + flavourWeight);
     }
 
     private boolean hasIngredients(Recipe recipe) {
