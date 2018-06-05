@@ -57,7 +57,9 @@ public class CookingAgent {
         reasoner = rf.createReasoner(ontology);
         dataFactory = manager.getOWLDataFactory();
 
-        File folder = new File("pasta_recipes/");
+		createIngredientsFromOntology();
+
+		File folder = new File("pasta_recipes/");
         File[] listOfFiles = folder.listFiles();
 
         for (File file : listOfFiles) {
@@ -82,8 +84,7 @@ public class CookingAgent {
                         }
 
                         if (ingredient == null) {
-                            ingredient = new Ingredient(ingredientName);
-                            ingredients.add(ingredient);
+                            System.err.println(ingredientName + " is not in the ontology!");
                         }
 
                         recipe.add(ingredient);
@@ -95,6 +96,7 @@ public class CookingAgent {
                 }
             }
         }
+
 
         reasoner.precomputeInferences(InferenceType.CLASS_HIERARCHY);
 
@@ -112,6 +114,14 @@ public class CookingAgent {
         System.out.println("Fridge: " + fridge);
         System.out.println("\nBest Recipe: " + best);
     }
+
+    private void createIngredientsFromOntology(){
+		for (OWLClass cls : ontology.getClassesInSignature()) {
+			String ingredientName = cls.getIRI().getFragment();
+			Ingredient ingredient = new Ingredient(ingredientName);
+			ingredients.add(ingredient);
+		}
+	}
 
     String pathToName(String path) {
         String[] splitPath = path.split("/");
