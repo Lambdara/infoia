@@ -9,6 +9,7 @@ import java.util.Optional;
 import java.util.Random;
 import java.util.Scanner;
 import java.util.Set;
+import java.util.stream.Stream;
 
 import org.semanticweb.HermiT.ReasonerFactory;
 import org.semanticweb.owlapi.apibinding.OWLManager;
@@ -31,6 +32,8 @@ import org.semanticweb.owlapi.reasoner.OWLReasonerFactory;
 public class CookingAgent {
 	
 	public static Random random = new Random();
+	public static final Double FLAVOUR_WEIGHT = 1.0;
+	public static final Double SIMILARITY_WEIGHT = 5.0;
 	public static final Double SIMILARITY_THRESHOLD = 0.7;
 	public static final Double[] LABEL_WEIGHTS = {0.5, 0.5}; // {SimilarityWeight, FlavourWeight}	
 	
@@ -93,7 +96,7 @@ public class CookingAgent {
 						
 
 						if (ingredient == null) {
-							ingredient = new Ingredient(ingredientName, Ingredient.Flavour.SWEET);
+							ingredient = new Ingredient(ingredientName);
 							ingredients.add(ingredient);
 						}
 
@@ -110,54 +113,64 @@ public class CookingAgent {
 		reasoner.precomputeInferences(InferenceType.CLASS_HIERARCHY);
 		reasoner.precomputeInferences(InferenceType.OBJECT_PROPERTY_HIERARCHY);
 		
+		addFlavoursToIngredients();
+		
 		ArrayList<String> inFridge = new ArrayList<String>();
 		inFridge.add("ChickenMeat");
 		inFridge.add("Cream");
 		inFridge.add("Milk");
 		inFridge.add("Cannelloni");
 		inFridge.add("Champignon");
-		inFridge.add("SaltSeasoning");
+		inFridge.add("SaltSeasoning");		
 		addIngredientsToFridge(inFridge);
+		
+		
 		
 		Recipe best = getBestRecipe();
 		System.out.println("Fridge: " + fridge);
 		System.out.println("Best Recipe: " + best);
 		
 		
-		OWLClass c = dataFactory.getOWLClass(uriPrefix + "SourFlavour");
-		OWLObjectProperty p = dataFactory.getOWLObjectProperty(uriPrefix + "hasFlavour");
-//		System.out.println(p);
-//		reasoner.superClasses(c).forEach(x -> System.out.println(x));
-//		reasoner.
-//		ClassExpression ex = dataFactory.getOWLObjectPropertyRangeAxiom(p, dataFactory.getRange);
-//		ClassExpression ex = dataFactory.getOWLDataSomeValuesFrom(p, c);
-		
-		OWLClass sour = dataFactory.getOWLClass(uriPrefix + "GetSavory");
-		reasoner.subClasses(sour).forEach(x -> System.out.println(x));
-		
-		
-		
-		
-		
-//		for(OWLCLass c :  ) {
-//			System.out.println("");
-//		}
-		
-//		OWLClass tomato = dataFactory.getOWLClass(uriPrefix + "Tomato");
-//		System.out.println(tomato.getObjectPropertiesInSignature());
-//		System.out.println("------------------------------------\n\n");
-//	    Set<OWLClassAxiom> tempAx = ontology.getAxioms(tomato);
-//	    for(OWLClassAxiom ax: tempAx){
-//	    	System.out.println(ax);
-//	    	System.out.println(ax.getAxiomType());
-//	    	System.out.println(ax.getObjectPropertiesInSignature());
-//	        for(OWLClassExpression nce : ax.getNestedClassExpressions()) {
-//	        	System.out.println("----"+ nce);
-//	            if(nce.getClassExpressionType()!=ClassExpressionType.OWL_CLASS)
-//	                System.out.println("---- ----"+ax);
-//	        }
-//	    }
 	}
+	
+	private void addFlavoursToIngredients() {
+		for(Ingredient.Flavour flavour : java.util.Arrays.asList(Ingredient.Flavour.values())) {
+//			System.out.println(flavour);
+			OWLClass query = dataFactory.getOWLClass(uriPrefix + "Get" + flavour.toString());
+			ArrayList<String> ins = new ArrayList<String>();
+			reasoner.subClasses(query).forEach(x -> ins.add(x.getIRI().getFragment()));
+			for(Ingredient i : ingredients) {
+				if(ins.contains(i.getName())) {
+					i.addFlavour(flavour);
+//					System.out.println(i.getName() + " added :" + flavour);
+				}
+			}
+		}
+	}
+	
+	private double flavourSimilarity(Ingredient i, Ingredient j) {
+		ArrayList<Ingredient.Flavour> fi = i.getFlavours();
+		ArrayList<Ingredient.Flavour> fj = i.getFlavours();
+//		fi.addAll(j.getFlavours());
+//		long total = fi.stream().distinct().count();
+//		long similar = fi.stream().count() - total;
+//		double result = (double) similar / total;
+		double total = 0.0;
+		double similar = 0.0;
+		for(Ingredient.Flavour f : fi) {
+			if(fj.contains(f)) similar+= 1.0; 
+			total+= 1.0;
+		}
+		for(Ingredient.Flavour f : fj) {
+			if(!fi.contains(f)) total+= 1.0;
+		}
+		if(total == 0) {
+			return -1.0;
+		}
+		return similar / total;
+//		return 1.0;
+	}
+	
 	
 	private double ingredientSimilarityAssymetric(Ingredient i, Ingredient j) {
 	    OWLClass c1 = dataFactory.getOWLClass(uriPrefix + i.getName());
@@ -185,7 +198,16 @@ public class CookingAgent {
 	}
 	
 	private double ingredientSimilarity(Ingredient i, Ingredient j) {
-	    return (ingredientSimilarityAssymetric(i, j) + ingredientSimilarityAssymetric(j, i))/2;
+		double simWeight = SIMILARITY_WEIGHT;
+		double flavourWeight = FLAVOUR_WEIGHT;
+		
+		double flavourSimilarity = flavourSimilarity(i, j);
+		double similarity = (ingredientSimilarityAssymetric(i, j) + ingredientSimilarityAssymetric(j, i))/2;
+		if(flavourSimilarity == -1.0) flavourWeight = 0.0;
+		
+	    return ((similarity * simWeight)
+	     			+ (flavourSimilarity * flavourWeight))
+	    			/ (simWeight + flavourWeight);
 	}
 
 	private boolean hasIngredients(Recipe recipe) {

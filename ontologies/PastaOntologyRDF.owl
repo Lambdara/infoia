@@ -553,6 +553,19 @@
     
 
 
+    <!-- http://www.semanticweb.org/jordi/ontologies/2018/4/Pasta#GetAromatic -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/jordi/ontologies/2018/4/Pasta#GetAromatic">
+        <owl:equivalentClass>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/jordi/ontologies/2018/4/Pasta#hasFlavour"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/jordi/ontologies/2018/4/Pasta#AromaticFlavour"/>
+            </owl:Restriction>
+        </owl:equivalentClass>
+    </owl:Class>
+    
+
+
     <!-- http://www.semanticweb.org/jordi/ontologies/2018/4/Pasta#GetBitter -->
 
     <owl:Class rdf:about="http://www.semanticweb.org/jordi/ontologies/2018/4/Pasta#GetBitter">

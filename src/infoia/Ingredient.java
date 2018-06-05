@@ -1,20 +1,22 @@
 package infoia;
 
+import java.util.ArrayList;
+
 public class Ingredient {
 	public static enum Flavour {
-		SWEET, SOUR, BITTER, SALTY, UMAMI
+		Sweet, Sour, Bitter, Salty, Savory, Aromatic, Spicy
 	}
 	
 	private String name;
-	private Flavour flavour;
+	private ArrayList<Flavour> flavours;
 
-	Ingredient (String name, Flavour flavour) {
+	Ingredient (String name) {
 		this.name = name;
-		this.flavour = flavour;
+		this.flavours = new ArrayList<Flavour>();
 	}
 	
-	public Flavour getFlavour() {
-		return flavour;
+	public ArrayList<Flavour> getFlavours() {
+		return flavours;
 	}
 
 	public String getName() {
@@ -22,6 +24,11 @@ public class Ingredient {
 	}
 	
 	public String toString() {
-		return name;
+		return name + ", " + flavours;
+	}
+	
+	public void addFlavour(Flavour flavour) {
+		if(!flavours.contains(flavour))
+			flavours.add(flavour);
 	}
 }
