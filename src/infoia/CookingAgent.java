@@ -132,7 +132,7 @@ public class CookingAgent {
 //		ClassExpression ex = dataFactory.getOWLObjectPropertyRangeAxiom(p, dataFactory.getRange);
 //		ClassExpression ex = dataFactory.getOWLDataSomeValuesFrom(p, c);
 		
-		OWLClass sour = dataFactory.getOWLClass(uriPrefix + "GetSour");
+		OWLClass sour = dataFactory.getOWLClass(uriPrefix + "GetSavory");
 		reasoner.subClasses(sour).forEach(x -> System.out.println(x));
 		
 		
