@@ -102,13 +102,11 @@ public class CookingAgent {
         reasoner.precomputeInferences(InferenceType.CLASS_HIERARCHY);
 
         ArrayList<String> inFridge = new ArrayList<String>();
-        inFridge.add("ChickenMeat");
-        inFridge.add("Cream");
-        inFridge.add("Milk");
-        inFridge.add("Cannelloni");
-        inFridge.add("Champignon");
-        inFridge.add("SaltSeasoning");
-        inFridge.add("Onion");
+        inFridge.add("SpanishPepper");
+        inFridge.add("Tomato");
+        inFridge.add("Penne");
+        inFridge.add("Shallot");
+        inFridge.add("Brocolli");
         addIngredientsToFridge(inFridge);
 
         Recipe best = getBestRecipe();
@@ -197,11 +195,17 @@ public class CookingAgent {
 
             HashMap<Portion, Pair> replacements = new HashMap<Portion, Pair>();
 
+            // Calculate replacements initially
             for (Portion p : unavailable) {
                 double bestSimilarity = 0.0;
                 Portion bestPortion = null;
                 for (Portion q : fridge) {
-                    if (q.getAmount() >= p.getAmount()) {
+                    if (q.getAmount() >= p.getAmount() +
+                            replacements.values().stream()
+                            .filter(x -> x.getPortion() != null && x.getPortion().getIngredient() == p.getIngredient())
+                            .mapToInt(x -> x.getPortion().getAmount())
+                            .sum())
+                    {
                         double similarity = ingredientSimilarity(p.getIngredient(), q.getIngredient());
                         if (bestSimilarity < similarity) {
                             bestSimilarity = similarity;
@@ -209,15 +213,16 @@ public class CookingAgent {
                         }
                     }
                 }
-                System.out.println("Best alternative ingredient for " + p + " --> " + bestPortion
+                System.out.println("Best alternative ingredient for " + p.getIngredient() + " to " +
+                        (bestPortion != null ? bestPortion.getIngredient() : "Removed")
                         + ", similarity:" + bestSimilarity);
-                if (bestSimilarity > SIMILARITY_THRESHOLD) {
+                if (bestPortion != null && bestSimilarity > SIMILARITY_THRESHOLD) {
                     replacements.put(p, new Pair(new Portion(bestPortion.getIngredient(),p.getAmount()), bestSimilarity));
                 } else {
                     replacements.put(p, new Pair(null, 1.0 - r.getWeightByPortion(p)));
                 }
             }
-
+            
             // Now apply these replacements until we hit the threshold
             boolean thresholdNotHit = true;
             while (thresholdNotHit && !replacements.isEmpty()) {
@@ -229,8 +234,42 @@ public class CookingAgent {
                 if (recipeUtility2WithReplacement(r, replacements.get(optimalReplacement)) >= RECIPE_UTILITY_TRESHOLD) {
                     r.replace(optimalReplacement, replacements.get(optimalReplacement));
                     replacements.remove(optimalReplacement);
+                    unavailable.remove(optimalReplacement);
                 } else {
                     thresholdNotHit = false;
+                }
+
+                // Recalculate replacements
+                for (Portion p : unavailable) {
+                    double bestSimilarity = 0.0;
+                    Portion bestPortion = null;
+                    for (Portion q : fridge) {
+                        if (q.getAmount() >= p.getAmount() +
+                                replacements.values().stream()
+                                .filter(x -> x.getPortion() != null && x.getPortion().getIngredient() == p.getIngredient())
+                                .mapToInt(x -> x.getPortion().getAmount())
+                                .sum())
+                        {
+                            double similarity = ingredientSimilarity(p.getIngredient(), q.getIngredient());
+                            if (bestSimilarity < similarity) {
+                                bestSimilarity = similarity;
+                                bestPortion = q;
+                            }
+                        }
+                    }
+                    if (replacements.get(p).getPortion() != null &&
+                            (bestPortion == null ||
+                                (replacements.get(p).getPortion().getIngredient()
+                                        != bestPortion.getIngredient()))) {
+                        System.out.println("Changed best alternative ingredient for " + p.getIngredient() + " to " +
+                                (bestPortion != null ? bestPortion.getIngredient() : "Removed")
+                                + ", similarity:" + bestSimilarity);
+                        if (bestPortion != null && bestSimilarity > SIMILARITY_THRESHOLD) {
+                            replacements.put(p, new Pair(new Portion(bestPortion.getIngredient(),p.getAmount()), bestSimilarity));
+                        } else {
+                            replacements.put(p, new Pair(null, 1.0 - r.getWeightByPortion(p)));
+                        }
+                    }
                 }
             }
 
@@ -242,9 +281,6 @@ public class CookingAgent {
                         .filter(q -> q.getIngredient() == p.getIngredient())
                         .map(q -> q.getAmount())
                         .findAny();
-                System.out.println("---");
-                System.out.println(p.getIngredient());
-                System.out.println(fridgeAmount.orElse(0));
                 r.putOnShoppingList(new Portion(p.getIngredient(),p.getAmount() - fridgeAmount.orElse(0)));
             }
 
@@ -325,7 +361,7 @@ public class CookingAgent {
     }
 
     private void addIngredientsToFridge(ArrayList<String> ingredientNames) {
-        Random random = new Random(3);
+        Random random = new Random(System.currentTimeMillis());
         for (Ingredient i : ingredients) {
             if (ingredientNames.contains(i.getName())) {
                 //TODO Make this some sensible amount
