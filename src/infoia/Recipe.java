@@ -42,11 +42,8 @@ public class Recipe extends ArrayList<Portion> {
                 } else {
                     output += ", value:1.0";
                     if (shoppingList.stream().anyMatch(q -> q.getIngredient() == p.getIngredient())) {
-                        Optional<Integer> missingAmount = 
-                            shoppingList.stream()
-                            .filter(q -> q.getIngredient() == p.getIngredient())
-                            .map(q -> q.getAmount())
-                            .findAny();
+                        Optional<Integer> missingAmount = shoppingList.stream()
+                                .filter(q -> q.getIngredient() == p.getIngredient()).map(q -> q.getAmount()).findAny();
                         output += " [Shopping List: " + missingAmount.get() + "g]";
                     }
                     output += "\n";
