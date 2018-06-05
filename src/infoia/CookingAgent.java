@@ -61,6 +61,8 @@ public class CookingAgent {
         reasoner = rf.createReasoner(ontology);
         dataFactory = manager.getOWLDataFactory();
 		
+        createIngredientsFromOntology();
+        
 		File folder = new File("pasta_recipes/");
 		File[] listOfFiles = folder.listFiles();
 
@@ -87,8 +89,7 @@ public class CookingAgent {
 						
 
 						if (ingredient == null) {
-							ingredient = new Ingredient(ingredientName);
-							ingredients.add(ingredient);
+							System.err.println(ingredientName + " is not in the ontology!");
 						}
 
 						recipe.add(ingredient);
@@ -148,6 +149,14 @@ public class CookingAgent {
 			return -1.0;
 		}
 		return similar / total;
+	}
+	
+	private void createIngredientsFromOntology() {
+		for(OWLClass cls : ontology.getClassesInSignature()) {
+			String ingredientName = cls.getIRI().getFragment();
+			Ingredient ingredient = new Ingredient(ingredientName);
+			ingredients.add(ingredient);
+		}
 	}
 	
 	String pathToName(String path) {
