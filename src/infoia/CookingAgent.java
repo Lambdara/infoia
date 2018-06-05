@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Random;
 import java.util.Scanner;
+
 import org.semanticweb.HermiT.ReasonerFactory;
 import org.semanticweb.owlapi.apibinding.OWLManager;
 import org.semanticweb.owlapi.model.IRI;
@@ -25,7 +26,6 @@ public class CookingAgent {
 
     public static void main(String[] args) {
         new CookingAgent();
-
     }
 
     ArrayList<Portion> fridge;

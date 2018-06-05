@@ -1,6 +1,5 @@
 package infoia;
 
-import java.awt.List;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -19,10 +18,11 @@ public class Recipe extends ArrayList<Portion> {
         for (Portion key : this.leaveOutWeights.keySet()) {
             this.leaveOutWeights.put(key, 1.0);
         }
-        this.replacements = new HashMap();
-        this.shoppingList = new ArrayList();
+        this.replacements = new HashMap<Portion, Pair>();
+        this.shoppingList = new ArrayList<Portion>();
     }
 
+    @Override
     public String toString() {
         String output = name + ":\n";
 
