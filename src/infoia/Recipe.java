@@ -2,6 +2,7 @@ package infoia;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Optional;
 
 public class Recipe extends ArrayList<Portion> {
     private static final long serialVersionUID = 1L;
@@ -40,8 +41,14 @@ public class Recipe extends ArrayList<Portion> {
                     }
                 } else {
                     output += ", value:1.0";
-                    if (shoppingList.stream().map(q -> q.getIngredient()).anyMatch(q -> q.equals(p.getIngredient())))
-                        output += " [Shopping List: " + p.getAmount() + "g]";
+                    if (shoppingList.stream().anyMatch(q -> q.getIngredient() == p.getIngredient())) {
+                        Optional<Integer> missingAmount = 
+                            shoppingList.stream()
+                            .filter(q -> q.getIngredient() == p.getIngredient())
+                            .map(q -> q.getAmount())
+                            .findAny();
+                        output += " [Shopping List: " + missingAmount.get() + "g]";
+                    }
                     output += "\n";
                 }
             }

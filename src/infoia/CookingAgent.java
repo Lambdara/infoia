@@ -108,6 +108,7 @@ public class CookingAgent {
         inFridge.add("Cannelloni");
         inFridge.add("Champignon");
         inFridge.add("SaltSeasoning");
+        inFridge.add("Onion");
         addIngredientsToFridge(inFridge);
 
         Recipe best = getBestRecipe();
@@ -241,6 +242,9 @@ public class CookingAgent {
                         .filter(q -> q.getIngredient() == p.getIngredient())
                         .map(q -> q.getAmount())
                         .findAny();
+                System.out.println("---");
+                System.out.println(p.getIngredient());
+                System.out.println(fridgeAmount.orElse(0));
                 r.putOnShoppingList(new Portion(p.getIngredient(),p.getAmount() - fridgeAmount.orElse(0)));
             }
 
@@ -321,7 +325,7 @@ public class CookingAgent {
     }
 
     private void addIngredientsToFridge(ArrayList<String> ingredientNames) {
-        Random random = new Random(1);
+        Random random = new Random(3);
         for (Ingredient i : ingredients) {
             if (ingredientNames.contains(i.getName())) {
                 //TODO Make this some sensible amount
