@@ -70,7 +70,7 @@ public class CookingAgent {
 
 				try (Scanner scanner = new Scanner(new File(fileName))) {
 
-					Recipe recipe = new Recipe(fileName);
+					Recipe recipe = new Recipe(pathToName(fileName));
 
 					while (scanner.hasNext()){
 						String ingredientString = scanner.nextLine();
