@@ -4,19 +4,19 @@ import java.awt.List;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class Recipe extends ArrayList<Ingredient> {
+public class Recipe extends ArrayList<Portion> {
     private static final long serialVersionUID = 1L;
 
     String name;
-    private HashMap<Ingredient, Double> leaveOutWeights;
-    private HashMap<Ingredient, Pair> replacements;
-    private ArrayList<Ingredient> shoppingList;
+    private HashMap<Portion, Double> leaveOutWeights;
+    private HashMap<Portion, Pair> replacements;
+    private ArrayList<Portion> shoppingList;
 
     Recipe(String name) {
         super();
         this.name = name;
-        this.leaveOutWeights = new HashMap<Ingredient, Double>();
-        for (Ingredient key : this.leaveOutWeights.keySet()) {
+        this.leaveOutWeights = new HashMap<Portion, Double>();
+        for (Portion key : this.leaveOutWeights.keySet()) {
             this.leaveOutWeights.put(key, 1.0);
         }
         this.replacements = new HashMap();
@@ -29,18 +29,18 @@ public class Recipe extends ArrayList<Ingredient> {
         if (this.size() == 0) {
             output += "No ingredients";
         } else {
-            for (Ingredient i : this) {
-                output += i.getName();
-                if (replacements.containsKey(i)) {
-                    if (replacements.get(i).getIngredient() != null) {
-                        output += " ---> " + replacements.get(i).getIngredient().getName() + ", value:"
-                                + replacements.get(i).getValue() + "\n";
+            for (Portion p : this) {
+                output += p;
+                if (replacements.containsKey(p)) {
+                    if (replacements.get(p).getPortion() != null) {
+                        output += " ---> " + replacements.get(p).getPortion() + ", value:"
+                                + replacements.get(p).getValue() + "\n";
                     } else {
-                        output += " ---> REMOVED value:" + replacements.get(i).getValue() + "\n";
+                        output += " ---> REMOVED value:" + replacements.get(p).getValue() + "\n";
                     }
                 } else {
                     output += ", value:1.0";
-                    if (shoppingList.contains(i))
+                    if (shoppingList.contains(p))
                         output += " [Shopping List]";
                     output += "\n";
                 }
@@ -50,19 +50,19 @@ public class Recipe extends ArrayList<Ingredient> {
         return output;
     }
 
-    public void addWeightToIngredient(Ingredient ingredient, Double weight) {
-        leaveOutWeights.put(ingredient, weight);
+    public void addWeightToPortion(Portion portion, Double weight) {
+        leaveOutWeights.put(portion, weight);
     }
 
-    public Double getWeightByIngredient(Ingredient ingredient) {
-        return leaveOutWeights.get(ingredient);
+    public Double getWeightByPortion(Portion portion) {
+        return leaveOutWeights.get(portion);
     }
 
-    public void setReplacements(HashMap<Ingredient, Pair> replacements) {
+    public void setReplacements(HashMap<Portion, Pair> replacements) {
         this.replacements = replacements;
     }
 
-    public HashMap<Ingredient, Pair> getReplacements() {
+    public HashMap<Portion, Pair> getReplacements() {
         return replacements;
     }
 
@@ -70,20 +70,20 @@ public class Recipe extends ArrayList<Ingredient> {
         return leaveOutWeights.get(i);
     }
 
-    public void replace(Ingredient i, Pair p) {
+    public void replace(Portion i, Pair p) {
         this.replacements.put(i, p);
     }
 
-    public void putOnShoppingList(Ingredient i) {
+    public void putOnShoppingList(Portion i) {
         this.shoppingList.add(i);
     }
 
-    public void replacementToShoppingList(Ingredient i) {
+    public void replacementToShoppingList(Portion i) {
         this.replacements.remove(i);
         this.shoppingList.add(i);
     }
 
-    public ArrayList<Ingredient> getShoppingList() {
+    public ArrayList<Portion> getShoppingList() {
         return this.shoppingList;
     }
 }

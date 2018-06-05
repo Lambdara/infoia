@@ -28,7 +28,7 @@ public class CookingAgent {
 
     }
 
-    ArrayList<Ingredient> fridge;
+    ArrayList<Portion> fridge;
     ArrayList<Recipe> recipeBook;
     ArrayList<Ingredient> ingredients;
     OWLOntology ontology;
@@ -39,7 +39,7 @@ public class CookingAgent {
     String uriPrefix = "http://www.semanticweb.org/jordi/ontologies/2018/4/Pasta#";
 
     CookingAgent() {
-        fridge = new ArrayList<Ingredient>();
+        fridge = new ArrayList<Portion>();
         recipeBook = new ArrayList<Recipe>();
         ingredients = new ArrayList<Ingredient>();
 
@@ -86,8 +86,10 @@ public class CookingAgent {
                             ingredients.add(ingredient);
                         }
 
-                        recipe.add(ingredient);
-                        recipe.addWeightToIngredient(ingredient, ingredientReplacableWeight);
+                        //TODO Get amount from recipe file instead
+                        Portion p = new Portion(ingredient,400);
+                        recipe.add(p);
+                        recipe.addWeightToPortion(p, ingredientReplacableWeight);
                     }
                     recipeBook.add(recipe);
                 } catch (IOException e) {
@@ -145,7 +147,7 @@ public class CookingAgent {
     }
 
     private boolean hasIngredients(Recipe recipe) {
-        for (Ingredient i : recipe)
+        for (Portion i : recipe)
             if (!fridge.contains(i))
                 return false;
         return true;
@@ -180,10 +182,10 @@ public class CookingAgent {
              */
 
             // First find all optimal replacements (or leave out if that's optimal)
-            ArrayList<Ingredient> available = new ArrayList<Ingredient>();
-            ArrayList<Ingredient> unavailable = new ArrayList<Ingredient>();
+            ArrayList<Portion> available = new ArrayList<Portion>();
+            ArrayList<Portion> unavailable = new ArrayList<Portion>();
 
-            for (Ingredient i : r) {
+            for (Portion i : r) {
                 if (fridge.contains(i)) {
                     available.add(i);
                 } else {
@@ -191,34 +193,36 @@ public class CookingAgent {
                 }
             }
 
-            HashMap<Ingredient, Pair> replacements = new HashMap<Ingredient, Pair>();
+            HashMap<Portion, Pair> replacements = new HashMap<Portion, Pair>();
 
-            for (Ingredient i : unavailable) {
+            for (Portion p : unavailable) {
                 double bestSimilarity = 0.0;
-                Ingredient bestIngredient = null;
-                for (Ingredient j : fridge) {
-                    double similarity = ingredientSimilarity(i, j);
-                    if (bestSimilarity < similarity) {
-                        bestSimilarity = similarity;
-                        bestIngredient = j;
+                Portion bestPortion = null;
+                for (Portion q : fridge) {
+                    if (q.getAmount() >= p.getAmount()) {
+                        double similarity = ingredientSimilarity(p.getIngredient(), q.getIngredient());
+                        if (bestSimilarity < similarity) {
+                            bestSimilarity = similarity;
+                            bestPortion = q;
+                        }
                     }
                 }
-                System.out.println("Best alternative ingredient for " + i.getName() + " --> " + bestIngredient.getName()
+                System.out.println("Best alternative ingredient for " + p + " --> " + bestPortion
                         + ", similarity:" + bestSimilarity);
                 if (bestSimilarity > SIMILARITY_THRESHOLD) {
-                    replacements.put(i, new Pair(bestIngredient, bestSimilarity));
+                    replacements.put(p, new Pair(bestPortion, bestSimilarity));
                 } else {
-                    replacements.put(i, new Pair(null, 1.0 - r.getWeightByIngredient(i)));
+                    replacements.put(p, new Pair(null, 1.0 - r.getWeightByPortion(p)));
                 }
             }
 
             // Now apply these replacements until we hit the threshold
             boolean thresholdNotHit = true;
             while (thresholdNotHit && !replacements.isEmpty()) {
-                Ingredient optimalReplacement = replacements.keySet().stream().findAny().get();
-                for (Ingredient i : replacements.keySet()) {
-                    if (replacements.get(i).getValue() > replacements.get(optimalReplacement).getValue())
-                        optimalReplacement = i;
+                Portion optimalReplacement = replacements.keySet().stream().findAny().get();
+                for (Portion p : replacements.keySet()) {
+                    if (replacements.get(p).getValue() > replacements.get(optimalReplacement).getValue())
+                        optimalReplacement = p;
                 }
                 if (recipeUtility2WithReplacement(r, replacements.get(optimalReplacement)) >= RECIPE_UTILITY_TRESHOLD) {
                     r.replace(optimalReplacement, replacements.get(optimalReplacement));
@@ -230,8 +234,8 @@ public class CookingAgent {
 
             // If there are still replacements to be made but the threshold won't allow it,
             // then add them to the shopping list
-            for (Ingredient i : replacements.keySet())
-                r.putOnShoppingList(i);
+            for (Portion p: replacements.keySet())
+                r.putOnShoppingList(p);
 
             int shoppingListSize = r.getShoppingList().size();
             double utility = recipeUtility2(r);
@@ -265,39 +269,39 @@ public class CookingAgent {
         while ((utility = recipeUtility2(recipe)) < targetUtility) {
             System.out.println("Utility: " + utility + "/" + targetUtility);
             double worstValue = 1;
-            Ingredient worstPenaltyIngredient = null;
-            for (Ingredient i : recipe.getReplacements().keySet()) {
-                double value = recipe.getReplacements().get(i).getValue();
+            Portion worstPenaltyPortion = null;
+            for (Portion p : recipe.getReplacements().keySet()) {
+                double value = recipe.getReplacements().get(p).getValue();
                 if (value < worstValue) {
                     worstValue = value;
-                    worstPenaltyIngredient = i;
+                    worstPenaltyPortion = p;
                 }
             }
-            recipe.replacementToShoppingList(worstPenaltyIngredient);
+            recipe.replacementToShoppingList(worstPenaltyPortion);
             System.out.println(
-                    "Moved " + worstPenaltyIngredient.getName() + " with value " + worstValue + " to shopping list");
+                    "Moved " + worstPenaltyPortion + " with value " + worstValue + " to shopping list");
         }
         System.out.println("Utility: " + utility + "/" + targetUtility);
     }
 
     @SuppressWarnings("unused")
     private double recipeUtility(Recipe r) {
-        HashMap<Ingredient, Pair> replacements = r.getReplacements();
+        HashMap<Portion, Pair> replacements = r.getReplacements();
         double utility = 1.0;
-        for (Ingredient i : r) {
-            if (replacements.containsKey(i)) {
-                utility *= replacements.get(i).getValue();
+        for (Portion p : r) {
+            if (replacements.containsKey(p)) {
+                utility *= replacements.get(p).getValue();
             }
         }
         return utility;
     }
 
     private double recipeUtility2(Recipe r) {
-        HashMap<Ingredient, Pair> replacements = r.getReplacements();
+        HashMap<Portion, Pair> replacements = r.getReplacements();
         double utility = 0.0;
-        for (Ingredient i : r) {
-            if (replacements.containsKey(i)) {
-                utility += replacements.get(i).getValue();
+        for (Portion p : r) {
+            if (replacements.containsKey(p)) {
+                utility += replacements.get(p).getValue();
             } else {
                 utility += 1;
             }
@@ -310,9 +314,11 @@ public class CookingAgent {
     }
 
     private void addIngredientsToFridge(ArrayList<String> ingredientNames) {
+        Random random = new Random(System.currentTimeMillis());
         for (Ingredient i : ingredients) {
             if (ingredientNames.contains(i.getName())) {
-                fridge.add(i);
+                //TODO Make this some sensible amount
+                fridge.add(new Portion(i,350 + random.nextInt(200)));
             }
         }
     }
