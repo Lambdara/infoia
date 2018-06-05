@@ -23,6 +23,8 @@ public class CookingAgent {
 	public static Random random = new Random();
 	public static final Double FLAVOUR_WEIGHT = 1.0;
 	public static final Double SIMILARITY_WEIGHT = 5.0;
+	public static final Double STRUCTURE_WEIGHT =  3.0;
+	
 	public static final Double SIMILARITY_THRESHOLD = 0.7;
 	public static final Double[] LABEL_WEIGHTS = {0.5, 0.5}; // {SimilarityWeight, FlavourWeight}	
 	public static final Double RECIPE_UTILITY_TRESHOLD = 0.90;
@@ -106,6 +108,7 @@ public class CookingAgent {
 		reasoner.precomputeInferences(InferenceType.OBJECT_PROPERTY_HIERARCHY);
 		
 		addFlavoursToIngredients();
+		addStructureToIngredients();
 		
 		ArrayList<String> inFridge = new ArrayList<String>();
 		inFridge.add("ChickenMeat");
@@ -132,6 +135,18 @@ public class CookingAgent {
 		}
 	}
 	
+	private void addStructureToIngredients() {
+	    for(Ingredient.Structure structure : java.util.Arrays.asList(Ingredient.Structure.values())) {
+	        OWLClass query = dataFactory.getOWLClass(uriPrefix + "Get" + structure.toString());
+	        
+            ArrayList<String> ins = new ArrayList<String>();
+            reasoner.subClasses(query).forEach(x -> ins.add(x.getIRI().getFragment()));
+            for(Ingredient i : ingredients) {
+                if(ins.contains(i.getName())) i.setStructure(structure);
+            }
+	    }
+	}
+	
 	private double flavourSimilarity(Ingredient i, Ingredient j) {
 		ArrayList<Ingredient.Flavour> fi = i.getFlavours();
 		ArrayList<Ingredient.Flavour> fj = i.getFlavours();
@@ -149,6 +164,12 @@ public class CookingAgent {
 			return -1.0;
 		}
 		return similar / total;
+	}
+	
+	private double structureSimilarity(Ingredient i, Ingredient j) {
+	    if(i.getStructure() == null && j.getStructure() == null) return -1.0;
+	    if(i.getStructure() == j.getStructure()) return 1.0;
+	    return 0.0;
 	}
 	
 	private void createIngredientsFromOntology() {
@@ -190,14 +211,19 @@ public class CookingAgent {
 	private double ingredientSimilarity(Ingredient i, Ingredient j) {
 		double simWeight = SIMILARITY_WEIGHT;
 		double flavourWeight = FLAVOUR_WEIGHT;
+		double structureWeight = STRUCTURE_WEIGHT;
 		
 		double flavourSimilarity = flavourSimilarity(i, j);
 		double similarity = (ingredientSimilarityAssymetric(i, j) + ingredientSimilarityAssymetric(j, i))/2;
+		double structureSimilarity = structureSimilarity(i, j);
+		
 		if(flavourSimilarity == -1.0) flavourWeight = 0.0;
+		if(structureSimilarity == -1.0) structureWeight = 0.0;
 		
 	    return ((similarity * simWeight)
-	     			+ (flavourSimilarity * flavourWeight))
-	    			/ (simWeight + flavourWeight);
+	     			+ (flavourSimilarity * flavourWeight)
+	                + (structureSimilarity * structureWeight))
+	    			/ (simWeight + flavourWeight + structureWeight);
 	}
 
 	private boolean hasIngredients(Recipe recipe) {

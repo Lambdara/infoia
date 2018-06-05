@@ -7,11 +7,17 @@ public class Ingredient {
 		Sweet, Sour, Bitter, Salty, Savory, Aromatic, Spicy
 	}
 	
+	public static enum Structure {
+	    Solid, Fluid, Paste, Powder
+	}
+	
 	private String name;
 	private ArrayList<Flavour> flavours;
+	private Structure structure;
 
 	Ingredient (String name) {
 		this.name = name;
+		this.structure = null;
 		this.flavours = new ArrayList<Flavour>();
 	}
 	
@@ -30,5 +36,13 @@ public class Ingredient {
 	public void addFlavour(Flavour flavour) {
 		if(!flavours.contains(flavour))
 			flavours.add(flavour);
+	}
+	
+	public void setStructure(Structure structure) {
+	    this.structure = structure;
+	}
+	
+	public Structure getStructure() {
+	    return structure;
 	}
 }
