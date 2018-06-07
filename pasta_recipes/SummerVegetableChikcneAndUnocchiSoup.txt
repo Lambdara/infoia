@@ -1,0 +1,11 @@
+SweetOnion;0.4
+GarlicCloves;0.5
+Butter;0.3
+Zuchini;0.2
+Dill;0.4
+ChickenStock;0.3
+Chicken;0.8
+Gnocchi;0.3
+GreenBeans;0.5
+BabySpinach;0.4
+LemonJuice;0.3
