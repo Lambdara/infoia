@@ -2,6 +2,7 @@ package infoia;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Optional;
 
 import javax.swing.event.ChangeEvent;
 
@@ -14,6 +15,7 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.stage.Stage;
 import javafx.scene.Node;
 import javafx.scene.Scene;
@@ -46,15 +48,15 @@ public class GUI extends Application {
 	public void start(Stage stage) throws Exception {
 		guiStage = stage;
 		bPane = new BorderPane();
-		guiScene = new Scene(bPane, 1000, 600);
+		guiScene = new Scene(bPane, 1000, 650);
 	    cookingAgent = new CookingAgent(); 
 	    guiFridge = new ListView<String>();
-	    guiFridge.setPrefSize(200, 500);
+	    guiFridge.setPrefSize(250, 520);
 	    guiBestRecipe = new ListView<String>();
-	    guiBestRecipe.setPrefSize(400, 350);
+	    guiBestRecipe.setPrefSize(500, 410);
 	    guiBestRecipeName = boldText("");
 	    guiShoppingList = new ListView<String>();
-	    guiShoppingList.setPrefSize(400, 150);
+	    guiShoppingList.setPrefSize(500, 150);
 	    guiAllIngredients = FXCollections.observableArrayList();
 
 	    for (Ingredient i : cookingAgent.ingredients) {
@@ -89,12 +91,12 @@ public class GUI extends Application {
 	    // Fridge buttons section
 	    HBox fridgeHBox = new HBox();
 	    fridgeHBox.setSpacing(5.0);
-	    Button randomFridgeButton = new Button("Random");
+	    Button randomFridgeButton = new Button("Randomize Fridge");
 	    randomFridgeButton.setOnAction(value ->  {
 	    	cookingAgent.fillFridgeRandomly();
 			updateGUIFridge(guiFridge);	
 	        });
-	    Button clearFridgeButton = new Button("Clear");
+	    Button clearFridgeButton = new Button("Empty Fridge");
 	    clearFridgeButton.setOnAction(value ->  {
 	    	cookingAgent.clearFridge();
 	    	updateGUIFridge(guiFridge);
@@ -105,6 +107,19 @@ public class GUI extends Application {
 	    // Fridge add ingredient fields
 	    HBox addIngredientHBox = new HBox();
 	    addIngredientHBox.setSpacing(5.0);
+	    TextField portionField = new TextField();
+	    portionField.setPromptText("... g");
+	    portionField.setPrefWidth(60);
+	    // Source: https://stackoverflow.com/questions/7555564/what-is-the-recommended-way-to-make-a-numeric-textfield-in-javafx
+	    portionField.textProperty().addListener(new ChangeListener<String>() {
+	        @Override
+	        public void changed(ObservableValue<? extends String> observable, String oldValue, 
+	            String newValue) {
+	            if (!newValue.matches("\\d*")) {
+	            	portionField.setText(newValue.replaceAll("[^\\d]", ""));
+	            }
+	        }
+	    });
 	    ComboBox<String> ingredientBox = new ComboBox<String>();
 	    ingredientBox.setItems(guiAllIngredients);
 	    ingredientBox.setEditable(true);
@@ -119,16 +134,17 @@ public class GUI extends Application {
 			@Override
 			public void changed(ObservableValue ov, String oldVal, String newVal) {
 				handleSearchByKey(oldVal, newVal, guiAllIngredients, ingredientBox);
-				System.out.println("It's continuing mission,..."); 
 			}
 	    });
 	    
 	    Button addIngredientButton = new Button("Add");
 	    addIngredientButton.setOnAction(value ->  {
-	    	cookingAgent.addIngredientToFridge(ingredientBox.getValue());
+	    	cookingAgent.addIngredientToFridge(ingredientBox.getValue(), Integer.parseInt(portionField.getText()));
 			updateGUIFridge(guiFridge);
 			ingredientBox.valueProperty().setValue("");
+			portionField.setText("");
 	        });
+	    addIngredientHBox.getChildren().add(portionField);
 	    addIngredientHBox.getChildren().add(ingredientBox);	
 	    addIngredientHBox.getChildren().add(addIngredientButton);
 	    
@@ -165,6 +181,7 @@ public class GUI extends Application {
 	    findRecipeButton.setOnAction(value ->  {
 	    	updateGUIBestRecipe(guiBestRecipe, guiShoppingList);
 	        });
+	    findRecipeButton.setAlignment(Pos.BASELINE_CENTER);
 	    centerVBox.getChildren().add(findRecipeButton);
 	    
 	    return centerVBox;
@@ -248,13 +265,16 @@ public class GUI extends Application {
 							ingredients.add("REMOVED " + p);
 						}
 					} else {
-						if (recipe.getShoppingList().contains(p))
-							missingIngredients.add(p.toString());
+						if (recipe.getShoppingList().stream().anyMatch(q -> q.getIngredient() == p.getIngredient())) {
+	                        missingIngredients.add(p.toString());
+						}
 	                    else
 	                    	ingredients.add(p.toString());
 					}
 				}
 			}
+			
+			
 		}
 		guiBestRecipeName.setText(recipeName);
 		bestRecipe.setItems(ingredients);

@@ -410,15 +410,20 @@ public class CookingAgent {
 		}
 	}
 	
-	void addIngredientToFridge(String ingredientName) {
+	void addIngredientToFridge(String ingredientName, int amount) {
 		if (ingredientName == null || ingredients == null) {
 			System.out.println("Warning: ingredientName or ingredients is null in addIngredientToFridge()");
 			return;
 		}
 		
 		for(Ingredient i : ingredients) {
-			if(ingredientName.equals(i.getName()) && !fridge.contains(i)) {
-				fridge.add(new Portion(i, 400 + random.nextInt(200)));
+			if(ingredientName.equals(i.getName())) {
+				Optional<Portion> fridgePortion =
+						fridge.stream().filter(x->x.getIngredient().getName() == ingredientName).findFirst();
+				if(fridgePortion.isPresent())
+					fridgePortion.get().add(amount);
+				else
+					fridge.add(new Portion(i, amount));
 			}
 		}
 	}
@@ -426,7 +431,7 @@ public class CookingAgent {
 	void fillFridgeRandomly() {
 		clearFridge();		
 		for(Ingredient i : ingredients) {
-			if(random.nextFloat() < 0.3) {
+			if(random.nextFloat() < 0.1) {
 				fridge.add(new Portion(i, 400 + random.nextInt(200)));
 			}
 		}
