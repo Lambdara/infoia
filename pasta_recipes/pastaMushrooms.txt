@@ -1,5 +1,5 @@
-Linguine;0.9
-Champignon;0.9
-Cream;0.6
-Onion;0.3
-Garlic;0.2
+100;Linguine;0.9
+120;Champignon;0.9
+50;Cream;0.6
+60;Onion;0.3
+4;Garlic;0.2
