@@ -193,9 +193,19 @@ public class CookingAgent {
     private void createIngredientsFromOntology() {
         for (OWLClass cls : ontology.getClassesInSignature()) {
             String ingredientName = cls.getIRI().getFragment();
-            Ingredient ingredient = new Ingredient(ingredientName);
-            ingredients.add(ingredient);
+            if(isLeaf(cls)) {
+                Ingredient ingredient = new Ingredient(ingredientName);
+                ingredients.add(ingredient);
+            }
         }
+    }
+    
+    private boolean isLeaf(OWLClass cls) {
+        if(reasoner.subClasses(cls).count() > 1)
+            return false;
+        
+        OWLClass ingredients = dataFactory.getOWLClass(uriPrefix + "Ingredients");
+        return reasoner.superClasses(cls).anyMatch(x -> x == ingredients);
     }
 
     String pathToName(String path) {
