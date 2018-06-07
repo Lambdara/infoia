@@ -1,0 +1,9 @@
+Linguinni;0.8
+Salt;0.5
+Blackpepper;0.5
+Panceta;0.4
+SweetOnion;0.3
+BrusselsSprout;0.8
+Garlic;0.5
+WhiteWine;0.3
+Parmesan;0.4

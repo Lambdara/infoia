@@ -1,0 +1,10 @@
+Pasta;0.5
+Tomatoes;0.4
+Onion;0.4
+Garlic;0.3
+Basil;0.6
+Oliveoil;0.4
+BalsamicVinegar;0.5
+Parmesan;0.4
+Salt;0.5
+Pepper;0.5

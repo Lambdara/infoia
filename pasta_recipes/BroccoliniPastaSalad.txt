@@ -1,0 +1,10 @@
+Campanelle;0.6
+Broccolini;0.8
+Oliveoil;0.4
+BalsamicVinegar;0.6
+Shallot;0.3
+Garlic;0.5
+Mustard;0.6
+CherryTomatoes;0.5
+Almonds;0.4
+Basil;0.6
