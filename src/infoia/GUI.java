@@ -125,13 +125,9 @@ public class GUI extends Application {
 	    
 	    Button addIngredientButton = new Button("Add");
 	    addIngredientButton.setOnAction(value ->  {
-	    	System.out.println(ingredientBox.getValue());
 	    	cookingAgent.addIngredientToFridge(ingredientBox.getValue());
-	    	System.out.println("--- I wanna be the very best..."); 
 			updateGUIFridge(guiFridge);
-			System.out.println("--- like no one ever was.");
-			ingredientBox.valueProperty().setValue("");		
-			System.out.println("--- Teach Pokemon to understand..."); 
+			ingredientBox.valueProperty().setValue("");
 	        });
 	    addIngredientHBox.getChildren().add(ingredientBox);	
 	    addIngredientHBox.getChildren().add(addIngredientButton);
@@ -186,15 +182,13 @@ public class GUI extends Application {
 		if (totalList == null || box == null || newVal == null) {
 			System.out.println("Warning: parameter is null in handleSearchByKey()");
 			return;
-		}
-		System.out.println("Space."); 	
+		} 	
 		// If the number of characters in the text box is less than last time
 	    // it must be because the user pressed delete
 	    if (oldVal != null && (newVal.length() < oldVal.length())) {
 	        // Restore the lists original set of entries 
 	        box.setItems( totalList );
 	    }
-	    System.out.println("The final frontier."); 
 	    // Break out all of the parts of the search text by splitting on white space
 	    String[] parts = newVal.toUpperCase().split(" ");
 	 
@@ -216,9 +210,7 @@ public class GUI extends Application {
 	            subentries.add(entryText);
 	        }
 	    }
-	    System.out.println("These are the voyages..."); 
-	    box.setItems(subentries);
-	    System.out.println("of the starship Enterprise."); 
+	    box.setItems(subentries); 
 	}
 	
 	private void updateGUIFridge(ListView<String> fridge) {
@@ -232,8 +224,8 @@ public class GUI extends Application {
 		if (cookingAgent.fridge.size() < 1) {
 			ingredients.clear();
 		} else {
-			for (Ingredient ingredient : cookingAgent.fridge) {
-				ingredients.add(ingredient.getName());
+			for (Portion portion : cookingAgent.fridge) {
+				ingredients.add(portion.toString());
 			}
 		}
 		fridge.setItems(ingredients);
@@ -248,18 +240,18 @@ public class GUI extends Application {
 			Recipe recipe = cookingAgent.getBestRecipe();
 			if (recipe != null) {
 				recipeName = recipe.name;
-				for (Ingredient i : recipe) {
-					if (recipe.replacements.containsKey(i)) {
-						if(recipe.replacements.get(i).getIngredient() != null) {
-							ingredients.add(i.getName() + " REPLACED BY " + recipe.replacements.get(i).getIngredient().getName());
+				for (Portion p : recipe) {
+					if (recipe.getReplacements().containsKey(p)) {
+						if(recipe.getReplacements().get(p).getPortion() != null) {
+							ingredients.add(p + " REPLACED BY " + recipe.getReplacements().get(p).getPortion());
 						} else {
-							ingredients.add("REMOVED " + i.getName());
+							ingredients.add("REMOVED " + p);
 						}
 					} else {
-						if (recipe.shoppingList.contains(i))
-							missingIngredients.add(i.getName());
+						if (recipe.getShoppingList().contains(p))
+							missingIngredients.add(p.toString());
 	                    else
-	                    	ingredients.add(i.getName());
+	                    	ingredients.add(p.toString());
 					}
 				}
 			}
