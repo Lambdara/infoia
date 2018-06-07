@@ -1,24 +1,24 @@
 package infoia;
 
 public class Pair {
-    private Ingredient i;
+    private Portion p;
     private Double value;
 
-    public Pair(Ingredient i, Double value) {
-        this.i = i;
+    public Pair(Portion p, Double value) {
+        this.p = p;
         this.value = value;
     }
 
-    public Ingredient getIngredient() {
-        return i;
+    public Portion getPortion() {
+        return p;
     }
 
     public Double getValue() {
         return value;
     }
 
-    public void setIngredient(Ingredient i) {
-        this.i = i;
+    public void setPortion(Portion p) {
+        this.p = p;
     }
 
     public void setValue(Double value) {
