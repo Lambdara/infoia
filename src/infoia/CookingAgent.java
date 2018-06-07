@@ -114,7 +114,7 @@ public class CookingAgent {
         inFridge.put("SpanishPepper", 50);
         inFridge.put("Tomato", 200);
         inFridge.put("Penne", 500);
-        inFridge.put("Shallot", 200);
+        inFridge.put("Shallot", 54);
         inFridge.put("Brocolli", 200);
 
         addFlavoursToIngredients();
@@ -334,7 +334,13 @@ public class CookingAgent {
             // Now apply these replacements until we hit the threshold
             boolean thresholdNotHit = true;
             while (thresholdNotHit && !replacements.isEmpty()) {
-                Portion optimalReplacement = replacements.keySet().stream().findAny().get();
+                Portion optimalReplacement = replacements.keySet().stream().max(
+                            (x,y) -> (replacements.get(x).getValue() < replacements.get(y).getValue() ?
+                                    -1 : (replacements.get(x).getValue() == replacements.get(y).getValue() ?
+                                            (x.getAmount() < y.getAmount() ? -1 :
+                                                (x.getAmount() == y.getAmount() ? 0 : 1)) :
+                                            1))
+                        ).get();
                 for (Portion p : replacements.keySet()) {
                     if (replacements.get(p).getValue() > replacements.get(optimalReplacement).getValue())
                         optimalReplacement = p;
@@ -349,15 +355,19 @@ public class CookingAgent {
 		
                 // Recalculate replacements
                 for (Portion p : unavailable) {
-                    int totalInRecipe = r.stream().map(
-                            x -> (r.getReplacements().containsKey(x) && r.getReplacements().get(x).getPortion() != null
-                                    ? r.getReplacements().get(x).getPortion()
-                                    : x))
-                            .filter(x -> x.getIngredient() == p.getIngredient()).mapToInt(x -> x.getAmount()).sum();
-
 			double bestSimilarity = 0.0;
                     Portion bestPortion = null;
                     for (Portion q : fridge) {
+                        int totalInRecipe = r.stream()
+                                .filter(x -> x != q)
+                                .filter(x -> r.getReplacements().containsKey(x) || x.getIngredient() == q.getIngredient())
+                                .filter(x -> !r.getReplacements().containsKey(x) ||
+                                        r.getReplacements().get(x).getPortion() == null ||
+                                        r.getReplacements().get(x).getPortion().getIngredient() == q.getIngredient())
+                                .mapToInt(x -> (r.getReplacements().containsKey(x)
+                                        ? (r.getReplacements().get(x).getPortion() == null ? 0 : r.getReplacements().get(x).getPortion().getAmount())
+                                        : x.getAmount()))
+                                .sum();
                         if (q.getAmount() >= p.getAmount() + totalInRecipe) {
                             double similarity = ingredientSimilarity(p.getIngredient(), q.getIngredient());
 				if(bestSimilarity < similarity) {
