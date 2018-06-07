@@ -226,7 +226,8 @@ public class CookingAgent {
 		
 	    return ((similarity * simWeight)
 	     			+ (flavourSimilarity * flavourWeight)
-	                + (structureSimilarity * structureWeight));
+	                + (structureSimilarity * structureWeight))
+	            / (simWeight + flavourWeight + structureWeight);
 	}
 
 	private boolean hasIngredients(Recipe recipe) {
