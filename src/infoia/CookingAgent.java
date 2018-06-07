@@ -2,11 +2,7 @@ package infoia;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Optional;
-import java.util.Random;
-import java.util.Scanner;
+import java.util.*;
 
 import org.semanticweb.HermiT.ReasonerFactory;
 import org.semanticweb.owlapi.apibinding.OWLManager;
@@ -78,8 +74,9 @@ public class CookingAgent {
                     while (scanner.hasNext()) {
                         String ingredientString = scanner.nextLine();
                         String[] splittedIngredient = ingredientString.split(";");
-                        String ingredientName = splittedIngredient[0];
-                        Double ingredientReplacableWeight = Double.parseDouble(splittedIngredient[1]);
+                        Integer ingredientAmount = Integer.parseInt(splittedIngredient[0]);
+                        String ingredientName = splittedIngredient[1];
+                        Double ingredientReplacableWeight = Double.parseDouble(splittedIngredient[2]);
 
                         Ingredient ingredient = null;
                         for (Ingredient i : ingredients) {
@@ -93,7 +90,7 @@ public class CookingAgent {
                         }
 
                         // TODO Get amount from recipe file instead
-                        Portion p = new Portion(ingredient, 400);
+                        Portion p = new Portion(ingredient, ingredientAmount);
                         recipe.add(p);
                         recipe.addWeightToPortion(p, ingredientReplacableWeight);
                     }
@@ -108,18 +105,33 @@ public class CookingAgent {
         reasoner.precomputeInferences(InferenceType.OBJECT_PROPERTY_HIERARCHY);
 
         addFlavoursToIngredients();
-
-        ArrayList<String> inFridge = new ArrayList<String>();
-        inFridge.add("SpanishPepper");
-        inFridge.add("Tomato");
-        inFridge.add("Penne");
-        inFridge.add("Shallot");
-        inFridge.add("Brocolli");
+        HashMap<String, Integer> inFridge = new  HashMap<String, Integer>();
+        inFridge.put("SpanishPepper", 50);
+        inFridge.put("Tomato", 200);
+        inFridge.put("Penne", 500);
+        inFridge.put("Shallot", 200);
+        inFridge.put("Brocolli", 200);
         addIngredientsToFridge(inFridge);
 
         Recipe best = getBestRecipe();
         System.out.println("Fridge: " + fridge);
         System.out.println("Best Recipe: " + best);
+    }
+
+    private void addIngredientsToFridge(HashMap<String, Integer> ingredientsMap){
+        for(Map.Entry<Ingredient, Integer> pair : convertToIngredients(ingredientsMap).entrySet()){
+            fridge.add(new Portion(pair.getKey(), pair.getValue()));
+        }
+    }
+
+    private HashMap<Ingredient, Integer> convertToIngredients(HashMap<String, Integer> ingredientsMap){
+        HashMap<Ingredient, Integer> resultMap = new HashMap<Ingredient, Integer>();
+        for (Ingredient i : ingredients) {
+            if (ingredientsMap.keySet().contains(i.getName())) {
+                resultMap.put(i, ingredientsMap.get(i.getName()));
+            }
+        }
+        return resultMap;
     }
 
     private void addFlavoursToIngredients() {
@@ -395,15 +407,5 @@ public class CookingAgent {
 
     private double recipeUtility2WithReplacement(Recipe r, Pair replacement) {
         return recipeUtility2(r) * (r.size() - 1) / (r.size()) + replacement.getValue() / r.size();
-    }
-
-    private void addIngredientsToFridge(ArrayList<String> ingredientNames) {
-        Random random = new Random(System.currentTimeMillis());
-        for (Ingredient i : ingredients) {
-            if (ingredientNames.contains(i.getName())) {
-                // TODO Make this some sensible amount
-                fridge.add(new Portion(i, 400 + random.nextInt(200)));
-            }
-        }
     }
 }

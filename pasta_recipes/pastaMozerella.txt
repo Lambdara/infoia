@@ -1,6 +1,6 @@
-Tomato;0.6
-Garlic;0.2
-Onion;0.2
-Mozerella;0.8
-Spinach;0.3
-Fusilli;0.9
+200;Tomato;0.6
+4;Garlic;0.2
+30;Onion;0.2
+40;Mozerella;0.8
+100;Spinach;0.3
+150;Fusilli;0.9
