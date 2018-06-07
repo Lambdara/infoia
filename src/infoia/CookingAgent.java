@@ -101,20 +101,6 @@ public class CookingAgent {
 		}
  
 		reasoner.precomputeInferences(InferenceType.CLASS_HIERARCHY);
-		
-		ArrayList<String> inFridge = new ArrayList<String>();
-		inFridge.add("ChickenMeat");
-		inFridge.add("Cream");
-		inFridge.add("Milk");
-		inFridge.add("Cannelloni");
-		inFridge.add("Champignon");
-		inFridge.add("SaltSeasoning");
-		addIngredientsToFridge(inFridge);
-
-//		Recipe best = getBestRecipe();
-//
-//		System.out.println("Fridge: " + fridge);
-//		System.out.println("\nBest Recipe: " + best);
 	}
 	
 	String pathToName(String path){
@@ -171,7 +157,7 @@ public class CookingAgent {
 		return path.replace("\\", "/");
 	}
 	
-	public Recipe getBestRecipe() {
+	public Recipe getBestRecipe() {	
 		double bestUtil = 0.0;
 		Recipe bestRecipe = null;
 		for(Recipe r : recipeBook) {
@@ -283,9 +269,35 @@ public class CookingAgent {
 	
 	void addIngredientsToFridge(ArrayList<String> ingredientNames) {
 		for(Ingredient i : ingredients) {
-			if(ingredientNames.contains(i.getName())) {
+			if(ingredientNames.contains(i.getName()) && !fridge.contains(i)) {
 				fridge.add(i);
 			}
 		}
+	}
+	
+	void addIngredientToFridge(String ingredientName) {
+		if (ingredientName == null || ingredients == null) {
+			System.out.println("Warning: ingredientName or ingredients is null in addIngredientToFridge()");
+			return;
+		}
+		
+		for(Ingredient i : ingredients) {
+			if(ingredientName.equals(i.getName()) && !fridge.contains(i)) {
+				fridge.add(i);
+			}
+		}
+	}
+	
+	void fillFridgeRandomly() {
+		clearFridge();		
+		for(Ingredient i : ingredients) {
+			if(random.nextFloat() < 0.3) {
+				fridge.add(i);
+			}
+		}
+	}
+	
+	void clearFridge() {
+		fridge.clear();
 	}
 }
