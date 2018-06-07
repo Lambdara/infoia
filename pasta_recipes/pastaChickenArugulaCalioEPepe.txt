@@ -1,0 +1,6 @@
+100;Spagetti;0.9
+25;Butter;0.3
+120;Parmesan;0.2
+150;Arugula;0.4
+230;Chicken;0.8
+5;Blackpepper;0.5

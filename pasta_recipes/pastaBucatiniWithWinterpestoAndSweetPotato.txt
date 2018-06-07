@@ -1,0 +1,13 @@
+150;SweetPotato;0.5
+25;Onion;0.4
+15;OliveOil;0.3
+5;Salt;0.5
+5;Blacpepper;0.5
+100;Kale;0.6
+50;Parsley;0.3
+60;Parmesan;0.4
+15;Garlic;0.5
+5;LemonZest;0.6
+10;LemonJuice;0.3
+350;Bucatini;0.8
+25;PineNuts;0.4
