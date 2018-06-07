@@ -1,6 +1,6 @@
 60;Egg;0.7
 100;Penne;0.9
-30;Cheese;0.4
+30;Parmasan;0.4
 10;OliveOil;0.8
 4;Garlic;0.2
 30;Onion;0.1
