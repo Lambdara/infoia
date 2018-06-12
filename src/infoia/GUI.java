@@ -145,9 +145,17 @@ public class GUI extends Application {
             ingredientBox.valueProperty().setValue("");
             portionField.setText("");
         });
+        Button removeIngredientButton = new Button("Remove");
+        removeIngredientButton.setOnAction(value -> {
+            cookingAgent.removeFromFridge(ingredientBox.getValue(), Integer.parseInt(portionField.getText()));
+            updateGUIFridge(guiFridge);
+            ingredientBox.valueProperty().setValue("");
+            portionField.setText("");
+        });
         addIngredientHBox.getChildren().add(portionField);
         addIngredientHBox.getChildren().add(ingredientBox);
         addIngredientHBox.getChildren().add(addIngredientButton);
+        addIngredientHBox.getChildren().add(removeIngredientButton);
 
         leftVBox.getChildren().add(boldText("Fridge"));
         leftVBox.getChildren().add(fridgeHBox);
