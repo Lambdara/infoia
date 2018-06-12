@@ -18,38 +18,38 @@ import org.semanticweb.owlapi.reasoner.OWLReasonerFactory;
 import javafx.application.Application;
 
 public class CookingAgent {
-	
-	public static Random random = new Random();
+    
+    public static Random random = new Random();
     public static final Double FLAVOUR_WEIGHT = 1.0;
     public static final Double SIMILARITY_WEIGHT = 5.0;
-	public static final Double STRUCTURE_WEIGHT =  3.0;
-	
-	public static final Double SIMILARITY_THRESHOLD = 0.7; 
+    public static final Double STRUCTURE_WEIGHT =  3.0;
+    
+    public static final Double SIMILARITY_THRESHOLD = 0.7; 
     public static final Double[] LABEL_WEIGHTS = { 0.5, 0.5 }; // {SimilarityWeight, FlavourWeight}
-	public static final Double RECIPE_UTILITY_TRESHOLD = 0.90;
-	
-	public static void main(String[] args) {
-		
-//		new CookingAgent();
-		Application.launch(GUI.class, args);
-	}
+    public static final Double RECIPE_UTILITY_TRESHOLD = 0.90;
+    
+    public static void main(String[] args) {
+        
+//        new CookingAgent();
+        Application.launch(GUI.class, args);
+    }
 
     ArrayList<Portion> fridge;
-	ArrayList<Recipe> recipeBook;
-	ArrayList<Ingredient> ingredients;
-	OWLOntology ontology;
-	OWLReasoner reasoner;
-	OWLOntologyManager manager;
-	OWLDataFactory dataFactory;
-	
-	String uriPrefix = "http://www.semanticweb.org/jordi/ontologies/2018/4/Pasta#";
+    ArrayList<Recipe> recipeBook;
+    ArrayList<Ingredient> ingredients;
+    OWLOntology ontology;
+    OWLReasoner reasoner;
+    OWLOntologyManager manager;
+    OWLDataFactory dataFactory;
+    
+    String uriPrefix = "http://www.semanticweb.org/jordi/ontologies/2018/4/Pasta#";
 
-	CookingAgent () {
+    CookingAgent () {
         fridge = new ArrayList<Portion>();
-		recipeBook = new ArrayList<Recipe>();
-		ingredients = new ArrayList<Ingredient>();
-		
-		manager = OWLManager.createOWLOntologyManager();
+        recipeBook = new ArrayList<Recipe>();
+        ingredients = new ArrayList<Ingredient>();
+        
+        manager = OWLManager.createOWLOntologyManager();
         
         try {
             String location = fixSeperators(
@@ -62,51 +62,51 @@ public class CookingAgent {
         OWLReasonerFactory rf = new ReasonerFactory();
         reasoner = rf.createReasoner(ontology);
         dataFactory = manager.getOWLDataFactory();
-		
+        
         createIngredientsFromOntology();
 
-		File folder = new File("pasta_recipes/");
-		File[] listOfFiles = folder.listFiles();
+        File folder = new File("pasta_recipes/");
+        File[] listOfFiles = folder.listFiles();
 
-		for (File file : listOfFiles) {
-			if (file.isFile()) {
-				String fileName = folder.getPath() + "/" + file.getName();
+        for (File file : listOfFiles) {
+            if (file.isFile()) {
+                String fileName = folder.getPath() + "/" + file.getName();
 
-				try (Scanner scanner = new Scanner(new File(fileName))) {
+                try (Scanner scanner = new Scanner(new File(fileName))) {
 
-				    Recipe recipe = new Recipe(pathToName(fileName));
+                    Recipe recipe = new Recipe(pathToName(fileName));
 
-					while (scanner.hasNext()){
-						String ingredientString = scanner.nextLine();
-						String[] splittedIngredient = ingredientString.split(";");
+                    while (scanner.hasNext()){
+                        String ingredientString = scanner.nextLine();
+                        String[] splittedIngredient = ingredientString.split(";");
                         Integer ingredientAmount = Integer.parseInt(splittedIngredient[0]);
                         String ingredientName = splittedIngredient[1];
                         Double ingredientReplacableWeight = Double.parseDouble(splittedIngredient[2]);
 
-						Ingredient ingredient = null;
-						for (Ingredient i : ingredients) {
-							if(i.getName().equals(ingredientName)) {
-								ingredient = i;
-							}
-						}
+                        Ingredient ingredient = null;
+                        for (Ingredient i : ingredients) {
+                            if(i.getName().equals(ingredientName)) {
+                                ingredient = i;
+                            }
+                        }
 
-						if (ingredient == null) {
+                        if (ingredient == null) {
                             System.err.println(ingredientName + " is not in the ontology!");
-						}
+                        }
 
                         // TODO Get amount from recipe file instead
                         Portion p = new Portion(ingredient, ingredientAmount);
                         recipe.add(p);
                         recipe.addWeightToPortion(p, ingredientReplacableWeight);
-					}
-					recipeBook.add(recipe);
-				} catch (IOException e) {
-					e.printStackTrace();
-				}
-			}
-		}
+                    }
+                    recipeBook.add(recipe);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
  
-		reasoner.precomputeInferences(InferenceType.CLASS_HIERARCHY);
+        reasoner.precomputeInferences(InferenceType.CLASS_HIERARCHY);
         reasoner.precomputeInferences(InferenceType.OBJECT_PROPERTY_HIERARCHY);
 
 
@@ -118,7 +118,7 @@ public class CookingAgent {
         inFridge.put("Brocolli", 200);
 
         addFlavoursToIngredients();
-		addStructureToIngredients();
+        addStructureToIngredients();
         addIngredientsToFridge(inFridge);
 
         Recipe best = getBestRecipe();
@@ -154,18 +154,18 @@ public class CookingAgent {
         }
     }
 
-	private void addStructureToIngredients() {
-	    for(Ingredient.Structure structure : java.util.Arrays.asList(Ingredient.Structure.values())) {
-	        OWLClass query = dataFactory.getOWLClass(uriPrefix + "Get" + structure.toString());
-	        
+    private void addStructureToIngredients() {
+        for(Ingredient.Structure structure : java.util.Arrays.asList(Ingredient.Structure.values())) {
+            OWLClass query = dataFactory.getOWLClass(uriPrefix + "Get" + structure.toString());
+            
             ArrayList<String> ins = new ArrayList<String>();
             reasoner.subClasses(query).forEach(x -> ins.add(x.getIRI().getFragment()));
             for(Ingredient i : ingredients) {
                 if(ins.contains(i.getName())) i.setStructure(structure);
             }
-	    }
-	}
-	
+        }
+    }
+    
     private double flavourSimilarity(Ingredient i, Ingredient j) {
         ArrayList<Ingredient.Flavour> fi = i.getFlavours();
         ArrayList<Ingredient.Flavour> fj = i.getFlavours();
@@ -187,12 +187,12 @@ public class CookingAgent {
         return similar / total;
     }
 
-	private double structureSimilarity(Ingredient i, Ingredient j) {
-	    if(i.getStructure() == null && j.getStructure() == null) return -1.0;
-	    if(i.getStructure() == j.getStructure()) return 1.0;
-	    return 0.0;
-	}
-	
+    private double structureSimilarity(Ingredient i, Ingredient j) {
+        if(i.getStructure() == null && j.getStructure() == null) return -1.0;
+        if(i.getStructure() == j.getStructure()) return 1.0;
+        return 0.0;
+    }
+    
     private void createIngredientsFromOntology() {
         for (OWLClass cls : ontology.getClassesInSignature()) {
             String ingredientName = cls.getIRI().getFragment();
@@ -200,7 +200,7 @@ public class CookingAgent {
             Ingredient ingredient = new Ingredient(ingredientName);
             ingredients.add(ingredient);
         }
-	}
+    }
     }
     
     private boolean isLeaf(OWLClass cls) {
@@ -210,15 +210,15 @@ public class CookingAgent {
         OWLClass ingredients = dataFactory.getOWLClass(uriPrefix + "Ingredients");
         return reasoner.superClasses(cls).anyMatch(x -> x == ingredients);
     }
-	
-	String pathToName(String path){
-	    String[] splitPath = path.split("/");
+    
+    String pathToName(String path){
+        String[] splitPath = path.split("/");
         splitPath = splitPath[splitPath.length - 1].split(".txt");
         return splitPath[0];
-	}
+    }
 
-	private double ingredientSimilarityAssymetric(Ingredient i, Ingredient j) {
-	    OWLClass c1 = dataFactory.getOWLClass(uriPrefix + i.getName());
+    private double ingredientSimilarityAssymetric(Ingredient i, Ingredient j) {
+        OWLClass c1 = dataFactory.getOWLClass(uriPrefix + i.getName());
         OWLClass c2 = dataFactory.getOWLClass(uriPrefix + j.getName());
         OWLClass thing = dataFactory.getOWLClass("owl:Thing");
         OWLClass cur = c1;
@@ -236,52 +236,52 @@ public class CookingAgent {
         }
         
         return (double) Math.pow(stepsToEnd,2) / (Math.pow(stepsFromStart,2) + Math.pow(stepsToEnd,2));
-	}
-	
-	private double ingredientSimilarity(Ingredient i, Ingredient j) {
+    }
+    
+    private double ingredientSimilarity(Ingredient i, Ingredient j) {
         double simWeight = SIMILARITY_WEIGHT;
         double flavourWeight = FLAVOUR_WEIGHT;
-		double structureWeight = STRUCTURE_WEIGHT;
+        double structureWeight = STRUCTURE_WEIGHT;
 
         double flavourSimilarity = flavourSimilarity(i, j);
         double similarity = (ingredientSimilarityAssymetric(i, j) + ingredientSimilarityAssymetric(j, i)) / 2;
 
-		double structureSimilarity = structureSimilarity(i, j);
-		
-		if(flavourSimilarity == -1.0) flavourWeight = 0.0;
-		if(structureSimilarity == -1.0) structureWeight = 0.0;
-		
-	    return ((similarity * simWeight)
-	     			+ (flavourSimilarity * flavourWeight)
-	                + (structureSimilarity * structureWeight))
-	            / (simWeight + flavourWeight + structureWeight);
-	}
+        double structureSimilarity = structureSimilarity(i, j);
+        
+        if(flavourSimilarity == -1.0) flavourWeight = 0.0;
+        if(structureSimilarity == -1.0) structureWeight = 0.0;
+        
+        return ((similarity * simWeight)
+                     + (flavourSimilarity * flavourWeight)
+                    + (structureSimilarity * structureWeight))
+                / (simWeight + flavourWeight + structureWeight);
+    }
 
-	private boolean hasIngredients(Recipe recipe) {
+    private boolean hasIngredients(Recipe recipe) {
         for (Portion i : recipe)
-			if (!fridge.contains(i))
-				return false;
-		return true;
-	}
+            if (!fridge.contains(i))
+                return false;
+        return true;
+    }
 
-	ArrayList<Recipe> getAvailableRecipes() {
-		ArrayList<Recipe> result = new ArrayList<Recipe>();
-		for (Recipe r : recipeBook)
-			if(hasIngredients(r))
-				result.add(r);
-		return result;
-	}
-	
-	private String fixSeperators(String path) {
-		return path.replace("\\", "/");
-	}
-	
-	public Recipe getBestRecipe() {	
-		double bestUtil = 0.0;
+    ArrayList<Recipe> getAvailableRecipes() {
+        ArrayList<Recipe> result = new ArrayList<Recipe>();
+        for (Recipe r : recipeBook)
+            if(hasIngredients(r))
+                result.add(r);
+        return result;
+    }
+    
+    private String fixSeperators(String path) {
+        return path.replace("\\", "/");
+    }
+    
+    public Recipe getBestRecipe() {    
+        double bestUtil = 0.0;
         int smallestShoppingList = Integer.MAX_VALUE;
-		Recipe bestRecipe = null;
+        Recipe bestRecipe = null;
 
-		for(Recipe r : recipeBook) {
+        for(Recipe r : recipeBook) {
             // Return recipe if completely available
             if (r.stream().mapToInt(i -> fridge.contains(i) ? 0 : 1).sum() == 0)
                 return r;
@@ -303,7 +303,7 @@ public class CookingAgent {
                 } else {
                     unavailable.add(i);
                 }
-		}
+        }
 
             HashMap<Portion, Pair> replacements = new HashMap<Portion, Pair>();
 
@@ -317,7 +317,7 @@ public class CookingAgent {
                         if (bestSimilarity < similarity) {
                             bestSimilarity = similarity;
                             bestPortion = q;
-	}
+    }
                 }
             }
                 System.out.println("Best alternative ingredient for " + p.getIngredient() + " is "
@@ -344,18 +344,18 @@ public class CookingAgent {
                 for (Portion p : replacements.keySet()) {
                     if (replacements.get(p).getValue() > replacements.get(optimalReplacement).getValue())
                         optimalReplacement = p;
-			}
+            }
                 if (recipeUtility2WithReplacement(r, replacements.get(optimalReplacement)) >= RECIPE_UTILITY_TRESHOLD) {
                     r.replace(optimalReplacement, replacements.get(optimalReplacement));
                     replacements.remove(optimalReplacement);
                     unavailable.remove(optimalReplacement);
                 } else {
                     thresholdNotHit = false;
-		}
-		
+        }
+        
                 // Recalculate replacements
                 for (Portion p : unavailable) {
-			double bestSimilarity = 0.0;
+            double bestSimilarity = 0.0;
                     Portion bestPortion = null;
                     for (Portion q : fridge) {
                         int totalInRecipe = r.stream()
@@ -370,12 +370,12 @@ public class CookingAgent {
                                 .sum();
                         if (q.getAmount() >= p.getAmount() + totalInRecipe) {
                             double similarity = ingredientSimilarity(p.getIngredient(), q.getIngredient());
-				if(bestSimilarity < similarity) {
-					bestSimilarity = similarity;
+                if(bestSimilarity < similarity) {
+                    bestSimilarity = similarity;
                                 bestPortion = q;
                             }
-				}
-			}
+                }
+            }
                     if (replacements.get(p).getPortion() != null && (bestPortion == null
                             || (replacements.get(p).getPortion().getIngredient() != bestPortion.getIngredient()))) {
                         System.out.println("Changed best alternative ingredient for " + p.getIngredient() + " to "
@@ -384,7 +384,7 @@ public class CookingAgent {
                         if (bestPortion != null && bestSimilarity > SIMILARITY_THRESHOLD) {
                             replacements.put(p,
                                     new Pair(new Portion(bestPortion.getIngredient(), p.getAmount()), bestSimilarity));
-			} else {
+            } else {
                             replacements.put(p, new Pair(null, 1.0 - r.getWeightByPortion(p)));
                         }
                     }
@@ -410,21 +410,21 @@ public class CookingAgent {
             } else if (r.getShoppingList().size() == smallestShoppingList && recipeUtility2(r) > bestUtil) {
                 bestRecipe = r;
                 bestUtil = utility;
-			}
+            }
 
             System.out.println("Utility: " + utility);
             System.out.println("Fridge: " + fridge);
             System.out.println(r);
             System.out.println("\n----------------------\n");
-		}
+        }
         System.out.println("Best Utility: " + bestUtil);
 
         if (bestUtil < RECIPE_UTILITY_TRESHOLD)
             addShoppingList(bestRecipe, RECIPE_UTILITY_TRESHOLD);
 
         return bestRecipe;
-	}
-	
+    }
+    
     private void addShoppingList(Recipe recipe, Double targetUtility) {
         System.out.println("Creating shoppinglist for " + recipe.name);
         double utility;
@@ -437,69 +437,69 @@ public class CookingAgent {
                 if (value < worstValue) {
                     worstValue = value;
                     worstPenaltyPortion = p;
-			}
-		}
+            }
+        }
             recipe.replacementToShoppingList(worstPenaltyPortion);
             System.out.println("Moved " + worstPenaltyPortion + " with value " + worstValue + " to shopping list");
         }
         System.out.println("Utility: " + utility + "/" + targetUtility);
-	}
-	
-	private double recipeUtility2(Recipe r) {
+    }
+    
+    private double recipeUtility2(Recipe r) {
         HashMap<Portion, Pair> replacements = r.getReplacements();
-		double utility = 0.0;
+        double utility = 0.0;
         for (Portion p : r) {
             if (replacements.containsKey(p)) {
                 utility += replacements.get(p).getValue();
-			} else {
-				utility += 1;
-			}
-		}
-		return utility/r.size();
-	}
-	
+            } else {
+                utility += 1;
+            }
+        }
+        return utility/r.size();
+    }
+    
     private double recipeUtility2WithReplacement(Recipe r, Pair replacement) {
         return recipeUtility2(r) * (r.size() - 1) / (r.size()) + replacement.getValue() / r.size();
-	}
-	
+    }
+    
     private void addIngredientsToFridge(ArrayList<String> ingredientNames) {
         Random random = new Random(System.currentTimeMillis());
         for (Ingredient i : ingredients) {
             if (ingredientNames.contains(i.getName())) {
                 // TODO Make this some sensible amount
                 fridge.add(new Portion(i, 400 + random.nextInt(200)));
-			}
-		}
-	}
-	
-	void addIngredientToFridge(String ingredientName, int amount) {
-		if (ingredientName == null || ingredients == null) {
-			System.out.println("Warning: ingredientName or ingredients is null in addIngredientToFridge()");
-			return;
-		}
-		
-		for(Ingredient i : ingredients) {
-			if(ingredientName.equals(i.getName())) {
-				Optional<Portion> fridgePortion =
-						fridge.stream().filter(x->x.getIngredient().getName() == ingredientName).findFirst();
-				if(fridgePortion.isPresent())
-					fridgePortion.get().add(amount);
-				else
-					fridge.add(new Portion(i, amount));
-			}
-		}
-	}
-	
-	void fillFridgeRandomly() {
-		clearFridge();		
-		for(Ingredient i : ingredients) {
-			if(random.nextFloat() < 0.1) {
-				fridge.add(new Portion(i, 400 + random.nextInt(200)));
-			}
-		}
-	}
-	
-	void clearFridge() {
-		fridge.clear();
-	}
+            }
+        }
+    }
+    
+    void addIngredientToFridge(String ingredientName, int amount) {
+        if (ingredientName == null || ingredients == null) {
+            System.out.println("Warning: ingredientName or ingredients is null in addIngredientToFridge()");
+            return;
+        }
+        
+        for(Ingredient i : ingredients) {
+            if(ingredientName.equals(i.getName())) {
+                Optional<Portion> fridgePortion =
+                        fridge.stream().filter(x->x.getIngredient().getName() == ingredientName).findFirst();
+                if(fridgePortion.isPresent())
+                    fridgePortion.get().add(amount);
+                else
+                    fridge.add(new Portion(i, amount));
+            }
+        }
+    }
+    
+    void fillFridgeRandomly() {
+        clearFridge();        
+        for(Ingredient i : ingredients) {
+            if(random.nextFloat() < 0.1) {
+                fridge.add(new Portion(i, 400 + random.nextInt(200)));
+            }
+        }
+    }
+    
+    void clearFridge() {
+        fridge.clear();
+    }
 }
