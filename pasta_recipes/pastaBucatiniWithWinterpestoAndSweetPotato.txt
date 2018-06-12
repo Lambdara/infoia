@@ -1,0 +1,13 @@
+150;sweetPotato;0.5
+25;Onion;0.4
+15;OliveOil;0.3
+5;SaltSeasoning;0.5
+5;PepperSeasoning;0.5
+100;Kale;0.6
+50;ParsleySeasoning;0.3
+60;CheeseParmasan;0.4
+15;Garlic;0.5
+5;Lemon;0.6
+10;Lemon;0.3
+350;Bucatini;0.8
+25;PineNuts;0.4
