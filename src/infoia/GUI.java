@@ -207,7 +207,18 @@ public class GUI extends Application {
         });
         findRecipeButton.setAlignment(Pos.BASELINE_CENTER);
         centerVBox.getChildren().add(findRecipeButton);
-
+        
+        Button demo1 = new Button("Demo 1");
+        demo1.setOnAction(value -> {
+            cookingAgent.demo1();
+            updateGUIFridge(guiFridge);
+            updateGUIBestRecipe(guiBestRecipe, guiShoppingList);
+        });
+        demo1.setAlignment(Pos.BASELINE_CENTER);
+        centerVBox.getChildren().add(demo1);
+        
+        
+        
         return centerVBox;
     }
 
