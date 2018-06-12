@@ -1,0 +1,9 @@
+150;BowtiePasta;0.6
+50;GreekYogurt;0.5
+100;Rukola;0.6
+100;BuffaloSauce;0.9
+200;Chicken;0.8
+100;Celery;0.6
+50;CherryTomato;0.5
+50;RedOnion;0.6
+60;CheseCrumbles;0.3
