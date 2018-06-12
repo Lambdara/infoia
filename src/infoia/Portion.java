@@ -38,4 +38,8 @@ public class Portion {
     public Portion getCopy() {
         return new Portion(ingredient, amount);
     }
+
+    public void setAmount(int i) {
+        amount = i;
+    }
 }
