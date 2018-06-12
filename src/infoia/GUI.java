@@ -212,13 +212,10 @@ public class GUI extends Application {
         demo1.setOnAction(value -> {
             cookingAgent.demo1();
             updateGUIFridge(guiFridge);
-            updateGUIBestRecipe(guiBestRecipe, guiShoppingList);
         });
         demo1.setAlignment(Pos.BASELINE_CENTER);
         centerVBox.getChildren().add(demo1);
-        
-        
-        
+
         return centerVBox;
     }
 
