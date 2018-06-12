@@ -111,6 +111,26 @@
     
 
 
+    <!-- http://www.semanticweb.org/jordi/ontologies/2018/4/Pasta#BalsamicVinegarSauce -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/jordi/ontologies/2018/4/Pasta#BalsamicVinegarSauce">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/jordi/ontologies/2018/4/Pasta#Sauces"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/jordi/ontologies/2018/4/Pasta#hasFlavour"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/jordi/ontologies/2018/4/Pasta#SourFlavour"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/jordi/ontologies/2018/4/Pasta#hasStructure"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/jordi/ontologies/2018/4/Pasta#Fluid"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
     <!-- http://www.semanticweb.org/jordi/ontologies/2018/4/Pasta#BarbecueSauce -->
 
     <owl:Class rdf:about="http://www.semanticweb.org/jordi/ontologies/2018/4/Pasta#BarbecueSauce">
@@ -266,6 +286,26 @@
 
     <owl:Class rdf:about="http://www.semanticweb.org/jordi/ontologies/2018/4/Pasta#Cauliflower">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/jordi/ontologies/2018/4/Pasta#Flowers"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/jordi/ontologies/2018/4/Pasta#Celery -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/jordi/ontologies/2018/4/Pasta#Celery">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/jordi/ontologies/2018/4/Pasta#Leaves"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/jordi/ontologies/2018/4/Pasta#hasFlavour"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/jordi/ontologies/2018/4/Pasta#AromaticFlavour"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/jordi/ontologies/2018/4/Pasta#hasFlavour"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/jordi/ontologies/2018/4/Pasta#SweetFlavour"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
     </owl:Class>
     
 
@@ -588,6 +628,12 @@
 
     <owl:Class rdf:about="http://www.semanticweb.org/jordi/ontologies/2018/4/Pasta#FreshSauce">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/jordi/ontologies/2018/4/Pasta#Sauces"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/jordi/ontologies/2018/4/Pasta#hasStructure"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/jordi/ontologies/2018/4/Pasta#Paste"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
     </owl:Class>
     
 
@@ -813,6 +859,14 @@
     
 
 
+    <!-- http://www.semanticweb.org/jordi/ontologies/2018/4/Pasta#Gnocchi -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/jordi/ontologies/2018/4/Pasta#Gnocchi">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/jordi/ontologies/2018/4/Pasta#Pasta"/>
+    </owl:Class>
+    
+
+
     <!-- http://www.semanticweb.org/jordi/ontologies/2018/4/Pasta#Gouda -->
 
     <owl:Class rdf:about="http://www.semanticweb.org/jordi/ontologies/2018/4/Pasta#Gouda">
@@ -851,6 +905,12 @@
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.semanticweb.org/jordi/ontologies/2018/4/Pasta#hasFlavour"/>
                 <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/jordi/ontologies/2018/4/Pasta#SpicyFlavour"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/jordi/ontologies/2018/4/Pasta#hasStructure"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/jordi/ontologies/2018/4/Pasta#Paste"/>
             </owl:Restriction>
         </rdfs:subClassOf>
     </owl:Class>
@@ -1008,6 +1068,14 @@
 
     <owl:Class rdf:about="http://www.semanticweb.org/jordi/ontologies/2018/4/Pasta#Mozerella">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/jordi/ontologies/2018/4/Pasta#Cheese"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/jordi/ontologies/2018/4/Pasta#MustardSauce -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/jordi/ontologies/2018/4/Pasta#MustardSauce">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/jordi/ontologies/2018/4/Pasta#HotSauce"/>
     </owl:Class>
     
 
@@ -1347,12 +1415,6 @@
 
     <owl:Class rdf:about="http://www.semanticweb.org/jordi/ontologies/2018/4/Pasta#Sauces">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/jordi/ontologies/2018/4/Pasta#Ingredients"/>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.semanticweb.org/jordi/ontologies/2018/4/Pasta#hasStructure"/>
-                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/jordi/ontologies/2018/4/Pasta#Paste"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
     </owl:Class>
     
 
@@ -1723,6 +1785,12 @@
 
     <owl:Class rdf:about="http://www.semanticweb.org/jordi/ontologies/2018/4/Pasta#WhiteSauce">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/jordi/ontologies/2018/4/Pasta#Sauces"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/jordi/ontologies/2018/4/Pasta#hasStructure"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/jordi/ontologies/2018/4/Pasta#Paste"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
     </owl:Class>
     
 
