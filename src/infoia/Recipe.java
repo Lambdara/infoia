@@ -90,4 +90,14 @@ public class Recipe extends ArrayList<Portion> {
     public ArrayList<Portion> getShoppingList() {
         return this.shoppingList;
     }
+
+    public Recipe getCopy() {
+        Recipe r = new Recipe(name);
+        HashMap<Portion,Portion> copies = new HashMap<>();
+        stream().forEach(p -> copies.put(p,p.getCopy()));
+        leaveOutWeights.keySet().stream()
+        .forEach(k -> r.leaveOutWeights.put(copies.get(k), leaveOutWeights.get(k)));
+        copies.values().stream().forEach(x -> r.add(x));
+        return r;
+    }
 }

@@ -34,4 +34,8 @@ public class Portion {
     public String toString() {
         return amount + "g of " + ingredient;
     }
+
+    public Portion getCopy() {
+        return new Portion(ingredient, amount);
+    }
 }

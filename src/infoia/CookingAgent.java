@@ -295,8 +295,10 @@ public class CookingAgent {
         double bestUtil = 0.0;
         int smallestShoppingList = Integer.MAX_VALUE;
         Recipe bestRecipe = null;
+        ArrayList<Recipe> localRecipes = new ArrayList<Recipe>();
+        recipes.forEach(x -> localRecipes.add(x.getCopy()));
 
-        for (Recipe r : recipes) {
+        for (Recipe r : localRecipes) {
             // Return recipe if completely available
             if (r.stream().mapToInt(i -> fridge.contains(i) ? 0 : 1).sum() == 0) {
                 return r;
