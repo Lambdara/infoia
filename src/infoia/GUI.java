@@ -33,6 +33,7 @@ public class GUI extends Application {
     Scene guiScene;
     Stage guiStage;
     BorderPane bPane;
+    Recipe currentRecipe;
 
     @Override
     public void start(Stage stage) throws Exception {
@@ -48,6 +49,7 @@ public class GUI extends Application {
         guiShoppingList = new ListView<String>();
         guiShoppingList.setPrefSize(500, 150);
         guiAllIngredients = FXCollections.observableArrayList();
+        currentRecipe = null;
 
         for (Ingredient i : cookingAgent.ingredients) {
             guiAllIngredients.add(i.getName());
@@ -91,8 +93,15 @@ public class GUI extends Application {
             cookingAgent.clearFridge();
             updateGUIFridge(guiFridge);
         });
+        Button removeFromFridgeButton = new Button("Remove current recipe from fridge");
+        removeFromFridgeButton.setOnAction(value -> {
+            if (currentRecipe != null)
+                cookingAgent.removeFromFridge(currentRecipe);
+            updateGUIFridge(guiFridge);
+        });
         fridgeHBox.getChildren().add(randomFridgeButton);
         fridgeHBox.getChildren().add(clearFridgeButton);
+        fridgeHBox.getChildren().add(removeFromFridgeButton);
 
         // Fridge add ingredient fields
         HBox addIngredientHBox = new HBox();
@@ -245,18 +254,18 @@ public class GUI extends Application {
         String recipeName = "";
 
         if (!guiFridge.getItems().isEmpty()) {
-            Recipe recipe = cookingAgent.getBestRecipe();
-            if (recipe != null) {
-                recipeName = recipe.name;
-                for (Portion p : recipe) {
-                    if (recipe.getReplacements().containsKey(p)) {
-                        if (recipe.getReplacements().get(p).getPortion() != null) {
-                            ingredients.add(p + " REPLACED BY " + recipe.getReplacements().get(p).getPortion());
+            currentRecipe = cookingAgent.getBestRecipe();
+            if (currentRecipe != null) {
+                recipeName = currentRecipe.name;
+                for (Portion p : currentRecipe) {
+                    if (currentRecipe.getReplacements().containsKey(p)) {
+                        if (currentRecipe.getReplacements().get(p).getPortion() != null) {
+                            ingredients.add(p + " REPLACED BY " + currentRecipe.getReplacements().get(p).getPortion());
                         } else {
                             ingredients.add("REMOVED " + p);
                         }
                     } else {
-                        if (recipe.getShoppingList().stream().anyMatch(q -> q.getIngredient() == p.getIngredient())) {
+                        if (currentRecipe.getShoppingList().stream().anyMatch(q -> q.getIngredient() == p.getIngredient())) {
                             missingIngredients.add(p.toString());
                         } else {
                             ingredients.add(p.toString());
@@ -270,5 +279,4 @@ public class GUI extends Application {
         bestRecipe.setItems(ingredients);
         shoppingList.setItems(missingIngredients);
     }
-
 }

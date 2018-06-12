@@ -515,4 +515,22 @@ public class CookingAgent {
     void clearFridge() {
         fridge.clear();
     }
+
+    public void removeFromFridge(Portion p) {
+        Optional<Portion> fridgePortion = fridge.stream().filter(x -> x.getIngredient() == p .getIngredient()).findAny();
+        if(fridgePortion.isPresent()) {
+            if (fridgePortion.get().getAmount() > p.getAmount())
+                fridgePortion.get().add(-p.getAmount());
+            else
+                fridge.remove(fridgePortion.get());
+        }
+    }
+
+    public void removeFromFridge(Recipe r) {
+        r.stream()
+            .filter(x -> !r.getShoppingList().contains(x))
+            .map(x -> r.getReplacements().containsKey(x) ? r.getReplacements().get(x).getPortion() : x)
+            .filter(x -> x != null)
+            .forEach(this::removeFromFridge);
+    }
 }
