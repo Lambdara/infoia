@@ -2,10 +2,10 @@
 25;Garlic;0.5
 25;Butter;0.3
 200;Courgette;0.2
-25;Dill;0.4
+25;DillSeasoning;0.4
 500;ChickenStock;0.3
 200;ChickenMeat;0.8
 25;Gnocchi;0.3
-125;Beans;0.5
+125;GreenBean;0.5
 150;Spinach;0.4
 25;Lemon;0.3

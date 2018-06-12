@@ -9,4 +9,4 @@
 15;Garlic;0.5
 15;Lemon;0.4
 350;Bucatini;0.8
-25;PineNuts;0.4
+25;PineNut;0.4

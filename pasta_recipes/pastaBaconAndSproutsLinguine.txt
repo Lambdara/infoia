@@ -1,9 +1,9 @@
-100;Linguinni;0.8
+100;Linguine;0.8
 5;SaltSeasoning;0.5
 5;PepperSeasoning;0.5
 180;Bacon;0.4
 30;Onion;0.3
-100;BrusselsSprout;0.8
+100;Sprout;0.8
 20;Garlic;0.5
 230;RedWine;0.3
 60;Parmasan;0.4
