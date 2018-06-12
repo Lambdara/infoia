@@ -119,10 +119,6 @@ public class CookingAgent {
         addFlavoursToIngredients();
         addStructureToIngredients();
         addIngredientsToFridge(inFridge);
-
-        Recipe best = getBestRecipe();
-        System.out.println("Fridge: " + fridge);
-        System.out.println("Best Recipe: " + best);
     }
 
     private void addIngredientsToFridge(HashMap<String, Integer> ingredientsMap) {
@@ -291,12 +287,17 @@ public class CookingAgent {
         return path.replace("\\", "/");
     }
 
-    public Recipe getBestRecipe() {
+    public Recipe getBestRecipe(int users) {
+        if (users < 1)
+            throw new RuntimeException("Can't do users < 1");
         double bestUtil = 0.0;
         int smallestShoppingList = Integer.MAX_VALUE;
         Recipe bestRecipe = null;
         ArrayList<Recipe> localRecipes = new ArrayList<Recipe>();
         recipes.forEach(x -> localRecipes.add(x.getCopy()));
+        localRecipes.stream()
+        .forEach(recipe -> recipe.stream()
+                .forEach(p -> p.setAmount(p.getAmount() * users)));
 
         for (Recipe r : localRecipes) {
             // Return recipe if completely available

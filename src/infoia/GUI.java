@@ -12,6 +12,7 @@ import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyEvent;
@@ -28,6 +29,7 @@ public class GUI extends Application {
     ListView<String> guiFridge;
     ListView<String> guiBestRecipe;
     ListView<String> guiShoppingList;
+    TextField usersField;
     ObservableList<String> guiAllIngredients;
     Text guiBestRecipeName;
     Scene guiScene;
@@ -176,6 +178,21 @@ public class GUI extends Application {
         VBox centerVBox = new VBox();
         centerVBox.setPadding(padding);
         centerVBox.setSpacing(5.0);
+        Label usersLabel = new Label();
+        usersLabel.setText("Users: ");
+        centerVBox.getChildren().add(usersLabel);
+        usersField = new TextField();
+        usersField.setText("1");
+        usersField.setPrefWidth(60);
+        usersField.textProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+                if (!newValue.matches("\\d*")) {
+                    usersField.setText(newValue.replaceAll("[^\\d]", ""));
+                }
+            }
+        });
+        centerVBox.getChildren().add(usersField);
         Button findRecipeButton = new Button("Find Recipe");
         findRecipeButton.setOnAction(value -> {
             updateGUIBestRecipe(guiBestRecipe, guiShoppingList);
@@ -254,7 +271,7 @@ public class GUI extends Application {
         String recipeName = "";
 
         if (!guiFridge.getItems().isEmpty()) {
-            currentRecipe = cookingAgent.getBestRecipe();
+            currentRecipe = cookingAgent.getBestRecipe(Integer.parseInt(usersField.getText()));
             if (currentRecipe != null) {
                 recipeName = currentRecipe.name;
                 for (Portion p : currentRecipe) {
