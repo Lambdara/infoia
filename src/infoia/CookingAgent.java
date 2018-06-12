@@ -534,4 +534,13 @@ public class CookingAgent {
             .filter(x -> x != null)
             .forEach(this::removeFromFridge);
     }
+
+    public void removeFromFridge(String name, int amount) {
+        Optional<Ingredient> ingredient = ingredients.stream().filter(x -> x.getName() == name).findAny();
+        if(!ingredient.isPresent()) {
+            return;
+        }
+
+        removeFromFridge(new Portion(ingredient.get(),amount));
+    }
 }
