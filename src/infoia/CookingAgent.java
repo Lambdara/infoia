@@ -543,4 +543,23 @@ public class CookingAgent {
 
         removeFromFridge(new Portion(ingredient.get(),amount));
     }
+    
+    public void demo1() {
+        clearFridge();
+        HashMap<String, Integer> inFridge = new HashMap<String, Integer>();
+        inFridge.put("Tomato", 300);
+        inFridge.put("MincedBeef", 150);
+        inFridge.put("Onion", 50);
+        inFridge.put("Garlic", 20);
+        inFridge.put("RedWine", 100);
+        inFridge.put("OliveOil", 200);
+        inFridge.put("ThymeSeasoning", 20);
+        inFridge.put("SaltSeasoning", 30);
+        inFridge.put("PepperSeasoning", 30);
+        inFridge.put("Penne", 200);
+
+        addFlavoursToIngredients();
+        addStructureToIngredients();
+        addIngredientsToFridge(inFridge);
+    }
 }
