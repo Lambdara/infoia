@@ -15,10 +15,11 @@ public class Portion {
     }
 
     public void remove(int amount) {
-        if (amount <= this.amount)
+        if (amount <= this.amount) {
             this.amount -= amount;
-        else
+        } else {
             throw new RuntimeException("Using more than available of ingredient " + ingredient.getName());
+        }
     }
 
     public void add(int amount) {

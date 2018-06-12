@@ -61,13 +61,13 @@ public class Recipe extends ArrayList<Portion> {
     public Double getWeightByPortion(Portion portion) {
         return leaveOutWeights.get(portion);
     }
-    
+
     public void setReplacements(HashMap<Portion, Pair> replacements) {
         this.replacements = replacements;
     }
-    
+
     public HashMap<Portion, Pair> getReplacements() {
-        return  replacements;
+        return replacements;
     }
 
     public double getLeaveOutWeight(Portion p) {
