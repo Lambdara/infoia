@@ -283,7 +283,7 @@ public class CookingAgent {
         return result;
     }
 
-    private String fixSeperators(String path) {
+    public String fixSeperators(String path) {
         return path.replace("\\", "/");
     }
 
