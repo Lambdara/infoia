@@ -1,0 +1,10 @@
+120;Spaghetti;0.9
+150;Tomato;0.7
+35;Onion;0.3
+8;Garlic;0.1
+30;BasilSeasoning;0.4
+15;OliveOil;0.7
+12;BalsamicVinegarSauce;0.4
+45;Parmasan;0.4
+5;SaltSeasoning;0.3
+5;PepperSeasoning;0.3
