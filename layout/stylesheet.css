@@ -1,0 +1,47 @@
+#pane {
+   -fx-background-image: url('tile2.jpg');
+   -fx-background-repeat: repeat;
+   -fx-background-position: center center;
+}
+
+.darkbackground {
+	-fx-background-color: #000000;
+}
+
+.textheader {
+	-fx-font: 30px "Amatic SC";
+   -fx-fill: black;
+   -fx-font-weight: bold;
+}
+
+.button { 
+   -fx-background-color: #088edf; 
+   -fx-text-fill: white; 
+}
+
+.button:hover {
+    -fx-background-color: -fx-cell-hover-color;
+}
+
+.buttonfindrecipe { 
+   -fx-background-color: #98dd1e; 
+   -fx-text-fill: white;
+   -fx-font-weight: bold;
+   -fx-font-size: 25px;
+   -fx-vspace: 100px; 
+}
+
+.buttondarkblue { 
+   -fx-background-color: #8140ff; 
+   -fx-text-fill: white; 
+}
+
+.buttongreen { 
+   -fx-background-color: #98dd1e; 
+   -fx-text-fill: white; 
+}
+
+.buttonpink { 
+   -fx-background-color: #e10976; 
+   -fx-text-fill: white; 
+}

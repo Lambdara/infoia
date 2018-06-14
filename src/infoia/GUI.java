@@ -15,6 +15,8 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
@@ -41,7 +43,7 @@ public class GUI extends Application {
     public void start(Stage stage) throws Exception {
         guiStage = stage;
         bPane = new BorderPane();
-        guiScene = new Scene(bPane, 1200, 650);
+        guiScene = new Scene(bPane, 1300, 700);
         cookingAgent = new CookingAgent();
         guiFridge = new ListView<String>();
         guiFridge.setPrefSize(250, 520);
@@ -69,18 +71,24 @@ public class GUI extends Application {
         bPane.setLeft(layoutLeft());
         bPane.setRight(layoutRight());
         bPane.setCenter(layoutCenter());
+        bPane.setId("pane");
 
         // Setup GUI stage and show
         guiStage.setTitle("INFOIA: Cooking Agent");
         guiStage.setScene(guiScene);
         guiScene.setFill(Color.LIGHTGREY);
+        String location = cookingAgent.fixSeperators(
+                "file:///" + System.getProperty("user.dir") + "/layout/stylesheet.css");
+        guiScene.getStylesheets().add(location);
+        
     }
 
     private Node layoutLeft() {
-        Insets padding = new Insets(10);
+        Insets padding = new Insets(15);
         VBox leftVBox = new VBox();
         leftVBox.setPadding(padding);
-        leftVBox.setSpacing(5.0);
+        leftVBox.setSpacing(10.0);
+        leftVBox.setAlignment(Pos.CENTER);
 
         // Fridge buttons section
         HBox fridgeHBox = new HBox();
@@ -110,7 +118,7 @@ public class GUI extends Application {
         addIngredientHBox.setSpacing(5.0);
         TextField portionField = new TextField();
         portionField.setPromptText("... g");
-        portionField.setPrefWidth(60);
+        portionField.setPrefWidth(70);
         // Source:
         // https://stackoverflow.com/questions/7555564/what-is-the-recommended-way-to-make-a-numeric-textfield-in-javafx
         portionField.textProperty().addListener(new ChangeListener<String>() {
@@ -125,6 +133,7 @@ public class GUI extends Application {
         ingredientBox.setItems(guiAllIngredients);
         ingredientBox.setEditable(true);
         ingredientBox.setPromptText("Enter ingredient name...");
+        ingredientBox.setPrefWidth(257);
         ingredientBox.addEventHandler(KeyEvent.KEY_PRESSED, t -> ingredientBox.hide());
         ingredientBox.valueProperty().addListener(new ChangeListener<String>() {
             @Override
@@ -134,6 +143,7 @@ public class GUI extends Application {
         });
 
         Button addIngredientButton = new Button("Add");
+        addIngredientButton.getStyleClass().add("buttongreen");
         addIngredientButton.setOnAction(value -> {
             cookingAgent.addIngredientToFridge(ingredientBox.getValue(), Integer.parseInt(portionField.getText()));
             updateGUIFridge(guiFridge);
@@ -141,6 +151,7 @@ public class GUI extends Application {
             portionField.setText("");
         });
         Button removeIngredientButton = new Button("Remove");
+        removeIngredientButton.getStyleClass().add("buttonpink");
         removeIngredientButton.setOnAction(value -> {
             cookingAgent.removeFromFridge(ingredientBox.getValue(), Integer.parseInt(portionField.getText()));
             updateGUIFridge(guiFridge);
@@ -165,6 +176,7 @@ public class GUI extends Application {
         VBox rightVBox = new VBox();
         rightVBox.setPadding(padding);
         rightVBox.setSpacing(5.0);
+        rightVBox.setAlignment(Pos.CENTER);
         HBox recipeHBox = new HBox();
         recipeHBox.getChildren().add(boldText("Best recipe: "));
         recipeHBox.getChildren().add(guiBestRecipeName);
@@ -180,10 +192,23 @@ public class GUI extends Application {
         Insets padding = new Insets(10);
         VBox centerVBox = new VBox();
         centerVBox.setPadding(padding);
-        centerVBox.setSpacing(5.0);
-        Label usersLabel = new Label();
-        usersLabel.setText("Persons");
-        centerVBox.getChildren().add(usersLabel);
+        centerVBox.setSpacing(10.0);
+        centerVBox.setAlignment(Pos.CENTER);
+        
+        String location = cookingAgent.fixSeperators(
+                "file:///" + System.getProperty("user.dir") + "/layout/robot.png");
+        Image robotImage = new Image(location);
+        ImageView robotImageView = new ImageView(robotImage);
+        robotImageView.setFitHeight(200);
+        robotImageView.setFitWidth(200);
+        centerVBox.getChildren().add(robotImageView);
+        
+        HBox personsHBox = new HBox();
+        personsHBox.setPadding(padding);
+        personsHBox.setSpacing(10.0);
+        personsHBox.setAlignment(Pos.CENTER);
+        personsHBox.getChildren().add(boldText("Persons"));
+        centerVBox.getChildren().add(personsHBox);
         usersField = new TextField();
         usersField.setText("1");
         usersField.setPrefWidth(60);
@@ -195,8 +220,9 @@ public class GUI extends Application {
                 }
             }
         });
-        centerVBox.getChildren().add(usersField);
+        personsHBox.getChildren().add(usersField);
         Button findRecipeButton = new Button("Find Recipe");
+        findRecipeButton.getStyleClass().add("buttonfindrecipe");
         findRecipeButton.setOnAction(value -> {
             updateGUIBestRecipe(guiBestRecipe, guiShoppingList);
         });
@@ -240,7 +266,8 @@ public class GUI extends Application {
 
     private Text boldText(String string) {
         Text text = new Text(string);
-        text.setFont(Font.font("Arial", FontWeight.BOLD, 20));
+//        text.setFont(Font.font("Arial", FontWeight.BOLD, 20));
+        text.getStyleClass().add("textheader");
 
         return text;
     }
