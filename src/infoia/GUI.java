@@ -41,7 +41,7 @@ public class GUI extends Application {
     public void start(Stage stage) throws Exception {
         guiStage = stage;
         bPane = new BorderPane();
-        guiScene = new Scene(bPane, 1000, 650);
+        guiScene = new Scene(bPane, 1200, 650);
         cookingAgent = new CookingAgent();
         guiFridge = new ListView<String>();
         guiFridge.setPrefSize(250, 520);
@@ -95,7 +95,7 @@ public class GUI extends Application {
             cookingAgent.clearFridge();
             updateGUIFridge(guiFridge);
         });
-        Button removeFromFridgeButton = new Button("Remove current recipe from fridge");
+        Button removeFromFridgeButton = new Button("Remove Recipe From Fridge");
         removeFromFridgeButton.setOnAction(value -> {
             if (currentRecipe != null)
                 cookingAgent.removeFromFridge(currentRecipe);
@@ -125,11 +125,6 @@ public class GUI extends Application {
         ingredientBox.setItems(guiAllIngredients);
         ingredientBox.setEditable(true);
         ingredientBox.setPromptText("Enter ingredient name...");
-        ingredientBox.getEditor().focusedProperty().addListener(observable -> {
-            if (ingredientBox.getSelectionModel().getSelectedIndex() < 0) {
-                ingredientBox.getEditor().setText(null);
-            }
-        });
         ingredientBox.addEventHandler(KeyEvent.KEY_PRESSED, t -> ingredientBox.hide());
         ingredientBox.valueProperty().addListener(new ChangeListener<String>() {
             @Override
@@ -187,7 +182,7 @@ public class GUI extends Application {
         centerVBox.setPadding(padding);
         centerVBox.setSpacing(5.0);
         Label usersLabel = new Label();
-        usersLabel.setText("Users: ");
+        usersLabel.setText("Persons");
         centerVBox.getChildren().add(usersLabel);
         usersField = new TextField();
         usersField.setText("1");
