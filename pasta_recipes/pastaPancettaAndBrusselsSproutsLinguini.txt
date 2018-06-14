@@ -1,0 +1,9 @@
+100;Linguinni;0.8
+5;SaltSeasoning;0.5
+5;PepperSeasoning;0.5
+180;Panceta;0.4
+30;Onion;0.3
+100;BrusselsSprout;0.8
+20;Garlic;0.5
+230;Wine;0.3
+60;CheeseParmasan;0.4
