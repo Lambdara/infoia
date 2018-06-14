@@ -3,4 +3,4 @@
 80;Parmasan;0.3
 150;Arugula;0.4
 150;ChickenMeat;0.8
-5;PepperSeasoning;0.4
+5;PepperSeasoning;0.3
