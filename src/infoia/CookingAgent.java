@@ -543,8 +543,23 @@ public class CookingAgent {
 
         removeFromFridge(new Portion(ingredient.get(),amount));
     }
-    
+
     public void demo1() {
+        clearFridge();
+        HashMap<String, Integer> inFridge = new HashMap<String, Integer>();
+        inFridge.put("Tomato", 300);
+        inFridge.put("Onion", 50);
+        inFridge.put("Garlic", 20);
+        inFridge.put("Spinach", 100);
+        inFridge.put("Mozerella", 200);
+        inFridge.put("Fusilli", 200);
+
+        addFlavoursToIngredients();
+        addStructureToIngredients();
+        addIngredientsToFridge(inFridge);
+    }
+
+    public void demo2() {
         clearFridge();
         HashMap<String, Integer> inFridge = new HashMap<String, Integer>();
         inFridge.put("Tomato", 300);
@@ -557,6 +572,45 @@ public class CookingAgent {
         inFridge.put("SaltSeasoning", 30);
         inFridge.put("PepperSeasoning", 30);
         inFridge.put("Penne", 200);
+
+        addFlavoursToIngredients();
+        addStructureToIngredients();
+        addIngredientsToFridge(inFridge);
+    }
+
+    public void demo3() {
+        clearFridge();
+        HashMap<String, Integer> inFridge = new HashMap<String, Integer>();
+        inFridge.put("Milk", 50);
+        inFridge.put("ChickenMeat", 150);
+        inFridge.put("Portabello", 50);
+        inFridge.put("Yoghurt", 100);
+        inFridge.put("SaltSeasoning", 100);
+
+        addFlavoursToIngredients();
+        addStructureToIngredients();
+        addIngredientsToFridge(inFridge);
+    }
+
+    public void demo4() {
+        clearFridge();
+        HashMap<String, Integer> inFridge = new HashMap<String, Integer>();
+        inFridge.put("Campanelle", 400);
+        inFridge.put("Broccoli", 300);
+        inFridge.put("OliveOil", 15);
+        inFridge.put("BalsamicVinegarSauce", 30);
+        inFridge.put("Shallot", 150);
+        inFridge.put("Garlic", 14);
+        inFridge.put("MustardSauce", 30);
+        inFridge.put("Tomato", 80);
+        inFridge.put("Almond", 40);
+        inFridge.put("BasilSeasoning", 10);
+
+        inFridge.put("SaltSeasoning", 30);
+        inFridge.put("PepperSeasoning", 30);
+        inFridge.put("RedWine", 150);
+        inFridge.put("Parmasan", 100);
+        inFridge.put("Bacon", 120);
 
         addFlavoursToIngredients();
         addStructureToIngredients();
