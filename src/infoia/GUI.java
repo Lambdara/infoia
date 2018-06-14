@@ -228,7 +228,7 @@ public class GUI extends Application {
         });
         findRecipeButton.setAlignment(Pos.BASELINE_CENTER);
         centerVBox.getChildren().add(findRecipeButton);
-        
+
         Button demo1 = new Button("Demo 1");
         demo1.setOnAction(value -> {
             cookingAgent.demo1();
@@ -236,6 +236,30 @@ public class GUI extends Application {
         });
         demo1.setAlignment(Pos.BASELINE_CENTER);
         centerVBox.getChildren().add(demo1);
+
+        Button demo2 = new Button("Demo 2");
+        demo2.setOnAction(value -> {
+            cookingAgent.demo2();
+            updateGUIFridge(guiFridge);
+        });
+        demo2.setAlignment(Pos.BASELINE_CENTER);
+        centerVBox.getChildren().add(demo2);
+
+        Button demo3 = new Button("Demo 3");
+        demo3.setOnAction(value -> {
+            cookingAgent.demo3();
+            updateGUIFridge(guiFridge);
+        });
+        demo3.setAlignment(Pos.BASELINE_CENTER);
+        centerVBox.getChildren().add(demo3);
+
+        Button demo4 = new Button("Demo 4");
+        demo4.setOnAction(value -> {
+            cookingAgent.demo4();
+            updateGUIFridge(guiFridge);
+        });
+        demo4.setAlignment(Pos.BASELINE_CENTER);
+        centerVBox.getChildren().add(demo4);
 
         return centerVBox;
     }
