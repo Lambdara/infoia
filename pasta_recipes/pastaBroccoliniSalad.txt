@@ -1,0 +1,10 @@
+120;Campanelle;0.9
+100;Broccoli;0.8
+15;OliveOil;0.2
+30;BalsamicVinegarSauce;0.3
+20;Shallot;0.2
+10;Garlic;0.1
+30;MustardSauce;0.4
+80;Tomato;0.6
+40;Almond;0.3
+10;BasilSeasoning;0.2
