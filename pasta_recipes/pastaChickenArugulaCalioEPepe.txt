@@ -1,0 +1,6 @@
+120;Spaghetti;0.9
+25;Butter;0.8
+80;Parmasan;0.3
+150;Arugula;0.4
+150;ChickenMeat;0.8
+5;PepperSeasoning;0.3

@@ -1,0 +1,9 @@
+120;Penne;0.9
+40;Yoghurt;0.4
+60;Arugula;0.3
+40;BuffaloSauce;0.8
+150;ChickenMeat;0.8
+80;Celery;0.3
+60;Tomato;0.3
+30;Onion;0.2
+50;Gouda;0.2

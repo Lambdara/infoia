@@ -2,4 +2,4 @@
 150;Penne;0.9
 4;Garlic;0.1
 50;Onion;0.2
-25;SpanishPepper;0.85
+25;SpanishPepper;0.95
