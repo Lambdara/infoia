@@ -4,6 +4,11 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Optional;
 
+/**
+ * This is a list of Potions, that together form a recipe.
+ * 
+ * @author Intelligent Agents Group 6
+ */
 public class Recipe extends ArrayList<Portion> {
     private static final long serialVersionUID = 1L;
 

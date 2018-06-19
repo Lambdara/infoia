@@ -2,6 +2,11 @@ package infoia;
 
 import java.util.ArrayList;
 
+/**
+ * The Ingredient class.
+ * 
+ * @author Intelligent Agents Group 6
+ */
 public class Ingredient {
     public static enum Flavour {
         Sweet, Sour, Bitter, Salty, Savory, Aromatic, Spicy

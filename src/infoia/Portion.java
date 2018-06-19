@@ -1,5 +1,12 @@
 package infoia;
 
+/**
+ * A Portion is a pair of Ingredient and amount. 
+ * There can be multiple portions of the same Ingredient. Every portion of the same Ingredient
+ * points to the same Ingredient object. 
+ * 
+ * @author Intelligent Agents Group 6
+ */
 public class Portion {
 
     private int amount;

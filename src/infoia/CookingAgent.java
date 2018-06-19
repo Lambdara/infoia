@@ -17,6 +17,11 @@ import org.semanticweb.owlapi.reasoner.OWLReasonerFactory;
 
 import javafx.application.Application;
 
+/**
+ * This is the Cooking Agent that does all the reasoning on the perceptions and ontology. 
+ * 
+ * @author Intelligent Agents Group 6
+ */
 public class CookingAgent {
 
     public static Random random = new Random();
@@ -29,8 +34,6 @@ public class CookingAgent {
     public static final Double RECIPE_UTILITY_TRESHOLD = 0.90;
 
     public static void main(String[] args) {
-
-        // new CookingAgent();
         Application.launch(GUI.class, args);
     }
 
@@ -48,9 +51,9 @@ public class CookingAgent {
         fridge = new ArrayList<Portion>();
         recipes = new ArrayList<Recipe>();
         ingredients = new ArrayList<Ingredient>();
-
+        
+        // Read all Ingredients from the ontology
         manager = OWLManager.createOWLOntologyManager();
-
         try {
             String location = fixSeperators(
                     "file:///" + System.getProperty("user.dir") + "/ontologies/PastaOntologyRDF.owl");
@@ -58,16 +61,16 @@ public class CookingAgent {
         } catch (Exception e) {
             e.printStackTrace();
         }
-
         OWLReasonerFactory rf = new ReasonerFactory();
         reasoner = rf.createReasoner(ontology);
         dataFactory = manager.getOWLDataFactory();
-
         createIngredientsFromOntology();
+        addFlavoursToIngredients();
+        addStructureToIngredients();
 
+        // Add all the known recipes to the recipe list
         File folder = new File("pasta_recipes/");
         File[] listOfFiles = folder.listFiles();
-
         for (File file : listOfFiles) {
             if (file.isFile()) {
                 String fileName = folder.getPath() + "/" + file.getName();
@@ -94,7 +97,6 @@ public class CookingAgent {
                             System.err.println(ingredientName + " is not in the ontology!");
                         }
 
-                        // TODO Get amount from recipe file instead
                         Portion p = new Portion(ingredient, ingredientAmount);
                         recipe.add(p);
                         recipe.addWeightToPortion(p, ingredientReplacableWeight);
@@ -105,19 +107,16 @@ public class CookingAgent {
                 }
             }
         }
-
         reasoner.precomputeInferences(InferenceType.CLASS_HIERARCHY);
         reasoner.precomputeInferences(InferenceType.OBJECT_PROPERTY_HIERARCHY);
-
+        
+        // Add default ingredients to the fridge
         HashMap<String, Integer> inFridge = new HashMap<String, Integer>();
         inFridge.put("SpanishPepper", 50);
         inFridge.put("Tomato", 200);
         inFridge.put("Penne", 500);
         inFridge.put("Shallot", 54);
         inFridge.put("Brocolli", 200);
-
-        addFlavoursToIngredients();
-        addStructureToIngredients();
         addIngredientsToFridge(inFridge);
     }
 
@@ -126,7 +125,10 @@ public class CookingAgent {
             fridge.add(new Portion(pair.getKey(), pair.getValue()));
         }
     }
-
+    
+    /**
+     * Convert a Map of String, Amount to a Map of Ingredient, Amount 
+     */
     private HashMap<Ingredient, Integer> convertToIngredients(HashMap<String, Integer> ingredientsMap) {
         HashMap<Ingredient, Integer> resultMap = new HashMap<Ingredient, Integer>();
         for (Ingredient i : ingredients) {
@@ -137,6 +139,9 @@ public class CookingAgent {
         return resultMap;
     }
 
+    /**
+     * Add the flavour property, defined in the ontology, to the Ingredient objects. 
+     */
     private void addFlavoursToIngredients() {
         for (Ingredient.Flavour flavour : java.util.Arrays.asList(Ingredient.Flavour.values())) {
             OWLClass query = dataFactory.getOWLClass(uriPrefix + "Get" + flavour.toString());
@@ -150,6 +155,9 @@ public class CookingAgent {
         }
     }
 
+    /**
+     * Add the structure property, defined in the ontology, to the Ingredient objects.
+     */
     private void addStructureToIngredients() {
         for (Ingredient.Structure structure : java.util.Arrays.asList(Ingredient.Structure.values())) {
             OWLClass query = dataFactory.getOWLClass(uriPrefix + "Get" + structure.toString());
@@ -163,7 +171,10 @@ public class CookingAgent {
             }
         }
     }
-
+    
+    /**
+     * Return the similarity of to ingredients, based on their flavour properties.
+     */
     private double flavourSimilarity(Ingredient i, Ingredient j) {
         ArrayList<Ingredient.Flavour> fi = i.getFlavours();
         ArrayList<Ingredient.Flavour> fj = i.getFlavours();
@@ -187,6 +198,9 @@ public class CookingAgent {
         return similar / total;
     }
 
+    /**
+     * Return the similarity of to ingredients, based on their structure property.
+     */
     private double structureSimilarity(Ingredient i, Ingredient j) {
         if (i.getStructure() == null && j.getStructure() == null) {
             return -1.0;
@@ -207,6 +221,9 @@ public class CookingAgent {
         }
     }
 
+    /**
+     * Return true if this OWLClass is a leaf of the ontology tree.
+     */
     private boolean isLeaf(OWLClass cls) {
         if (reasoner.subClasses(cls).count() > 1) {
             return false;
@@ -222,6 +239,9 @@ public class CookingAgent {
         return splitPath[0];
     }
 
+    /**
+     * Return a similarity measure between two ingredients based on their location within the ontology. 
+     */
     private double ingredientSimilarityAssymetric(Ingredient i, Ingredient j) {
         OWLClass c1 = dataFactory.getOWLClass(uriPrefix + i.getName());
         OWLClass c2 = dataFactory.getOWLClass(uriPrefix + j.getName());
@@ -243,6 +263,9 @@ public class CookingAgent {
         return (double) Math.pow(stepsToEnd, 2) / (Math.pow(stepsFromStart, 2) + Math.pow(stepsToEnd, 2));
     }
 
+    /**
+     * Return the similarity measure between two ingredients.
+     */
     private double ingredientSimilarity(Ingredient i, Ingredient j) {
         double simWeight = SIMILARITY_WEIGHT;
         double flavourWeight = FLAVOUR_WEIGHT;
@@ -264,29 +287,16 @@ public class CookingAgent {
                 + (structureSimilarity * structureWeight)) / (simWeight + flavourWeight + structureWeight);
     }
 
-    private boolean hasIngredients(Recipe recipe) {
-        for (Portion i : recipe) {
-            if (!fridge.contains(i)) {
-                return false;
-            }
-        }
-        return true;
-    }
-
-    ArrayList<Recipe> getAvailableRecipes() {
-        ArrayList<Recipe> result = new ArrayList<Recipe>();
-        for (Recipe r : recipes) {
-            if (hasIngredients(r)) {
-                result.add(r);
-            }
-        }
-        return result;
-    }
-
+    /**
+     * Fixes the seperators of a given path string. Fixes issue for both Linux and Windows users.
+     */
     public String fixSeperators(String path) {
         return path.replace("\\", "/");
     }
 
+    /**
+     * Return the best recipe for the given amount of users.
+     */
     public Recipe getBestRecipe(int users) {
         if (users < 1)
             throw new RuntimeException("Can't do users < 1");
@@ -365,7 +375,7 @@ public class CookingAgent {
                         optimalReplacement = p;
                     }
                 }
-                if (recipeUtility2WithReplacement(r, replacements.get(optimalReplacement)) >= RECIPE_UTILITY_TRESHOLD) {
+                if (recipeUtilityWithReplacement(r, replacements.get(optimalReplacement)) >= RECIPE_UTILITY_TRESHOLD) {
                     r.replace(optimalReplacement, replacements.get(optimalReplacement));
                     replacements.remove(optimalReplacement);
                     unavailable.remove(optimalReplacement);
@@ -422,14 +432,14 @@ public class CookingAgent {
             }
 
             int shoppingListSize = r.getShoppingList().size();
-            double utility = recipeUtility2(r);
+            double utility = recipeUtility(r);
 
             // Now make note of utility and the like
             if (shoppingListSize < smallestShoppingList) {
                 bestRecipe = r;
                 bestUtil = utility;
                 smallestShoppingList = shoppingListSize;
-            } else if (r.getShoppingList().size() == smallestShoppingList && recipeUtility2(r) > bestUtil) {
+            } else if (r.getShoppingList().size() == smallestShoppingList && recipeUtility(r) > bestUtil) {
                 bestRecipe = r;
                 bestUtil = utility;
             }
@@ -448,10 +458,13 @@ public class CookingAgent {
         return bestRecipe;
     }
 
+    /**
+     * Add the required ingredients to a shopping list, given the recipe.
+     */
     private void addShoppingList(Recipe recipe, Double targetUtility) {
         System.out.println("Creating shoppinglist for " + recipe.name);
         double utility;
-        while ((utility = recipeUtility2(recipe)) < targetUtility) {
+        while ((utility = recipeUtility(recipe)) < targetUtility) {
             System.out.println("Utility: " + utility + "/" + targetUtility);
             double worstValue = 1;
             Portion worstPenaltyPortion = null;
@@ -468,7 +481,10 @@ public class CookingAgent {
         System.out.println("Utility: " + utility + "/" + targetUtility);
     }
 
-    private double recipeUtility2(Recipe r) {
+    /**
+     * Return the utility of the given recipe.
+     */
+    private double recipeUtility(Recipe r) {
         HashMap<Portion, Pair> replacements = r.getReplacements();
         double utility = 0.0;
         for (Portion p : r) {
@@ -481,8 +497,11 @@ public class CookingAgent {
         return utility / r.size();
     }
 
-    private double recipeUtility2WithReplacement(Recipe r, Pair replacement) {
-        return recipeUtility2(r) * (r.size() - 1) / (r.size()) + replacement.getValue() / r.size();
+    /**
+     * This is the utility of a recipe, when only one ingredient is replaced (Pair replacement).
+     */
+    private double recipeUtilityWithReplacement(Recipe r, Pair replacement) {
+        return recipeUtility(r) * (r.size() - 1) / (r.size()) + replacement.getValue() / r.size();
     }
 
     void addIngredientToFridge(String ingredientName, int amount) {
