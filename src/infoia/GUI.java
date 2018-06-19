@@ -66,8 +66,6 @@ public class GUI extends Application {
     }
 
     private void setupLayout() {
-        // bPane.setTop();
-        // bPane.setBottom(new TextField("Bottom"));
         bPane.setLeft(layoutLeft());
         bPane.setRight(layoutRight());
         bPane.setCenter(layoutCenter());
@@ -266,7 +264,6 @@ public class GUI extends Application {
 
     private Text boldText(String string) {
         Text text = new Text(string);
-//        text.setFont(Font.font("Arial", FontWeight.BOLD, 20));
         text.getStyleClass().add("textheader");
 
         return text;
